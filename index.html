@@ -1,0 +1,3928 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font-family: 'Noto Sans KR', sans-serif; }
+
+/* ══════════════════════════════════════════════════════════
+   Samsung A — Cover Page System (.sa-base + variants)
+   덱 표지 / Part 표지 / Chap 간지 슬라이드 전용
+   본문 슬라이드에는 적용하지 않음
+══════════════════════════════════════════════════════════ */
+:root {
+  --pretendard: "Pretendard Variable", Pretendard, "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --display: "Inter Tight", "Pretendard Variable", "Inter", sans-serif;
+}
+.sa-base {
+  width: 1920px;
+  height: 1080px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(ellipse at 22% 30%, rgba(83, 71, 255, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse at 78% 75%, rgba(255, 87, 178, 0.30) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 122, 255, 0.18) 0%, transparent 70%),
+    #050510;
+  font-family: var(--pretendard);
+}
+.sa-base::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+}
+.sa-base .stage {
+  position: absolute;
+  left: 120px;
+  right: 120px;
+  top: 480px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+.sa-base .eyebrow {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  background: linear-gradient(95deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sa-base .title {
+  font-family: var(--pretendard);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+.sa-base .title .grad {
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sa-base .sub {
+  font-family: var(--pretendard);
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 32px;
+}
+.sa-base .backdrop {
+  position: absolute;
+  font-family: var(--display);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* COVER */
+.sa-cover .title { font-size: 152px; }
+.sa-cover .sub { font-size: 30px; max-width: 900px; }
+.sa-cover .backdrop {
+  top: -60px; right: 0;
+  font-size: 760px;
+  background: linear-gradient(135deg, rgba(91,157,255,0.18) 0%, rgba(162,107,255,0.12) 50%, rgba(255,107,193,0.05) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+}
+
+/* PART */
+.sa-part .title { font-size: 144px; }
+.sa-part .sub { font-size: 30px; max-width: 800px; margin-top: 40px; }
+.sa-part .backdrop {
+  top: -120px; right: -40px;
+  font-size: 1200px;
+  background: linear-gradient(135deg, rgba(91,157,255,0.20) 0%, rgba(162,107,255,0.10) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+}
+
+/* CHAP */
+.sa-chap .title { font-size: 104px; }
+.sa-chap .sub { font-size: 24px; max-width: 800px; margin-top: 28px; }
+.sa-chap .backdrop {
+  top: -60px; right: -20px;
+  font-size: 720px;
+  background: linear-gradient(135deg, rgba(91,157,255,0.18) 0%, rgba(162,107,255,0.12) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+}
+
+/* ══════════════════════════════
+   FIXED NAVBAR
+══════════════════════════════ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  background: rgba(30,30,30,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#nav-logo {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+#nav-tabs {
+  display: flex;
+  align-items: center;
+}
+
+.ntab {
+  position: relative;
+  height: 52px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.ntab:hover { color: #fff; }
+.ntab.active { color: #fff; }
+.ntab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 22px; right: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+/* 드롭다운 */
+.ndrop {
+  display: none;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  min-width: 300px;
+  background: rgba(6,6,6,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 8px 0 12px;
+}
+
+.ntab:hover .ndrop { display: block; }
+
+.ndrop-item {
+  display: block;
+  padding: 7px 24px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.12s, background 0.12s;
+}
+
+.ndrop-item:hover { color: #fff; background: rgba(255,255,255,0.07); }
+
+.ndrop-group {
+  padding: 12px 24px 4px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top: 0.5px solid rgba(255,255,255,0.07);
+  margin-top: 6px;
+  cursor: default;
+}
+
+.ndrop-group:first-child { border-top: none; margin-top: 0; }
+
+.ndrop-part {
+  padding: 14px 24px 12px;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 0.5px solid rgba(255,255,255,0.15);
+  margin-bottom: 6px;
+  cursor: default;
+}
+.ndrop-part .np-num {
+  display: block;
+  font-size: 9.5px;
+  color: rgba(180,160,240,0.9);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.ndrop-part .np-title {
+  font-size: 13px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+/* ══════════════════════════════
+   ARROW BUTTONS (다크 프로스티드 글래스 알약 — 어떤 배경에서도 가독성)
+══════════════════════════════ */
+#arrows {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(60,60,75,0.18);
+  padding: 6px 14px;
+  border-radius: 32px;
+  border: 0.5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+
+.abtn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 0.5px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.55);
+}
+
+.abtn:hover { background: rgba(255,255,255,0.22); }
+
+#counter {
+  font-size: 12px;
+  color: #fff;
+  min-width: 52px;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.55);
+}
+
+/* ══════════════════════════════
+   REVEAL.JS
+══════════════════════════════ */
+.reveal {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  background: #000 !important;
+}
+
+.reveal .slides section {
+  padding: 0 !important;
+  text-align: left;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 1920px !important;
+  height: 1080px !important;
+}
+
+.reveal .slide-background { background: #000 !important; }
+
+/* ══════════════════════════════
+   SLIDE LAYOUTS
+══════════════════════════════ */
+
+/* 풀스크린 (표지/파트표지/간지) */
+.s-full {
+  width: 1920px;
+  height: 1080px;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.s-full .plabel {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: right;
+}
+
+.s-full .ptitle {
+  font-size: 56px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: right;
+  max-width: 1300px;
+  margin-bottom: 16px;
+}
+
+.s-full .psub {
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  text-align: right;
+  max-width: 1000px;
+}
+
+/* 콘텐츠 페이지 */
+.s-page {
+  width: 1920px;
+  height: 1080px;
+  display: flex !important;
+  flex-direction: column;
+  background: #0a0a0a;
+  padding: 88px 96px 52px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.s-page .plabel {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.s-page .ptitle {
+  font-size: 36px;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.s-page .pcap {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.78);
+  padding-bottom: 24px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.12);
+  margin-bottom: 32px;
+}
+.s-page .ptitle-en {
+  font-size: 19px;
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  margin-top: -4px;
+  margin-bottom: 16px;
+}
+
+.section-label {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.section-label .sl-aside {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  margin-left: 14px;
+}
+.key-message {
+  background: rgba(180,160,240,0.1);
+  border: 0.5px solid rgba(180,160,240,0.45);
+  border-radius: 10px;
+  padding: 22px 32px;
+  text-align: center;
+}
+.key-message .km-text {
+  font-size: 19px;
+  color: rgba(255,255,255,0.96);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* ══════════════════════════════
+   Part 4 Conclusion 카드
+══════════════════════════════ */
+.cc-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.cc-num {
+  font-size: 36px;
+  font-weight: 200;
+  color: rgba(180,160,240,0.92);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.cc-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.cc-en {
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  padding-bottom: 16px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.15);
+  margin-bottom: 18px;
+}
+.cc-tagline {
+  font-size: 16px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  margin-bottom: 20px;
+}
+.cc-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cc-points li {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.55;
+  font-weight: 300;
+  padding-left: 14px;
+  position: relative;
+}
+.cc-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(180,160,240,0.75);
+}
+
+/* ══════════════════════════════
+   3.2 DESIGN.md 섹션
+══════════════════════════════ */
+.dms-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+.dms-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.dms-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.dms-title .dms-sub {
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  letter-spacing: 0;
+  margin-left: 6px;
+}
+.dms-conn {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(180,160,240,0.85);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* ══════════════════════════════
+   Part 5 디자이너 R&R 섹션
+══════════════════════════════ */
+.rr-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.rr-title {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: rgba(180,160,240,0.95);
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  padding: 14px 0;
+  border-top: 0.5px solid rgba(180,160,240,0.4);
+  border-bottom: 0.5px solid rgba(180,160,240,0.4);
+}
+.rr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  flex: 1;
+  align-items: start;
+}
+.rr-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 12px 16px 0;
+}
+.rr-num {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(180,160,240,0.12);
+  border: 1px solid rgba(180,160,240,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 400;
+  color: rgba(180,160,240,0.95);
+  flex-shrink: 0;
+}
+.rr-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.rr-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* Part 5.5 멀티 디바이스 타임라인 */
+.timeline {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+  flex-shrink: 0;
+}
+.tl-stage {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 16px 18px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tl-device {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(180,160,240,0.95);
+  letter-spacing: 0.04em;
+}
+.tl-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.tl-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  padding: 0 4px;
+}
+
+.s-page .body {
+  flex: 1;
+  display: flex;
+  gap: 24px;
+  min-height: 0;
+}
+
+.s-page .body.col { flex-direction: column; }
+
+/* 와이어프레임 */
+.wf {
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.28);
+  font-size: 12px;
+  text-align: center;
+  padding: 14px;
+  line-height: 1.6;
+}
+
+.wf.circle { border-radius: 50%; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.fw { width: 100%; }
+
+/* 페이지 번호 */
+.pnum {
+  position: absolute;
+  bottom: 20px; right: 96px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.08em;
+}
+
+/* ══════════════════════════════
+   CONTENT CARDS
+══════════════════════════════ */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.card .c-label {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.card .c-sub {
+  font-size: 19px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  margin-bottom: 28px;
+}
+.card .c-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 28px;
+}
+.card .c-desc {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 0;
+}
+.kws { display: flex; flex-wrap: wrap; gap: 10px; }
+.kw {
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 0.5px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.92);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* 카테고리 카드 변형 */
+.card.cat-for { border-color: rgba(160,120,220,0.32); }
+.card.cat-for .c-label { color: rgba(190,160,235,0.85); }
+.card.cat-with { border-color: rgba(120,200,170,0.32); }
+.card.cat-with .c-label { color: rgba(150,220,190,0.85); }
+
+/* ══════════════════════════════
+   DATA TABLE
+══════════════════════════════ */
+.tbl {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.015);
+}
+.tbl-row { display: grid; border-top: 0.5px solid rgba(255,255,255,0.08); }
+.tbl-row:first-child { border-top: none; }
+.tbl-cell {
+  padding: 20px 26px;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+  border-left: 0.5px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.tbl-cell:first-child { border-left: none; }
+.tbl-row.head .tbl-cell {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  background: rgba(255,255,255,0.06);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+}
+.tbl-cell .t-label {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.tbl-cell .t-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 2px;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+.tbl-cell .t-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.tbl-row.insight {
+  background: rgba(255,255,255,0.025);
+  border-top: none;
+}
+.tbl-row.insight .tbl-cell {
+  border-left: none;
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  padding: 4px 26px 16px;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+.tbl-row.insight .tbl-cell.insight-spacer {
+  padding: 0;
+}
+.tbl-row.insight .tbl-cell.insight-body::before {
+  content: 'INSIGHT';
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+  border: 0.5px solid rgba(255,255,255,0.32);
+  padding: 4px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+/* 인사이트 다음 본문 행을 더 명확히 구분 (묶음 단위 분리) */
+.tbl-row.insight + .tbl-row:not(.insight) {
+  border-top: 0.5px solid rgba(255,255,255,0.18);
+  margin-top: 14px;
+}
+
+/* 카테고리 행 마커 (배경 틴트 + 좌측 컬러 보더) */
+.tbl-row.cat-for {
+  background: rgba(160,120,220,0.09);
+  box-shadow: inset 3px 0 0 rgba(160,120,220,0.6);
+}
+.tbl-row.cat-with {
+  background: rgba(120,200,170,0.08);
+  box-shadow: inset 3px 0 0 rgba(120,200,170,0.6);
+}
+.tbl-row.cat-for.insight { box-shadow: inset 3px 0 0 rgba(160,120,220,0.3); }
+.tbl-row.cat-with.insight { box-shadow: inset 3px 0 0 rgba(120,200,170,0.3); }
+
+/* ──────────────────────────────
+   GROUPED TABLE (1열 카테고리가
+   본문 + 인사이트 2행을 묶는 구조)
+────────────────────────────── */
+.tbl-group {
+  display: grid;
+  border-top: 0.5px solid rgba(255,255,255,0.22);
+}
+.tbl-group .tbl-cell {
+  border-left: 0.5px solid rgba(255,255,255,0.14);
+}
+.tbl-group .tbl-cell:first-child { border-left: none; }
+
+/* 카테고리 셀: 본문 + 인사이트 2행 span */
+.tbl-cat {
+  grid-row: span 2;
+}
+
+/* 그룹 내부 본문 행 ↔ 인사이트 행 사이 가는 분리선 */
+.tbl-group .insight-body {
+  border-top: 0.5px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+}
+.tbl-group .insight-body::before {
+  content: 'INSIGHT';
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+  border: 0.5px solid rgba(255,255,255,0.32);
+  padding: 4px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
+   INFO BOX / FOOTNOTE / BULLETS
+══════════════════════════════ */
+.info-box {
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 20px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.info-box .ib-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.info-box .ib-body {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.6;
+}
+
+.footnote {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  line-height: 1.55;
+  padding-top: 4px;
+}
+
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+}
+.bullet-list li {
+  list-style: none;
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+}
+
+/* ══════════════════════════════
+   2.1 봇 부위 카드
+══════════════════════════════ */
+.part-row {
+  display: grid;
+  grid-template-columns: 38px 100px 1fr;
+  gap: 22px;
+  padding: 18px 24px;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  align-items: center;
+}
+.part-row .p-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  color: #0a0a0a;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.part-row .p-area {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: right;
+  border-right: 0.5px solid rgba(255,255,255,0.15);
+  padding-right: 16px;
+}
+.part-row .p-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.part-row .p-label {
+  font-size: 19px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.part-row .p-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* ══════════════════════════════
+   2.3 SKILL 계층 트리
+══════════════════════════════ */
+.tree {
+  font-size: 15px;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.75;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.tree .tree-root {
+  font-weight: 500;
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+.tree .tree-item {
+  padding-left: 14px;
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+}
+
+/* ══════════════════════════════
+   3.1 기차 블록 (파이프라인)
+══════════════════════════════ */
+.train {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  gap: 0;
+}
+.train-step {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 14px 8px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.train-step.highlight {
+  background: rgba(180,160,240,0.14);
+  border-color: rgba(180,160,240,0.55);
+  color: #fff;
+  font-weight: 500;
+}
+.train-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  color: rgba(255,255,255,0.3);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* 3.1 Theory 태그 */
+.theory-tag {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 0.5px solid rgba(255,255,255,0.14);
+}
+.theory-tag .tt-label {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.theory-tag .tt-content {
+  font-size: 15px;
+  color: rgba(255,255,255,0.88);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* ══════════════════════════════
+   3.3 Ambient AX 수렴 다이어그램
+══════════════════════════════ */
+.converge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+.converge-row {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  width: 100%;
+  justify-content: center;
+}
+.converge-box {
+  flex: 1;
+  max-width: 420px;
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 20px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.converge-box .cb-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+.converge-box .cb-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.78);
+  font-weight: 300;
+  line-height: 1.55;
+}
+.converge-op {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  padding: 0 6px;
+}
+.converge-arrow {
+  font-size: 24px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1;
+}
+.converge-result {
+  background: rgba(180,160,240,0.14);
+  border: 0.5px solid rgba(180,160,240,0.5);
+  border-radius: 12px;
+  padding: 22px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 360px;
+}
+.converge-result .cr-name {
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.converge-result .cr-tag {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* ══════════════════════════════
+   4.1 / 4.2 슬라이드 안의 슬라이드
+   (System Prompt mockup frame)
+══════════════════════════════ */
+.slide-frame {
+  width: 100%;
+  height: 100%;
+  background: rgba(20,20,20,0.55);
+  border: 0.5px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+  box-shadow: 0 14px 50px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.frame-header {
+  padding: 16px 28px 14px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.025);
+}
+.frame-header .fh-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.frame-header .fh-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+}
+.frame-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+}
+.frame-left, .frame-right {
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  min-width: 0;
+}
+.frame-left { border-right: 0.5px solid rgba(255,255,255,0.1); }
+
+/* 콜아웃 (자연어 프롬프트 말풍선) */
+.fc-callout {
+  background: rgba(180,160,240,0.1);
+  border: 0.5px dashed rgba(180,160,240,0.55);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.92);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.fc-callout::before {
+  content: '✎';
+  font-style: normal;
+  color: rgba(180,160,240,0.9);
+  font-size: 14px;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* 강조된 타깃 영역 (오버레이) */
+.fc-target {
+  flex: 1;
+  background: rgba(180,160,240,0.04);
+  border: 0.5px solid rgba(180,160,240,0.3);
+  border-radius: 8px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 에이전트 태그 (좌상단) */
+.agent-tag {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+/* 워크플로우 차트 (4.1 좌측) */
+.wf-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+.wf-node {
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.28);
+  border-radius: 8px;
+  padding: 14px 22px;
+  text-align: center;
+  min-width: 280px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.wf-node .wf-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  margin-top: 5px;
+  letter-spacing: 0.02em;
+}
+.wf-arrow {
+  font-size: 18px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1;
+}
+
+/* MD mockup (4.1 우측) */
+.md-mockup {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.md-filename-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+.md-filename {
+  font-size: 15px;
+  color: rgba(255,255,255,0.95);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.45);
+  text-underline-offset: 4px;
+}
+.md-callout-inline {
+  font-size: 12px;
+  color: rgba(180,160,240,0.9);
+  font-style: italic;
+  font-weight: 300;
+}
+.md-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.md-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.md-body {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+  font-weight: 300;
+}
+.md-bullets {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+  font-weight: 300;
+  padding-left: 16px;
+  margin: 0;
+}
+.md-bullets li { margin-bottom: 2px; }
+
+/* 미니 테이블 (mockup 내부용) */
+.mini-tbl {
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.015);
+}
+.mini-tbl-row {
+  display: grid;
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+}
+.mini-tbl-row:first-child { border-top: none; }
+.mini-tbl-row.head {
+  background: rgba(255,255,255,0.05);
+}
+.mini-tbl-row.head .mini-tbl-cell {
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.mini-tbl-cell {
+  padding: 7px 10px;
+  border-left: 0.5px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.82);
+  font-weight: 300;
+  line-height: 1.4;
+}
+.mini-tbl-cell:first-child { border-left: none; }
+.mini-tbl-cell.center { text-align: center; }
+
+/* HITL 시뮬레이션 박스 (4.2 좌측) */
+.hitl-msg {
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-left: 2px solid rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.82);
+  font-weight: 300;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 행동 원칙 항목 (4.2 우측) */
+.principle-item {
+  border-left: 2px solid rgba(180,160,240,0.4);
+  padding: 4px 0 4px 14px;
+}
+.principle-item .pi-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+.principle-item .pi-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* ══════════════════════════════
+   4.1 캡처된 외부 슬라이드 (흰 종이)
+══════════════════════════════ */
+.captured-slide {
+  background: #f8f7f3;
+  border-radius: 6px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6), 0 4px 14px rgba(0,0,0,0.35);
+  padding: 32px 42px 36px;
+  width: 1600px;
+  height: 1100px;
+  display: flex;
+  flex-direction: column;
+  color: #2a2a2a;
+  font-family: 'Noto Sans KR', sans-serif;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 50px;
+  position: relative;
+}
+.cs-header {
+  border-bottom: 0.5px solid #d4d4d0;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+.cs-sub {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.cs-title {
+  font-size: 26px;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: -0.005em;
+}
+.cs-body {
+  flex: 0 0 auto;
+  height: 724px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  min-height: 0;
+}
+.cs-left, .cs-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+}
+.cs-tag {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+}
+.cs-link-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  letter-spacing: 0.02em;
+  margin-top: 36px;
+}
+.cs-filename {
+  font-size: 16px;
+  color: #1a1a1a;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: #888;
+  margin-bottom: 4px;
+}
+.cs-svg-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.cs-svg-wrap svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+}
+
+/* 흰 종이용 md mockup 라이트 테마 오버라이드 */
+.captured-slide .md-section { gap: 8px; margin-bottom: 4px; }
+.captured-slide .md-label {
+  font-size: 17px;
+  color: #1a1a1a;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.captured-slide .md-body {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.captured-slide .md-bullets {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.65;
+  font-weight: 400;
+  padding-left: 18px;
+}
+.captured-slide .mini-tbl {
+  border: 0.5px solid #d4d4d0;
+  background: #fff;
+  border-radius: 4px;
+}
+.captured-slide .mini-tbl-row {
+  border-top: 0.5px solid #e8e8e3;
+}
+.captured-slide .mini-tbl-row:first-child { border-top: none; }
+.captured-slide .mini-tbl-row.head {
+  background: #efeee8;
+}
+.captured-slide .mini-tbl-row.head .mini-tbl-cell {
+  color: #666;
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.captured-slide .mini-tbl-cell {
+  color: #2a2a2a;
+  font-size: 13px;
+  font-weight: 400;
+  border-left: 0.5px solid #e8e8e3;
+  padding: 8px 12px;
+  line-height: 1.45;
+}
+.captured-slide .mini-tbl-cell:first-child { border-left: none; }
+.captured-slide .md-moved-note {
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.captured-slide .md-moved-note .arrow-l {
+  font-size: 16px;
+  color: #b0b0b0;
+  font-style: normal;
+}
+
+/* 4.1 유형 도트 (SVG 범례와 동일 컬러) */
+.captured-slide .dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.captured-slide .dot-api { background: #14C19A; }       /* API 서비스 - 녹색 (vivid) */
+.captured-slide .dot-lib { background: #E8732B; }       /* 기성 라이브러리 - 주황 (vivid) */
+.captured-slide .dot-mcp { background: #7B6FE8; }       /* MCP 서버 - 보라 (vivid) */
+.captured-slide .dot-claude {
+  background: #FFFFFF;
+  border: 1px solid #999;
+  width: 9px;
+  height: 9px;
+}                                                        /* Claude 내장 - 흰색 */
+
+/* 4.1 컬러 범례 */
+.captured-slide .legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 11px;
+  color: #555;
+  font-weight: 400;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.captured-slide .legend-row .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 4.1 슬라이드 위 오버레이 콜아웃 (프로스티드 글래스) */
+.cp-overlay {
+  position: absolute;
+  background: rgba(248,247,243,0.5);
+  color: #1a1a1a;
+  border: 1.5px solid rgba(123,111,232,0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 18px 22px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  max-width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  z-index: 5;
+}
+.cp-overlay .cp-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #7B6FE8;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  font-style: normal;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+.cp-overlay .cp-aside {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(40,40,40,0.7);
+  margin: 6px 0;
+}
+
+/* 4.1 슬라이드 상단 메타 주석 (슬라이드 외곽선 좌측 정렬) */
+.slide-meta {
+  position: absolute;
+  top: -64px;
+  left: 0;
+  white-space: nowrap;
+  color: rgba(255,255,255,0.78);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 300;
+  z-index: 10;
+}
+.slide-meta .sm-eg {
+  margin-left: 14px;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+}
+.cp-1 { top: 460px; left: -50px; max-width: 320px; }
+.cp-2 { top: -40px; right: 240px; max-width: 340px; }
+.cp-3 { top: 620px; left: 310px; max-width: 460px; }
+
+/* 4.1 섹션 오버레이 (각 섹션을 덮는 컬러 사각형) */
+.section-overlay {
+  position: absolute;
+  background: rgba(123,111,232,0.1);
+  border: 1.5px solid rgba(123,111,232,0.55);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 3;
+}
+.overlay-chart {
+  top: 140px;
+  left: 38px;
+  width: 748px;
+  height: 450px;
+}
+.overlay-filename {
+  top: 658px;
+  left: 38px;
+  width: 250px;
+  height: 40px;
+}
+.overlay-rightcol {
+  top: 140px;
+  left: 814px;
+  width: 748px;
+  height: 580px;
+}
+
+/* 4.1 표시선 (오버레이와 말풍선 연결) */
+.leader-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  overflow: visible;
+}
+.leader-lines line {
+  stroke: rgba(123,111,232,0.75);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+  fill: none;
+}
+
+/* 4.2 콜아웃 위치 */
+.cp-42-1 { top: 640px; left: 38px; max-width: 380px; }
+.cp-42-2 { top: 200px; right: -50px; max-width: 380px; }
+
+/* 4.2 섹션 오버레이 위치 */
+.overlay-hitl {
+  top: 180px;
+  left: 38px;
+  width: 748px;
+  height: 420px;
+}
+.overlay-rules {
+  top: 360px;
+  left: 814px;
+  width: 748px;
+  height: 328px;
+}
+
+/* 4.2 (시스템 프롬프트 중략) 메타 텍스트 — 좌우 양쪽 제목 위에 배치 */
+.captured-slide .cs-continuation {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+/* ══════════════════════════════
+   4.6 퀵 프로토타이핑 레벨별 차트
+══════════════════════════════ */
+.proto-grid {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  min-height: 0;
+  width: 100%;
+}
+.proto-level {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 18px 16px;
+  min-width: 0;
+}
+.proto-level .pl-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.proto-level .pl-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(180,160,240,0.95);
+  letter-spacing: 0.04em;
+}
+.proto-level .pl-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.proto-level .pl-train {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.pl-box {
+  background: rgba(255,255,255,0.06);
+  border: 0.5px solid rgba(255,255,255,0.22);
+  border-radius: 6px;
+  padding: 12px 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.88);
+  text-align: center;
+  flex: 0 0 auto;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.35;
+}
+.pl-box.alt {
+  background: rgba(255,255,255,0.02);
+  border-style: dashed;
+  border-color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.6);
+}
+.pl-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  flex: 0 0 auto;
+  padding: 2px 0;
+  height: 18px;
+}
+.pl-arrow.dashed {
+  color: rgba(255,255,255,0.32);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+.pl-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.pf-item { display: flex; flex-direction: column; gap: 4px; }
+.pf-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.pf-text {
+  font-size: 12px;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.45;
+  font-weight: 300;
+}
+.pl-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  line-height: 1.45;
+  font-weight: 300;
+  margin-top: 4px;
+}
+.pl-prompt {
+  background: rgba(180,160,240,0.07);
+  border-left: 2px solid rgba(180,160,240,0.55);
+  border-radius: 0 4px 4px 0;
+  padding: 9px 12px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.55;
+  font-weight: 300;
+}
+.pl-prompt::before {
+  content: 'PROMPT';
+  display: block;
+  font-size: 9.5px;
+  color: rgba(180,160,240,0.9);
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* 4.2 라이트 테마 오버라이드 (.captured-slide 안) */
+.captured-slide .hitl-msg {
+  background: rgba(0,0,0,0.04);
+  border: 0.5px solid rgba(0,0,0,0.12);
+  border-left: 2px solid rgba(0,0,0,0.45);
+  color: #333;
+  font-weight: 400;
+  font-size: 12.5px;
+  line-height: 1.65;
+  padding: 14px 18px;
+  border-radius: 4px;
+}
+.captured-slide .principle-item {
+  border-left: 2px solid rgba(123,111,232,0.55);
+  padding: 4px 0 4px 14px;
+}
+.captured-slide .principle-item .pi-label {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.captured-slide .principle-item .pi-desc {
+  color: #444;
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+/* 좌우 콜아웃 컬럼 */
+.cp-col {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 26px;
+  align-self: stretch;
+  padding: 40px 0;
+}
+.cp-col.left { align-items: flex-end; }
+.cp-col.right { align-items: flex-start; }
+
+.cp-bubble {
+  background: rgba(180,160,240,0.16);
+  border: 0.5px dashed rgba(180,160,240,0.7);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.95);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.55;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  width: 100%;
+}
+.cp-bubble::before {
+  content: '✎';
+  color: rgba(180,160,240,0.95);
+  font-style: normal;
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ══════════════════════════════
+   GRADIENT BACKGROUNDS
+══════════════════════════════ */
+.g-cover {
+  background:
+    radial-gradient(ellipse at 20% 60%, #2a2a8a 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, #0a5a3a 0%, transparent 45%),
+    #000;
+}
+.g-p1 {
+  background:
+    radial-gradient(ellipse at 15% 65%, #4a1a7a 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 25%, #1a4a8a 0%, transparent 45%),
+    #000;
+}
+.g-p2 {
+  background:
+    radial-gradient(ellipse at 70% 40%, #1a5a3a 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 70%, #5a5a10 0%, transparent 45%),
+    #000;
+}
+.g-p3 {
+  background:
+    radial-gradient(ellipse at 50% 30%, #6a1a4a 0%, transparent 50%),
+    radial-gradient(ellipse at 25% 75%, #1a3a6a 0%, transparent 45%),
+    #000;
+}
+.g-p4 {
+  background:
+    radial-gradient(ellipse at 60% 55%, #1a1a7a 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 30%, #7a4a10 0%, transparent 45%),
+    #000;
+}
+.g-p5 {
+  background:
+    radial-gradient(ellipse at 35% 60%, #1a6a6a 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 25%, #5a1a7a 0%, transparent 45%),
+    #000;
+}
+.g-chap {
+  background:
+    radial-gradient(ellipse at 50% 50%, #2a2a6a 0%, transparent 60%),
+    #000;
+}
+</style>
+</head>
+<body>
+
+<!-- ── 고정 네비게이션 바 ── -->
+<nav id="navbar">
+  <div id="nav-logo" onclick="goTo(0)" style="cursor:pointer">AI Agent Experience</div>
+  <div id="nav-tabs">
+
+    <div class="ntab" data-part="1" onclick="if(event.target===this)goTo(1)">Part 1
+      <div class="ndrop">
+        <div class="ndrop-part">
+          <span class="np-num">Part 1</span>
+          <span class="np-title">AI 프레임의 전환: 도구에서 대리인으로</span>
+        </div>
+        <div class="ndrop-item" onclick="goTo(2)">1.1 AI 에이전트의 정의</div>
+        <div class="ndrop-item" onclick="goTo(3)">1.2 디자인 R&amp;R의 확장</div>
+        <div class="ndrop-item" onclick="goTo(4)">1.3 디자인 대상의 전환</div>
+        <div class="ndrop-item" onclick="goTo(5)">1.4 디자인 프로세스의 진화</div>
+      </div>
+    </div>
+
+    <div class="ntab" data-part="2" onclick="if(event.target===this)goTo(6)">Part 2
+      <div class="ndrop">
+        <div class="ndrop-part">
+          <span class="np-num">Part 2</span>
+          <span class="np-title">에이전트 아키텍처: 사고하고 행동하는 지능의 구조</span>
+        </div>
+        <div class="ndrop-item" onclick="goTo(7)">2.1 에이전트 존재의 설계도</div>
+        <div class="ndrop-item" onclick="goTo(8)">2.2 에이전트 액추에이터</div>
+        <div class="ndrop-item" onclick="goTo(9)">2.3 도구에서 스킬로</div>
+        <div class="ndrop-item" onclick="goTo(10)">2.4 메모리 아키텍처</div>
+        <div class="ndrop-item" onclick="goTo(11)">2.5 OpenClaw와 Agentic AI Framework</div>
+      </div>
+    </div>
+
+    <div class="ntab" data-part="3" onclick="if(event.target===this)goTo(12)">Part 3
+      <div class="ndrop">
+        <div class="ndrop-part">
+          <span class="np-num">Part 3</span>
+          <span class="np-title">인터랙션 문법: 에이전트 경험의 핵심 설계</span>
+        </div>
+        <div class="ndrop-item" onclick="goTo(13)">3.1 Human-in-the-loop</div>
+        <div class="ndrop-item" onclick="goTo(14)">3.2 Generative UI</div>
+        <div class="ndrop-item" onclick="goTo(15)">3.3 Ambient AX</div>
+      </div>
+    </div>
+
+    <div class="ntab" data-part="4" onclick="if(event.target===this)goTo(16)">Part 4
+      <div class="ndrop">
+        <div class="ndrop-part">
+          <span class="np-num">Part 4</span>
+          <span class="np-title">실무 프로세스: 일하는 방식의 변화와 산출물</span>
+        </div>
+        <div class="ndrop-group">디자이너가 만드는 것이 달라졌다</div>
+        <div class="ndrop-item" onclick="goTo(18)">4.1 화면 기획에서 로직 기획으로</div>
+        <div class="ndrop-item" onclick="goTo(19)">4.2 하네스 엔지니어링</div>
+        <div class="ndrop-item" onclick="goTo(20)">4.3 직접 만들기</div>
+        <div class="ndrop-item" onclick="goTo(21)">4.4 디자인시스템의 진화</div>
+        <div class="ndrop-group">에이전트와 일하기: 반복은 맡기고, 한계는 없애고</div>
+        <div class="ndrop-item" onclick="goTo(23)">4.5 디자인 자동화 루틴</div>
+        <div class="ndrop-item" onclick="goTo(24)">4.6 코딩 에이전트와 퀵 프로토타이핑</div>
+        <div class="ndrop-group">개발자-에이전트-디자이너, 함께 일하기</div>
+        <div class="ndrop-item" onclick="goTo(26)">4.7 정적 가이드에서 실행 가능한 로직으로</div>
+        <div class="ndrop-item" onclick="goTo(27)">4.8 시각적 검수에서 시스템적 검증으로</div>
+        <div class="ndrop-item" onclick="goTo(28)">4.9 레이아웃 전달에서 구조적 페어링으로</div>
+        <div class="ndrop-group">Conclusion</div>
+        <div class="ndrop-item" onclick="goTo(29)">지능이 벌어다 준 시간: 디자이너의 새로운 격차</div>
+      </div>
+    </div>
+
+    <div class="ntab" data-part="5" onclick="if(event.target===this)goTo(30)">Part 5
+      <div class="ndrop">
+        <div class="ndrop-part">
+          <span class="np-num">Part 5</span>
+          <span class="np-title">전략과 침투: 에이전트 생태계와 비즈니스 확장</span>
+        </div>
+        <div class="ndrop-item" onclick="goTo(31)">5.1 버티컬 에이전트 Preset 전략</div>
+        <div class="ndrop-item" onclick="goTo(32)">5.2 특화 지능: 인지와 기억 에이전트</div>
+        <div class="ndrop-item" onclick="goTo(33)">5.3 Skill-as-a-Service</div>
+        <div class="ndrop-item" onclick="goTo(34)">5.4 No-code 에이전트 조립 도구</div>
+        <div class="ndrop-item" onclick="goTo(35)">5.5 멀티 디바이스 오케스트레이션</div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ── 화살표 버튼 ── -->
+<div id="arrows">
+  <div class="abtn" onclick="Reveal.prev()">&#8592;</div>
+  <span id="counter">1 / 36</span>
+  <div class="abtn" onclick="Reveal.next()">&#8594;</div>
+</div>
+
+<!-- ── Reveal.js ── -->
+<div class="reveal">
+<div class="slides">
+
+<!-- COVER -->
+<section data-part="0">
+<div class="sa-base sa-cover">
+  <div class="backdrop">AX</div>
+  <div class="stage">
+    <div class="eyebrow">Introduction of AX</div>
+    <div class="title">AI 에이전트<br/>경험의 <span class="grad">정석.</span></div>
+    <div class="sub">개념 이해와 예제.</div>
+  </div>
+</div>
+</section>
+
+<!-- PART 1 표지 -->
+<section data-part="1">
+<div class="sa-base sa-part">
+  <div class="backdrop">1</div>
+  <div class="stage">
+    <div class="eyebrow">Part One</div>
+    <div class="title">AI 프레임의<br/><span class="grad">전환.</span></div>
+    <div class="sub">도구에서 대리인으로.</div>
+  </div>
+</div>
+</section>
+
+<!-- 1.1 -->
+<section data-part="1">
+<div class="s-page">
+  <div class="plabel">1.1</div>
+  <div class="ptitle">AI 에이전트의 정의</div>
+  <div class="pcap">관계적·구조적·가치적 세 가지 층위로 정의하다</div>
+  <div class="body">
+    <div class="g3 fw" style="height:100%">
+      <div class="card">
+        <div class="c-label">관계적 정의</div>
+        <div class="c-sub">외적 현상</div>
+        <div class="c-title">사용자와 AI의 관계가 '명령'에서 '협업'으로 바뀌는 소통 방식</div>
+        <div class="kws">
+          <span class="kw">의도기반</span>
+          <span class="kw">위임</span>
+          <span class="kw">신뢰</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="c-label">구조적 정의</div>
+        <div class="c-sub">내부적 원리</div>
+        <div class="c-title">LLM의 추론과 도구가 결합되어 스스로 움직이는 지능적 아키텍처</div>
+        <div class="kws">
+          <span class="kw">추론</span>
+          <span class="kw">도구 활용</span>
+          <span class="kw">계획</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="c-label">가치적 정의</div>
+        <div class="c-sub">목적적 본질</div>
+        <div class="c-title">실제 세계의 과업을 종결짓는 생산 주체</div>
+        <div class="kws">
+          <span class="kw">실행</span>
+          <span class="kw">완결</span>
+          <span class="kw">가치창출</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">1.1</div>
+</div>
+</section>
+
+<!-- 1.2 -->
+<section data-part="1">
+<div class="s-page">
+  <div class="plabel">1.2</div>
+  <div class="ptitle">디자인 R&R의 확장</div>
+  <div class="pcap">에이전트를 설계할 것인가? 에이전트로 디자인할 것인가?</div>
+  <div class="body col">
+    <div class="g2" style="height:170px">
+      <div class="card cat-for">
+        <div class="c-label">Designing FOR Agents</div>
+        <div class="c-sub" style="margin-bottom:14px">지능의 설계자</div>
+        <div class="c-desc">디자이너가 설계하는 대상이 '정적인 인터페이스'에서 '동적인 지능'으로 확장. 유저가 마주할 에이전트의 사고방식과 행동양식을 결정.</div>
+      </div>
+      <div class="card cat-with">
+        <div class="c-label">Designing WITH Agents</div>
+        <div class="c-sub" style="margin-bottom:14px">워크플로우 혁신가</div>
+        <div class="c-desc">디자이너가 일하는 방식 자체가 변화. 에이전트를 단순한 도구가 아닌 '지능형 파트너'로 부리며 생산성을 극대화.</div>
+      </div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1.1fr 2fr 2fr">
+        <div class="tbl-cell">구분</div>
+        <div class="tbl-cell">AS-IS</div>
+        <div class="tbl-cell">TO-BE</div>
+      </div>
+      <div class="tbl-row cat-for" style="grid-template-columns: 1.1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">설계 대상</div></div>
+        <div class="tbl-cell">애플리케이션 화면</div>
+        <div class="tbl-cell">에이전트의 사고와 행동</div>
+      </div>
+      <div class="tbl-row cat-for" style="grid-template-columns: 1.1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">핵심 역량</div></div>
+        <div class="tbl-cell">비주얼 레이아웃, 인터랙션</div>
+        <div class="tbl-cell">맥락 이해, 추론 설계, 가치 필터링</div>
+      </div>
+      <div class="tbl-row cat-with" style="grid-template-columns: 1.1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">일하는 방식</div></div>
+        <div class="tbl-cell">툴을 활용한 수동 제작</div>
+        <div class="tbl-cell">에이전트와 협업하는 자동화 루틴</div>
+      </div>
+      <div class="tbl-row cat-with" style="grid-template-columns: 1.1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">산출물</div></div>
+        <div class="tbl-cell">디자인 가이드, 프로토타입</div>
+        <div class="tbl-cell">판단 정책, 프롬프트, 작동하는 PoC</div>
+      </div>
+      <div class="tbl-row cat-with" style="grid-template-columns: 1.1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">협업 파트너</div></div>
+        <div class="tbl-cell">기획자, 개발자</div>
+        <div class="tbl-cell">개발자 + 에이전트 + 데이터</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">1.2</div>
+</div>
+</section>
+
+<!-- 1.3 -->
+<section data-part="1">
+<div class="s-page">
+  <div class="plabel">1.3</div>
+  <div class="ptitle">디자인 대상의 전환, 앱에서 에이전트의 시대로</div>
+  <div class="pcap">사용자가 기능을 찾아다니는 시대에서 에이전트가 목적을 대신 수행하는 시대로</div>
+  <div class="body">
+    <div class="tbl fw">
+      <div class="tbl-row head" style="grid-template-columns: 1.4fr 2fr 2fr">
+        <div class="tbl-cell">구분</div>
+        <div class="tbl-cell">앱</div>
+        <div class="tbl-cell">에이전트</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.4fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">1. UI to Intent</div>
+          <div class="t-name">메뉴 중심에서 의도 중심으로</div>
+        </div>
+        <div class="tbl-cell">사용자가 메뉴를 탐색하고 기능을 하나씩 실행하는 도구함 (유저가 길을 알아야 함)</div>
+        <div class="tbl-cell">사용자의 추상적인 의도를 이해하고 최적의 경로를 스스로 생성 (에이전트가 길을 찾음)</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">How to use의 정교함보다 What to do의 정확성이 핵심</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.4fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">2. Feature to Goal</div>
+          <div class="t-name">기능의 나열에서 과업의 완결로</div>
+        </div>
+        <div class="tbl-cell">'송금하기', '장바구니 담기' 같은 파편화된 기능 제공. 최종 결과는 유저의 노동으로 완성</div>
+        <div class="tbl-cell">'이번 주말 여행 준비해 줘' 하나의 목표를 이해, 여러 기능을 엮어 과업을 완결</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">성공지표가 '체류시간(Retention)'에서 '과업 성공률(Completion Rate)'로 이동</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.4fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">3. Passive to Proactive</div>
+          <div class="t-name">수동적 반응에서 선제적 대응으로</div>
+        </div>
+        <div class="tbl-cell">사용자가 아이콘을 눌러야만 움직이는 수동적 존재</div>
+        <div class="tbl-cell">상황과 맥락을 모니터링하다가 필요할 때 먼저 말을 걸거나 액션</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">인터랙션 트리거가 유저의 손가락이 아닌 에이전트의 상황 판단</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">1.3</div>
+</div>
+</section>
+
+<!-- 1.4 -->
+<section data-part="1">
+<div class="s-page">
+  <div class="plabel">1.4</div>
+  <div class="ptitle">디자인 프로세스의 진화, 제작에서 지휘로</div>
+  <div class="pcap">에이전트를 파트너로 부리며 일할 때 발생하는 태도와 관점의 변화</div>
+  <div class="body">
+    <div class="tbl fw">
+      <div class="tbl-row head" style="grid-template-columns: 1.5fr 2fr 2fr">
+        <div class="tbl-cell">구분</div>
+        <div class="tbl-cell">UX 시대</div>
+        <div class="tbl-cell">AX 시대</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">1. 리서치</div>
+          <div class="t-name">Synthesis over Collection</div>
+        </div>
+        <div class="tbl-cell">유저 인터뷰, 데스크 리서치로 파편화된 정보를 직접 수집하는 데 많은 시간 할애</div>
+        <div class="tbl-cell">에이전트가 방대한 데이터를 실시간 요약·대조. 디자이너는 새로운 인사이트를 '합성'</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">정보 탐색의 물리적 시간이 줄어들고 질문의 질이 리서치의 성패를 결정</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">2. 아이데이션</div>
+          <div class="t-name">Co-creation over Ideation</div>
+        </div>
+        <div class="tbl-cell">화이트보드 앞에서 포스트잇을 붙이며 스스로 아이디어를 짜냄</div>
+        <div class="tbl-cell">코딩/이미지/텍스트 에이전트와 대화하며 수많은 시안을 초단위로 검토</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">무에서 유를 만드는 고통 대신, 제안받은 가능성 사이에서 최적의 논리를 선택하고 정교화</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">3. 프로토타이핑</div>
+          <div class="t-name">Implementation over Description</div>
+        </div>
+        <div class="tbl-cell">실제처럼 보이는 가짜 화면을 그려 개발자에게 설명 (Draw to show)</div>
+        <div class="tbl-cell">코딩 에이전트와 함께 실제로 돌아가는 지능의 로직을 즉시 코드로 구현 (Build to test)</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">시각적 묘사에 머물던 프로토타이핑이 작동하는 로직 검증으로 격상. 그림이 아닌 '작동하는 실체'로 소통</div>
+      </div>
+      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
+        <div class="tbl-cell tbl-cat">
+          <div class="t-label">4. 검증</div>
+          <div class="t-name">Evaluation over Observation</div>
+        </div>
+        <div class="tbl-cell">사용자가 버튼을 잘 누르는지 뒤에서 지켜보는 관찰자</div>
+        <div class="tbl-cell">수만 개의 가상 시나리오를 통과시켜 답변 품질을 점수화, 로직을 수정하는 시스템 평가자</div>
+        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">한두 명의 유저 반응을 보는 것을 넘어 시뮬레이션을 통해 테스트하고 튜닝</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">1.4</div>
+</div>
+</section>
+
+<!-- PART 2 표지 -->
+<section data-part="2">
+<div class="sa-base sa-part">
+  <div class="backdrop">2</div>
+  <div class="stage">
+    <div class="eyebrow">Part Two</div>
+    <div class="title">에이전트의<br/><span class="grad">아키텍처.</span></div>
+    <div class="sub">사고하고 행동하는 지능의 구조.</div>
+  </div>
+</div>
+</section>
+
+<!-- 2.1 -->
+<section data-part="2">
+<div class="s-page">
+  <div class="plabel">2.1</div>
+  <div class="ptitle">에이전트 존재의 설계도</div>
+  <div class="pcap">에이전트라는 봇에 스킬과 메모리를 갈아끼우면 특정 가치를 창출하는 에이전트가 된다</div>
+  <div class="body">
+    <div style="width:480px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0 20px">
+      <svg viewBox="0 0 380 540" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto">
+        <!-- ── 안테나 ── -->
+        <circle cx="190" cy="35" r="10" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+        <line x1="190" y1="45" x2="190" y2="85" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+
+        <!-- ── 머리 ── -->
+        <rect x="130" y="85" width="120" height="105" rx="22" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+        <circle cx="160" cy="125" r="8" fill="rgba(255,255,255,0.85)"/>
+        <circle cx="220" cy="125" r="8" fill="rgba(255,255,255,0.85)"/>
+        <line x1="170" y1="160" x2="210" y2="160" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- ── 목 ── -->
+        <rect x="178" y="190" width="24" height="20" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+
+        <!-- ── 몸 ── -->
+        <rect x="110" y="210" width="160" height="195" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+        <rect x="155" y="265" width="70" height="55" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+        <circle cx="190" cy="292" r="4" fill="rgba(255,255,255,0.55)"/>
+
+        <!-- ── 어깨 + 팔 + 손 (왼쪽) ── -->
+        <circle cx="110" cy="232" r="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+        <line x1="98" y1="244" x2="60" y2="340" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="58" cy="355" r="22" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+
+        <!-- ── 어깨 + 팔 + 손 (오른쪽) ── -->
+        <circle cx="270" cy="232" r="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+        <line x1="282" y1="244" x2="320" y2="340" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="322" cy="355" r="22" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+
+        <!-- ── 라벨 연결선 ── -->
+        <line x1="250" y1="100" x2="277" y2="100" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="2 2"/>
+        <line x1="200" y1="35" x2="212" y2="35" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="2 2"/>
+        <line x1="58" y1="377" x2="58" y2="387" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="2 2"/>
+        <line x1="322" y1="377" x2="322" y2="387" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="2 2"/>
+
+        <!-- ── 부위 번호 라벨 ── -->
+        <!-- 1. 머리 → 두뇌 LLM -->
+        <circle cx="295" cy="100" r="18" fill="rgba(255,255,255,0.95)"/>
+        <text x="295" y="106" text-anchor="middle" font-size="16" font-weight="700" fill="#0a0a0a" font-family="Noto Sans KR, sans-serif">1</text>
+        <!-- 2. 안테나 → Perception -->
+        <circle cx="230" cy="35" r="18" fill="rgba(255,255,255,0.95)"/>
+        <text x="230" y="41" text-anchor="middle" font-size="16" font-weight="700" fill="#0a0a0a" font-family="Noto Sans KR, sans-serif">2</text>
+        <!-- 3. 한쪽 손 → 스킬 -->
+        <circle cx="58" cy="405" r="18" fill="rgba(255,255,255,0.95)"/>
+        <text x="58" y="411" text-anchor="middle" font-size="16" font-weight="700" fill="#0a0a0a" font-family="Noto Sans KR, sans-serif">3</text>
+        <!-- 4. 다른쪽 손 → 메모리 -->
+        <circle cx="322" cy="405" r="18" fill="rgba(255,255,255,0.95)"/>
+        <text x="322" y="411" text-anchor="middle" font-size="16" font-weight="700" fill="#0a0a0a" font-family="Noto Sans KR, sans-serif">4</text>
+        <!-- 5. 몸 → 액추에이터 -->
+        <circle cx="140" cy="380" r="18" fill="rgba(255,255,255,0.95)"/>
+        <text x="140" y="386" text-anchor="middle" font-size="16" font-weight="700" fill="#0a0a0a" font-family="Noto Sans KR, sans-serif">5</text>
+      </svg>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center">
+      <div class="part-row">
+        <div class="p-num">1</div>
+        <div class="p-area">머리</div>
+        <div class="p-info">
+          <div class="p-label">두뇌 LLM</div>
+          <div class="p-desc">사용자 쿼리 이해 후 "어떤 사이트에서 무엇을 클릭해야겠다"고 추론</div>
+        </div>
+      </div>
+      <div class="part-row">
+        <div class="p-num">2</div>
+        <div class="p-area">안테나</div>
+        <div class="p-info">
+          <div class="p-label">Perception</div>
+          <div class="p-desc">가격 변동, 재고 알림, 사용자 메시지 등 외부 신호를 감지</div>
+        </div>
+      </div>
+      <div class="part-row">
+        <div class="p-num">3</div>
+        <div class="p-area">한쪽 손</div>
+        <div class="p-info">
+          <div class="p-label">스킬</div>
+          <div class="p-desc">"최저가를 찾을 때 배송비까지 포함해서 계산하라"는 판단 로직 부여</div>
+        </div>
+      </div>
+      <div class="part-row">
+        <div class="p-num">4</div>
+        <div class="p-area">다른쪽 손</div>
+        <div class="p-info">
+          <div class="p-label">메모리</div>
+          <div class="p-desc">신용카드 정보, 배송지 주소, 선호 브랜드 등의 맥락 보유</div>
+        </div>
+      </div>
+      <div class="part-row">
+        <div class="p-num">5</div>
+        <div class="p-area">몸</div>
+        <div class="p-info">
+          <div class="p-label">액추에이터</div>
+          <div class="p-desc">뇌의 명령을 받아 실제 브라우저를 열고 로그인, 클릭, 결제 수행</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">2.1</div>
+</div>
+</section>
+
+<!-- 2.2 -->
+<section data-part="2">
+<div class="s-page">
+  <div class="plabel">2.2</div>
+  <div class="ptitle">에이전트 액추에이터</div>
+  <div class="pcap">에이전트의 추론(사고)을 물리적/디지털 행동으로 변환하는 하드웨어 및 소프트웨어적 실행 체계</div>
+  <div class="body col">
+    <div class="g3" style="height:230px">
+      <div class="card">
+        <div class="c-label">1. Translation</div>
+        <div class="c-desc">LLM이 내놓는 추상적 결론을 특정 통신 규격이나 구체적 디지털 신호로 번역</div>
+      </div>
+      <div class="card">
+        <div class="c-label">2. Interface</div>
+        <div class="c-desc">에이전트가 채팅창 밖 온/오프라인 세계와 접촉하는 '가상의 신체'</div>
+      </div>
+      <div class="card">
+        <div class="c-label">3. Feedback Loop</div>
+        <div class="c-desc">실행 결과를 다시 LLM에게 전달하는 신경계 역할. 에이전트가 다음 행동을 판단</div>
+      </div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
+        <div class="tbl-cell">종류</div>
+        <div class="tbl-cell">설명</div>
+        <div class="tbl-cell">예시</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
+        <div class="tbl-cell"><div class="t-name">GUI 액추에이터</div></div>
+        <div class="tbl-cell">사람이 보는 화면을 인식하고 마우스/키보드처럼 직접 조작</div>
+        <div class="tbl-cell">Anthropic Computer Use, Microsoft UFO, OpenClaw*</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
+        <div class="tbl-cell"><div class="t-name">디지털 액추에이터</div></div>
+        <div class="tbl-cell">API 호출·워크플로우 트리거로 디지털 서비스를 직접 제어</div>
+        <div class="tbl-cell">Zapier, Make, n8n</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
+        <div class="tbl-cell"><div class="t-name">물리적 액추에이터</div></div>
+        <div class="tbl-cell">센서·구동 신호로 IoT·로봇 등 물리 디바이스를 제어</div>
+        <div class="tbl-cell">IoT 제어, 로봇 제어</div>
+      </div>
+    </div>
+    <div class="footnote">* OpenClaw는 WhatsApp, Telegram 같은 메시징 플랫폼을 통해 GUI를 조작하는 로컬 오케스트레이션 레이어로, GUI 액추에이터이자 에이전트 프레임워크의 성격을 동시에 가짐</div>
+  </div>
+  <div class="pnum">2.2</div>
+</div>
+</section>
+
+<!-- 2.3 -->
+<section data-part="2">
+<div class="s-page">
+  <div class="plabel">2.3</div>
+  <div class="ptitle">도구에서 스킬로</div>
+  <div class="pcap">단순 기능 호출에서 재사용 가능한 지식 패키지로</div>
+  <div class="body col">
+    <div class="g2" style="height:240px">
+      <div class="card">
+        <div class="c-label">Tool</div>
+        <div class="c-desc" style="flex:none;margin-bottom:14px">에이전트가 특정 파라미터로 호출하는 단일 기능. 에이전트가 언제 어떻게 쓸지 직접 제어.</div>
+        <div class="c-sub" style="margin-bottom:0;color:rgba(255,255,255,0.6);font-size:15px">예: "환율 계산하기", "API 호출하기"</div>
+      </div>
+      <div class="card">
+        <div class="c-label">Skill</div>
+        <div class="c-desc" style="flex:none;margin-bottom:14px">도메인 지식 + 판단 로직 + 워크플로우가 패키징된 상위 레벨 역량. 에이전트가 맥락을 보고 스스로 적합한 스킬을 선택해 실행.</div>
+        <div class="c-sub" style="margin-bottom:0;color:rgba(255,255,255,0.6);font-size:15px">예: "재무 분석", "최저가 쇼핑 대행"</div>
+      </div>
+    </div>
+    <div class="info-box fw">
+      <div class="ib-title">SKILL.md 오픈 스탠다드</div>
+      <div class="ib-body">Anthropic이 2025년 12월 오픈 스탠다드로 공개. Claude Code, OpenAI Codex, OpenClaw 모두 채택 — 한 번 만든 스킬을 여러 에이전트에서 사용 가능. MCP가 에이전트의 연결 표준이라면, SKILL.md는 에이전트의 행동 표준.</div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"></div>
+        <div class="tbl-cell">Claude 스킬 생태계</div>
+        <div class="tbl-cell">OpenClaw (ClawHub)</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">성격</div></div>
+        <div class="tbl-cell">엔터프라이즈 SaaS 연동 중심</div>
+        <div class="tbl-cell">개인 자동화·로컬 실행 중심</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">주요 제공자</div></div>
+        <div class="tbl-cell">Atlassian, Figma, Notion 등 공식 파트너사</div>
+        <div class="tbl-cell">커뮤니티 개발자 (13,700개+)</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">적합한 용도</div></div>
+        <div class="tbl-cell">조직 단위 업무 툴 워크플로우</div>
+        <div class="tbl-cell">개인 디바이스·메시징 앱 기반 자동화</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">거버넌스</div></div>
+        <div class="tbl-cell">Anthropic + 파트너사 검증</div>
+        <div class="tbl-cell">오픈 등록, VirusTotal 스캐닝</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">2.3</div>
+</div>
+</section>
+
+<!-- 2.4 -->
+<section data-part="2">
+<div class="s-page">
+  <div class="plabel">2.4</div>
+  <div class="ptitle">메모리 아키텍처: 에이전트의 기억법</div>
+  <div class="pcap">에이전트는 어떻게 기억하고, 무엇을 기억하는가</div>
+  <div class="body col">
+    <div class="g2" style="height:230px">
+      <div class="card">
+        <div class="c-label">단기기억</div>
+        <div class="c-sub" style="margin-bottom:18px">In-Context Memory</div>
+        <div class="c-desc">현재 세션 안에서만 유지되는 작업 기억. 지금 처리 중인 정보, 대화 히스토리, 태스크 중간 결과. 세션이 끝나면 사라짐.</div>
+      </div>
+      <div class="card">
+        <div class="c-label">장기기억</div>
+        <div class="c-sub" style="margin-bottom:18px">External Memory</div>
+        <div class="c-desc">세션이 끝나도 유지되는 기억. 외부 저장소에 저장되고 필요할 때 RAG(Retrieval-Augmented Generation) 방식으로 꺼내옴.</div>
+      </div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1.4fr 1.6fr 2fr">
+        <div class="tbl-cell">유형</div>
+        <div class="tbl-cell">저장하는 것</div>
+        <div class="tbl-cell">예시</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 2fr">
+        <div class="tbl-cell">
+          <div class="t-label">Episodic</div>
+          <div class="t-name">경험 기억</div>
+        </div>
+        <div class="tbl-cell">과거 상호작용의 기록</div>
+        <div class="tbl-cell">"지난 세션에서 사용자가 배송지를 강남구로 바꿨다"</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 2fr">
+        <div class="tbl-cell">
+          <div class="t-label">Semantic</div>
+          <div class="t-name">사실 기억</div>
+        </div>
+        <div class="tbl-cell">사용자 정보·선호·도메인 지식</div>
+        <div class="tbl-cell">"이 사용자는 나이키를 선호하고 신용카드는 삼성카드다"</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 2fr">
+        <div class="tbl-cell">
+          <div class="t-label">Procedural</div>
+          <div class="t-name">절차 기억</div>
+        </div>
+        <div class="tbl-cell">반복 수행하는 워크플로우·판단 로직</div>
+        <div class="tbl-cell">"최저가 탐색 시 배송비 포함해서 계산한다"</div>
+      </div>
+    </div>
+    <div class="footnote">* Procedural 메모리는 2.3에서 다룬 스킬로 구현됨 — 판단 로직을 SKILL.md로 패키징하면 재사용 가능한 절차 기억이 됨</div>
+  </div>
+  <div class="pnum">2.4</div>
+</div>
+</section>
+
+<!-- 2.5 -->
+<section data-part="2">
+<div class="s-page">
+  <div class="plabel">2.5</div>
+  <div class="ptitle">OpenClaw와 Agentic AI Framework</div>
+  <div class="pcap">에이전트를 움직이게 하는 두 가지 방식의 프레임워크</div>
+  <div class="body col">
+    <div class="g2">
+      <div class="info-box">
+        <div class="ib-title">에이전트 프레임워크란 무엇인가</div>
+        <div class="ib-body">프레임워크는 LLM의 추론을 실제 환경에서 작동시키는 실행 레이어다.<br><br>LLM 단독으로는 단일 응답을 넘어선 과업을 수행할 수 없다 — 작동 환경이 있어야 비로소 에이전트가 된다.</div>
+      </div>
+      <div class="info-box">
+        <div class="ib-title">두 프레임워크가 공유하는 설계 원칙</div>
+        <ul class="bullet-list" style="margin-top:4px">
+          <li>LLM은 두뇌, 프레임워크는 신체와 환경</li>
+          <li>메모리·스킬·액추에이터가 조합되어야 에이전트가 완성됨</li>
+          <li>오케스트레이션 레이어가 추론·도구 호출·메모리 접근을 하나의 작업 흐름으로 엮는다</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"></div>
+        <div class="tbl-cell">OpenClaw</div>
+        <div class="tbl-cell">Agentic AI Framework <span style="font-weight:300;text-transform:none;letter-spacing:0;color:rgba(255,255,255,0.5);font-size:13px">(AutoGen/CrewAI 계열)</span></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">성격</div></div>
+        <div class="tbl-cell">상시 실행 개인 자동화 에이전트</div>
+        <div class="tbl-cell">멀티에이전트 오케스트레이션 프레임워크</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">실행 환경</div></div>
+        <div class="tbl-cell">로컬 머신, 메시징 앱 연결</div>
+        <div class="tbl-cell">클라우드·로컬 모두 가능, 코드 기반 배포</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">에이전트 구조</div></div>
+        <div class="tbl-cell">단일 에이전트 + 스킬 확장</div>
+        <div class="tbl-cell">역할 분담된 멀티에이전트 협업</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">진입장벽</div></div>
+        <div class="tbl-cell">설치 후 대화로 바로 사용</div>
+        <div class="tbl-cell">코드로 에이전트·태스크 설계 필요</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">스킬/툴</div></div>
+        <div class="tbl-cell">ClawHub 커뮤니티 스킬</div>
+        <div class="tbl-cell">커스텀 툴·API 코드로 직접 정의</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
+        <div class="tbl-cell"><div class="t-name">적합한 용도</div></div>
+        <div class="tbl-cell">개인 자동화, 빠른 프로토타이핑</div>
+        <div class="tbl-cell">복잡한 멀티스텝 업무 파이프라인</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">2.5</div>
+</div>
+</section>
+
+<!-- PART 3 표지 -->
+<section data-part="3">
+<div class="sa-base sa-part">
+  <div class="backdrop">3</div>
+  <div class="stage">
+    <div class="eyebrow">Part Three</div>
+    <div class="title">인터랙션<br/><span class="grad">문법.</span></div>
+    <div class="sub">에이전트 경험의 핵심 설계.</div>
+  </div>
+</div>
+</section>
+
+<!-- 3.1 -->
+<section data-part="3">
+<div class="s-page">
+  <div class="plabel">3.1</div>
+  <div class="ptitle">Human-in-the-loop 사고과정의 공유와 개입</div>
+  <div class="pcap">지능이 인간을 불러야 한다고 판단하는 명분과 절차</div>
+  <div class="body col">
+    <div class="train">
+      <div class="train-step">User<br>Request</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step highlight">Goal<br>Interpretation</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step">Task<br>Planning</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step">Agent/Tool<br>Selection</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step">Information<br>Gathering</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step">Option<br>Generation</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step highlight">Evaluation /<br>Negotiation</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step">Action<br>Execution</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step">Observation</div>
+      <div class="train-arrow">→</div>
+      <div class="train-step highlight">Feedback /<br>Refinement</div>
+    </div>
+    <div class="footnote">* AutoGPT, LangChain Agents, CrewAI, CAMEL Multi-agent 프레임워크에서 공통적으로 나타나는 단계를 참고해 작성</div>
+    <div class="g3 fw" style="flex:1">
+      <div class="card">
+        <div class="c-label">① Goal Interpretation</div>
+        <div class="c-sub" style="margin-bottom:18px;color:rgba(255,255,255,0.85);font-size:17px">목적: Goal Alignment</div>
+        <div class="c-desc" style="flex:1">AI-사용자 의도 간 misalignment가 자주 발생.<br><br>"사용자의 의도를 명확히 드러내고 AI와의 목표 정렬 필요"</div>
+        <div class="theory-tag">
+          <div class="tt-label">Theory</div>
+          <div class="tt-content">Mental Model / Constructed Preference</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="c-label">② Evaluation / Negotiation</div>
+        <div class="c-sub" style="margin-bottom:18px;color:rgba(255,255,255,0.85);font-size:17px">목적: Decision Support</div>
+        <div class="c-desc" style="flex:1">멀티에이전트 환경에서는 옵션이 급격히 증가.<br><br>"인간의 인지 부담을 줄이면서 합리적 선택을 도울 필요"</div>
+        <div class="theory-tag">
+          <div class="tt-label">Theory</div>
+          <div class="tt-content">Bounded Rationality / Prospect Theory</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="c-label">③ Feedback / Refinement</div>
+        <div class="c-sub" style="margin-bottom:18px;color:rgba(255,255,255,0.85);font-size:17px">목적: Adaptive Learning</div>
+        <div class="c-desc" style="flex:1">피드백 = 단순 평가가 아닌 모델 개선에 활용.<br><br>"사용자 경험 기반 AI 지속 학습 및 신뢰 관계 형성 필요"</div>
+        <div class="theory-tag">
+          <div class="tt-label">Theory</div>
+          <div class="tt-content">Reinforcement Learning / Trust Calibration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">3.1</div>
+</div>
+</section>
+
+<!-- 3.2 -->
+<section data-part="3">
+<div class="s-page">
+  <div class="plabel">3.2</div>
+  <div class="ptitle">유동적 인터페이스 Generative UI</div>
+  <div class="pcap">에이전트가 답변의 성격과 의도에 따라 UI를 스스로 결정하고 생성하는 인터페이스 패러다임</div>
+  <div class="body col">
+    <div class="g2" style="height:180px">
+      <div class="card">
+        <div class="c-label">기존 앱 UX</div>
+        <div class="c-desc" style="flex:none;font-size:15px;line-height:1.55">미리 설계된 화면 레이아웃과 확정된 에셋 라이브러리 안에서만 작동. 사용자가 할 수 있는 행동과 볼 수 있는 정보가 설계 시점에 모두 확정됨. 설계되지 않은 상황은 존재하지 않음.</div>
+      </div>
+      <div class="card">
+        <div class="c-label">에이전트 UX</div>
+        <div class="c-desc" style="flex:none;font-size:15px;line-height:1.55">답변의 성격·의도·데이터 구조에 따라 그때그때 가장 적합한 UI를 에이전트가 판단하고 생성. 사전에 모든 상황을 설계할 수 없기 때문에 UI 자체가 동적으로 만들어져야 함.</div>
+      </div>
+    </div>
+    <div class="tbl fw">
+      <div class="tbl-row head" style="grid-template-columns: 1.4fr 2.4fr 2fr">
+        <div class="tbl-cell">방식</div>
+        <div class="tbl-cell">설명</div>
+        <div class="tbl-cell">적합한 상황</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 2.4fr 2fr">
+        <div class="tbl-cell"><div class="t-name">Rule-based Generation</div></div>
+        <div class="tbl-cell">상황별 최적 UI 룰이 사전 정의되어 있고 에이전트가 룰을 참조해 UI 결정</div>
+        <div class="tbl-cell">반복적·예측 가능한 답변 유형</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 2.4fr 2fr">
+        <div class="tbl-cell"><div class="t-name">Library-based Generation</div></div>
+        <div class="tbl-cell">UI 컴포넌트 라이브러리에서 에이전트가 적합한 컴포넌트를 조합해 생성</div>
+        <div class="tbl-cell">구조화된 데이터, 비교·선택이 필요한 상황</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 2.4fr 2fr">
+        <div class="tbl-cell"><div class="t-name">From Scratch Generation</div></div>
+        <div class="tbl-cell">기존 룰이나 라이브러리로 커버되지 않는 예외적 상황에서 에이전트가 UI를 직접 설계</div>
+        <div class="tbl-cell">경향을 벗어난 복합적·특수한 답변</div>
+      </div>
+    </div>
+    <div class="dms-section" style="flex:1">
+      <div class="dms-header">
+        <div class="dms-title">DESIGN.md <span class="dms-sub">— 에이전트를 위한 디자인 시스템</span></div>
+        <div class="dms-conn">↑ Rule-based Generation의 실제 구현체</div>
+      </div>
+      <div class="g2 fw" style="flex:1">
+        <div class="card">
+          <div class="c-label">기존 방식</div>
+          <div class="c-desc" style="flex:none;font-size:14px;line-height:1.55">에이전트에게 매번 브랜드 컬러·폰트·컴포넌트를 설명해야 함. 툴을 바꿀 때마다, 새 대화를 시작할 때마다 처음부터 다시.</div>
+        </div>
+        <div class="card" style="border-color:rgba(180,160,240,0.4);background:rgba(180,160,240,0.06)">
+          <div class="c-label" style="color:rgba(180,160,240,0.95)">DESIGN.md 방식</div>
+          <div class="c-desc" style="flex:none;font-size:14px;line-height:1.55">파일 하나로 끝. YAML 토큰(정확한 값) + 마크다운 텍스트(왜 이 값인지 이유)를 함께 담아 에이전트가 자동으로 읽고 적용.<br><br>Google Labs가 2026년 4월 오픈소스로 공개. Claude Code, Cursor, Copilot 모두 지원.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">3.2</div>
+</div>
+</section>
+
+<!-- 3.3 -->
+<section data-part="3">
+<div class="s-page">
+  <div class="plabel">3.3</div>
+  <div class="ptitle">비가시적 경험 Ambient AX</div>
+  <div class="pcap">HITL과 Generative UI가 만나는 최적 지점</div>
+  <div class="body col">
+    <div class="info-box fw">
+      <div class="ib-title">Ambient AX 정의</div>
+      <div class="ib-body">제로 인터랙션이 아닌 미니멈 인터랙션. 에이전트가 백그라운드에서 조용히 작동하다가, 꼭 인간이 필요한 순간에만 개입을 요청하고, 그 순간에 가장 적합한 형태의 UI를 생성해 출력하는 경험.<br><br>존재감을 최소화하되 개입의 질을 극대화하는 인터페이스 철학.</div>
+    </div>
+    <div class="converge fw" style="flex:1;justify-content:center">
+      <div class="converge-row">
+        <div class="converge-box">
+          <div class="cb-label">HITL</div>
+          <div class="cb-desc">불필요한 개입을 걷어내고 꼭 필요한 순간만 남김</div>
+        </div>
+        <div class="converge-op">×</div>
+        <div class="converge-box">
+          <div class="cb-label">Generative UI</div>
+          <div class="cb-desc">그 순간에 맥락에 맞는 UI를 즉석에서 생성</div>
+        </div>
+      </div>
+      <div class="converge-arrow">↓</div>
+      <div class="converge-result">
+        <div class="cr-name">Ambient AX</div>
+        <div class="cr-tag">"불렸을 때 완벽하게"</div>
+      </div>
+    </div>
+    <div class="tbl fw">
+      <div class="tbl-row head" style="grid-template-columns: 1.4fr 3fr">
+        <div class="tbl-cell">원칙</div>
+        <div class="tbl-cell">내용</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 3fr">
+        <div class="tbl-cell"><div class="t-name">Invisible by default</div></div>
+        <div class="tbl-cell">에이전트는 기본적으로 보이지 않음. 작동 중이라는 신호만 최소한으로</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 3fr">
+        <div class="tbl-cell"><div class="t-name">Visible when needed</div></div>
+        <div class="tbl-cell">개입이 필요한 순간, 맥락에 맞는 최적 UI로 존재를 드러냄</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 3fr">
+        <div class="tbl-cell"><div class="t-name">Gone when done</div></div>
+        <div class="tbl-cell">개입이 끝나면 다시 사라짐. 잔여 UI를 남기지 않음</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">3.3</div>
+</div>
+</section>
+
+<!-- PART 4 표지 -->
+<section data-part="4">
+<div class="sa-base sa-part">
+  <div class="backdrop">4</div>
+  <div class="stage">
+    <div class="eyebrow">Part Four</div>
+    <div class="title">실무<br/><span class="grad">프로세스.</span></div>
+    <div class="sub">일하는 방식의 변화와 산출물.</div>
+  </div>
+</div>
+</section>
+
+<!-- Chap A 간지 -->
+<section data-part="4">
+<div class="sa-base sa-chap">
+  <div class="backdrop">4A</div>
+  <div class="stage">
+    <div class="eyebrow">Chap. 4A</div>
+    <div class="title">디자이너가 만드는 것이<br/><span class="grad">달라졌다.</span></div>
+  </div>
+</div>
+</section>
+
+<!-- 4.1 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.1</div>
+  <div class="ptitle">화면 기획에서 로직 기획으로</div>
+  <div class="pcap">와이어프레임 대신 시스템 프롬프트와 페르소나 설계하기</div>
+  <div class="body" style="justify-content:center;align-items:flex-start">
+    <div class="captured-slide">
+      <div class="slide-meta">
+        디자이너가 직접 쓸, 또는 엔드 유저가 쓸 에이전트를 기획하고 프로토타이핑하는 프로세스. Claude에게 만들고자 하는 에이전트의 내용을 자연어로 설명하고 에이전트 설계도와 시스템 프롬프트 작성 요청
+      </div>
+
+      <!-- 섹션 오버레이 -->
+      <div class="section-overlay overlay-chart"></div>
+      <div class="section-overlay overlay-filename"></div>
+      <div class="section-overlay overlay-rightcol"></div>
+
+      <!-- 오버레이와 말풍선 연결하는 표시선 -->
+      <svg class="leader-lines" viewBox="0 0 1600 1100" preserveAspectRatio="none">
+        <!-- 차트 오버레이 → 1번 말풍선 -->
+        <line x1="40" y1="588" x2="270" y2="540"/>
+        <!-- 우측 컬럼 오버레이 → 2번 말풍선 -->
+        <line x1="1188" y1="140" x2="1188" y2="40"/>
+        <!-- 파일명 오버레이 → 3번 말풍선 -->
+        <line x1="288" y1="678" x2="320" y2="660"/>
+      </svg>
+
+      <div class="cs-header">
+        <div class="cs-sub">System Prompt</div>
+        <div class="cs-title">Trend Research 에이전트 만들기</div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-left">
+          <div class="cs-tag">트렌드 리서치 에이전트 설계도</div>
+          <div class="cs-svg-wrap" style="flex:0 0 auto">
+            <svg viewBox="0 0 680 400" role="img" xmlns="http://www.w3.org/2000/svg">
+              <title>01 트렌드 리서치 핵심 스킬 / 도구 스택</title>
+              <desc>브리프 파싱부터 trend_insights.json 출력까지 도구 레이어 구분</desc>
+              <defs>
+                <marker id="arrow41" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+
+              <!-- LEGEND -->
+              <g><rect x="40" y="10" width="10" height="10" rx="2" fill="rgb(238,237,254)" stroke="rgb(83,74,183)" stroke-width="0.5"/></g>
+              <text x="56" y="18" dominant-baseline="central" fill="rgb(61,61,58)" font-size="11" font-family="'Noto Sans KR', sans-serif">MCP 서버</text>
+              <g><rect x="136" y="10" width="10" height="10" rx="2" fill="rgb(225,245,238)" stroke="rgb(15,110,86)" stroke-width="0.5"/></g>
+              <text x="152" y="18" dominant-baseline="central" fill="rgb(61,61,58)" font-size="11" font-family="'Noto Sans KR', sans-serif">API 서비스</text>
+              <g><rect x="240" y="10" width="10" height="10" rx="2" fill="rgb(250,236,231)" stroke="rgb(153,60,29)" stroke-width="0.5"/></g>
+              <text x="256" y="18" dominant-baseline="central" fill="rgb(61,61,58)" font-size="11" font-family="'Noto Sans KR', sans-serif">기성 라이브러리</text>
+              <g><rect x="370" y="10" width="10" height="10" rx="2" fill="rgb(241,239,232)" stroke="rgb(95,94,90)" stroke-width="0.5"/></g>
+              <text x="386" y="18" dominant-baseline="central" fill="rgb(61,61,58)" font-size="11" font-family="'Noto Sans KR', sans-serif">Claude 내장 스킬</text>
+
+              <!-- INPUT -->
+              <g>
+                <rect x="200" y="34" width="280" height="44" rx="10" fill="rgb(241,239,232)" stroke="rgb(95,94,90)" stroke-width="0.5"/>
+                <text x="340" y="51" text-anchor="middle" dominant-baseline="central" fill="rgb(68,68,65)" font-size="14" font-weight="500" font-family="'Noto Sans KR', sans-serif">프로젝트 브리프 입력</text>
+                <text x="340" y="67" text-anchor="middle" dominant-baseline="central" fill="rgb(95,94,90)" font-size="11" font-family="'Noto Sans KR', sans-serif">Claude 내장 파싱 → 키워드 구조화</text>
+              </g>
+
+              <line x1="340" y1="78" x2="340" y2="104" stroke="rgb(115,114,108)" stroke-width="1.5" marker-end="url(#arrow41)"/>
+
+              <!-- MODE B -->
+              <rect x="40" y="92" width="172" height="26" rx="6" fill="none" stroke="rgb(136,135,128)" stroke-width="0.5" stroke-dasharray="3 2" opacity="0.6"/>
+              <text x="126" y="105" text-anchor="middle" dominant-baseline="central" opacity="0.6" fill="rgb(61,61,58)" font-size="11" font-family="'Noto Sans KR', sans-serif">MODE B: 자동 주간 토픽 선정</text>
+
+              <!-- PARALLEL COLLECTION -->
+              <g>
+                <rect x="40" y="118" width="138" height="56" rx="8" fill="rgb(225,245,238)" stroke="rgb(15,110,86)" stroke-width="0.5"/>
+                <text x="109" y="136" text-anchor="middle" dominant-baseline="central" fill="rgb(8,80,65)" font-size="13" font-weight="500" font-family="'Noto Sans KR', sans-serif">Tavily API</text>
+                <text x="109" y="154" text-anchor="middle" dominant-baseline="central" fill="rgb(15,110,86)" font-size="11" font-family="'Noto Sans KR', sans-serif">아티클 · 리포트</text>
+                <text x="109" y="167" text-anchor="middle" dominant-baseline="central" fill="rgb(15,110,86)" font-size="11" font-family="'Noto Sans KR', sans-serif">search_depth advanced</text>
+              </g>
+              <g>
+                <rect x="190" y="118" width="138" height="56" rx="8" fill="rgb(250,236,231)" stroke="rgb(153,60,29)" stroke-width="0.5"/>
+                <text x="259" y="136" text-anchor="middle" dominant-baseline="central" fill="rgb(113,43,19)" font-size="13" font-weight="500" font-family="'Noto Sans KR', sans-serif">pytrends</text>
+                <text x="259" y="154" text-anchor="middle" dominant-baseline="central" fill="rgb(153,60,29)" font-size="11" font-family="'Noto Sans KR', sans-serif">관심도 시계열</text>
+                <text x="259" y="167" text-anchor="middle" dominant-baseline="central" fill="rgb(153,60,29)" font-size="11" font-family="'Noto Sans KR', sans-serif">KR + Worldwide</text>
+              </g>
+              <g>
+                <rect x="340" y="118" width="138" height="56" rx="8" fill="rgb(238,237,254)" stroke="rgb(83,74,183)" stroke-width="0.5"/>
+                <text x="409" y="136" text-anchor="middle" dominant-baseline="central" fill="rgb(60,52,137)" font-size="13" font-weight="500" font-family="'Noto Sans KR', sans-serif">Apify MCP</text>
+                <text x="409" y="154" text-anchor="middle" dominant-baseline="central" fill="rgb(83,74,183)" font-size="11" font-family="'Noto Sans KR', sans-serif">Dribbble · Behance</text>
+                <text x="409" y="167" text-anchor="middle" dominant-baseline="central" fill="rgb(83,74,183)" font-size="11" font-family="'Noto Sans KR', sans-serif">디자인 레퍼런스</text>
+              </g>
+              <g>
+                <rect x="490" y="118" width="150" height="56" rx="8" fill="rgb(238,237,254)" stroke="rgb(83,74,183)" stroke-width="0.5"/>
+                <text x="565" y="136" text-anchor="middle" dominant-baseline="central" fill="rgb(60,52,137)" font-size="13" font-weight="500" font-family="'Noto Sans KR', sans-serif">Firecrawl MCP</text>
+                <text x="565" y="154" text-anchor="middle" dominant-baseline="central" fill="rgb(83,74,183)" font-size="11" font-family="'Noto Sans KR', sans-serif">경쟁사 사이트</text>
+                <text x="565" y="167" text-anchor="middle" dominant-baseline="central" fill="rgb(83,74,183)" font-size="11" font-family="'Noto Sans KR', sans-serif">구조 · CTA 파싱</text>
+              </g>
+
+              <!-- Converge lines -->
+              <line x1="109" y1="174" x2="109" y2="200" stroke="rgb(136,135,128)" stroke-width="0.6" opacity="0.5"/>
+              <line x1="259" y1="174" x2="259" y2="200" stroke="rgb(136,135,128)" stroke-width="0.6" opacity="0.5"/>
+              <line x1="409" y1="174" x2="409" y2="200" stroke="rgb(136,135,128)" stroke-width="0.6" opacity="0.5"/>
+              <line x1="565" y1="174" x2="565" y2="200" stroke="rgb(136,135,128)" stroke-width="0.6" opacity="0.5"/>
+              <line x1="109" y1="200" x2="565" y2="200" stroke="rgb(136,135,128)" stroke-width="0.6" opacity="0.5"/>
+              <line x1="340" y1="200" x2="340" y2="224" stroke="rgb(115,114,108)" stroke-width="1.5" marker-end="url(#arrow41)"/>
+
+              <!-- CLAUDE ANALYSIS -->
+              <g>
+                <rect x="100" y="224" width="480" height="56" rx="10" fill="rgb(241,239,232)" stroke="rgb(95,94,90)" stroke-width="0.5"/>
+                <text x="340" y="244" text-anchor="middle" dominant-baseline="central" fill="rgb(68,68,65)" font-size="14" font-weight="500" font-family="'Noto Sans KR', sans-serif">Claude — 인사이트 합성</text>
+                <text x="340" y="262" text-anchor="middle" dominant-baseline="central" fill="rgb(95,94,90)" font-size="11" font-family="'Noto Sans KR', sans-serif">패턴 추출 · 기회 영역 도출 · 페르소나 초안</text>
+                <text x="340" y="275" text-anchor="middle" dominant-baseline="central" fill="rgb(95,94,90)" font-size="11" font-family="'Noto Sans KR', sans-serif">structured output (JSON mode) · 출처 포함 필수</text>
+              </g>
+
+              <line x1="340" y1="280" x2="340" y2="310" stroke="rgb(115,114,108)" stroke-width="1.5" marker-end="url(#arrow41)"/>
+
+              <!-- HUMAN GATE -->
+              <g>
+                <rect x="200" y="310" width="280" height="36" rx="10" fill="rgb(250,238,218)" stroke="rgb(133,79,11)" stroke-width="0.5"/>
+                <text x="340" y="322" text-anchor="middle" dominant-baseline="central" fill="rgb(99,56,6)" font-size="13" font-weight="500" font-family="'Noto Sans KR', sans-serif">Human 검토 게이트</text>
+                <text x="340" y="338" text-anchor="middle" dominant-baseline="central" fill="rgb(133,79,11)" font-size="11" font-family="'Noto Sans KR', sans-serif">방향 승인 · 키워드 보정</text>
+              </g>
+
+              <line x1="340" y1="346" x2="340" y2="368" stroke="rgb(115,114,108)" stroke-width="1.5" marker-end="url(#arrow41)"/>
+
+              <!-- OUTPUT -->
+              <g>
+                <rect x="180" y="368" width="320" height="22" rx="11" fill="rgb(241,239,232)" stroke="rgb(95,94,90)" stroke-width="0.5"/>
+                <text x="340" y="379" text-anchor="middle" dominant-baseline="central" fill="rgb(95,94,90)" font-size="11" font-family="'Noto Sans KR', sans-serif">→ trend_insights.json (다음 모듈로 전달)</text>
+              </g>
+            </svg>
+          </div>
+          <div class="cs-link-title">최종 시스템 프롬프트 md 파일 링크</div>
+          <div class="cs-filename">01_trend_research.md</div>
+        </div>
+        <div class="cs-right">
+          <div class="cs-tag">시스템 프롬프트 요약문</div>
+          <div class="md-section">
+            <div class="md-label">① 역할</div>
+            <div class="md-body">사용자 요청을 분석해 트렌드를 수집·합성하고 다음 모듈(아이데이션)이 바로 쓸 수 있는 trend_insights.json을 생성</div>
+          </div>
+          <div class="md-section">
+            <div class="md-label">② 단계별 스킬/도구 매칭</div>
+            <div class="legend-row">
+              <span class="legend-item"><span class="dot dot-mcp"></span>MCP 서버</span>
+              <span class="legend-item"><span class="dot dot-api"></span>API 서비스</span>
+              <span class="legend-item"><span class="dot dot-lib"></span>기성 라이브러리</span>
+              <span class="legend-item"><span class="dot dot-claude"></span>Claude 내장 스킬</span>
+            </div>
+            <div class="mini-tbl">
+              <div class="mini-tbl-row head" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">단계</div>
+                <div class="mini-tbl-cell">사용 도구</div>
+                <div class="mini-tbl-cell center">유형</div>
+                <div class="mini-tbl-cell">하는 일</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">1. 브리프 파싱</div>
+                <div class="mini-tbl-cell">Claude 내장 추론</div>
+                <div class="mini-tbl-cell center"><span class="dot dot-claude"></span></div>
+                <div class="mini-tbl-cell">자유 형식 입력을 검색 가능한 키워드 세트로 구조화</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">2-A. 아티클 수집</div>
+                <div class="mini-tbl-cell">Tavily API</div>
+                <div class="mini-tbl-cell center"><span class="dot dot-api"></span></div>
+                <div class="mini-tbl-cell">search_depth: advanced로 도메인 관련 아티클 본문까지 수집</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">2-B. 트렌드 시계열</div>
+                <div class="mini-tbl-cell">pytrends</div>
+                <div class="mini-tbl-cell center"><span class="dot dot-lib"></span></div>
+                <div class="mini-tbl-cell">키워드 관심도 12개월 시계열 (KR + Worldwide)</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">2-C. 디자인 레퍼런스</div>
+                <div class="mini-tbl-cell">Apify MCP</div>
+                <div class="mini-tbl-cell center"><span class="dot dot-mcp"></span></div>
+                <div class="mini-tbl-cell">Dribbble·Behance 인기 UI 패턴 태그·색상·레이아웃 수집</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">2-D. 경쟁사 파싱</div>
+                <div class="mini-tbl-cell">Firecrawl MCP</div>
+                <div class="mini-tbl-cell center"><span class="dot dot-mcp"></span></div>
+                <div class="mini-tbl-cell">경쟁사 사이트 메뉴 구조·CTA·언어 톤 추출</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">3. 인사이트 합성</div>
+                <div class="mini-tbl-cell">Claude structured output</div>
+                <div class="mini-tbl-cell center"><span class="dot dot-claude"></span></div>
+                <div class="mini-tbl-cell">4개 소스 종합 분석 → 출처 포함 JSON 생성</div>
+              </div>
+              <div class="mini-tbl-row" style="grid-template-columns: 1.4fr 1.3fr 0.5fr 2.4fr">
+                <div class="mini-tbl-cell">4. Human 게이트</div>
+                <div class="mini-tbl-cell">—</div>
+                <div class="mini-tbl-cell center">—</div>
+                <div class="mini-tbl-cell">방향 승인 또는 키워드 보정 후 JSON 확정</div>
+              </div>
+            </div>
+          </div>
+          <div class="md-section">
+            <div class="md-label">③ 핵심 산출물</div>
+            <ul class="md-bullets">
+              <li>수집 기간 동안 상승/하락/유지 중인 UX 키워드와 각 키워드의 실무적 의미</li>
+              <li>Dribbble/Behance에서 발견된 주목할 디자인 패턴</li>
+              <li>경쟁사별 강약점과 UX 톤 분석</li>
+              <li>아직 경쟁사가 해결하지 못한 디자인 기회 영역</li>
+              <li>타깃 사용자 세그먼트 초안</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 슬라이드 위 오버레이 콜아웃 -->
+      <div class="cp-overlay cp-1">
+        <span class="cp-num">1</span>
+        <span>"이 에이전트의 핵심 도구 파이프라인 또는 워크플로우 그려줘"</span>
+      </div>
+      <div class="cp-overlay cp-2">
+        <span class="cp-num">2</span>
+        <span>"이 에이전트를 만들기 위한 시스템 프롬프트 작성해줘"</span>
+      </div>
+      <div class="cp-overlay cp-3">
+        <span class="cp-num">3</span>
+        <span>
+          "최종 시스템 프롬프트를 md 파일로 만들어줘"
+          <span class="cp-aside">(다운로드 받은 후, 코딩/챗 모드에서)</span>
+          "html로 코딩해줘"
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.1</div>
+</div>
+</section>
+
+<!-- 4.2 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.2</div>
+  <div class="ptitle">하네스 엔지니어링</div>
+  <div class="pcap">Human-in-the-loop 게이트 조건과 행동 가이드레일 정의</div>
+  <div class="body" style="justify-content:center;align-items:flex-start">
+    <div class="captured-slide">
+      <div class="slide-meta">
+        "사용자가 직접 고를 수 있게 해줘", "출처 없는 말은 하지 마" 같은 단편적인 요구사항도 Claude가 HITL 게이트와 행동 원칙으로 변환해서 시스템 프롬프트에 반영.
+      </div>
+
+      <!-- 섹션 오버레이 -->
+      <div class="section-overlay overlay-hitl"></div>
+      <div class="section-overlay overlay-rules"></div>
+
+      <!-- 표시선 -->
+      <svg class="leader-lines" viewBox="0 0 1600 1100" preserveAspectRatio="none">
+        <!-- HITL 오버레이 → 1번 말풍선 (하단 변 중앙에서 cp-1 좌상단으로 사선) -->
+        <line x1="412" y1="600" x2="38" y2="640"/>
+        <!-- 행동 원칙 오버레이 → 2번 말풍선 (우상단) -->
+        <line x1="1188" y1="360" x2="1480" y2="280"/>
+      </svg>
+
+      <div class="cs-header">
+        <div class="cs-sub">System Prompt</div>
+        <div class="cs-title">Trend Research 에이전트 만들기</div>
+      </div>
+
+      <div class="cs-body">
+        <!-- 좌측: HITL 게이트 -->
+        <div class="cs-left">
+          <div class="md-section" style="margin-top:30px">
+            <div class="cs-continuation">(시스템 프롬프트 중략)</div>
+            <div class="md-label">Step 2. 토픽 요약 제시 — Human 선택 게이트</div>
+            <div class="md-body">선정된 3개 토픽을 각각 3-4문장으로 요약해 사용자에게 제시. 요약에는 토픽의 배경, 왜 지금 화제인지, UX적 의미가 한눈에 보여야 함.</div>
+          </div>
+          <div class="hitl-msg">이번 주 UX/디자인 분야 화제 토픽 3개를 정리했습니다.
+리서치를 진행할 토픽 1개를 선택해 주세요.
+
+① {토픽 제목}
+{배경 및 왜 지금 화제인지 2문장}
+{UX적 의미 1-2문장}
+주요 출처: {출처명}
+
+② ③ 동일 구조
+
+①②③ 중 하나를 선택해 주시면 해당 토픽으로
+심층 인사이트 리포트를 작성합니다.</div>
+          <div class="md-body" style="font-size:12px;color:#666">사용자가 번호나 토픽명으로 선택 → Step 3으로 진행<br>"다시 찾아줘" 또는 마음에 드는 것이 없을 경우 → Step 1을 다른 쿼리로 재실행</div>
+        </div>
+
+        <!-- 우측: 공통 행동 원칙 (하단 정렬, 위로 살짝 끌어올림) -->
+        <div class="cs-right" style="justify-content:flex-end;padding-bottom:150px">
+          <div class="cs-continuation">(시스템 프롬프트 중략)</div>
+          <div class="cs-tag">공통 행동 원칙</div>
+          <div class="principle-item">
+            <div class="pi-label">근거 없는 주장 금지</div>
+            <div class="pi-desc">모든 인사이트에는 출처(아티클 URL, 플랫폼, 날짜) 반드시 포함. "~인 것 같습니다" 같은 추측성 표현 사용 금지</div>
+          </div>
+          <div class="principle-item">
+            <div class="pi-label">도메인 특수성 우선</div>
+            <div class="pi-desc">일반적인 UX 트렌드보다 해당 도메인에 특화된 인사이트 우선. 예) 헬스케어라면 의료 규제, 고령자 접근성, EMR 연동 맥락 반드시 고려</div>
+          </div>
+          <div class="principle-item">
+            <div class="pi-label">Human 게이트 준수</div>
+            <div class="pi-desc">분석 완료 후 바로 다음 모듈로 넘기지 않음. 반드시 사용자에게 결과 제시 후 승인 또는 보정 요청. 사용자가 "승인" 또는 "다음으로" → next_module_ready:true 상태로 JSON 확정</div>
+          </div>
+          <div class="principle-item">
+            <div class="pi-label">언어</div>
+            <div class="pi-desc">사용자가 한국어로 대화하면 한국어로 응답. JSON 산출물 내 서술 필드도 한국어로 작성</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 콜아웃 -->
+      <div class="cp-overlay cp-42-1">
+        <span class="cp-num">1</span>
+        <span>"HITL 게이트 조건 정의해줘"</span>
+      </div>
+      <div class="cp-overlay cp-42-2">
+        <span class="cp-num">2</span>
+        <span>"행동 가이드레일 정의해줘"</span>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.2</div>
+</div>
+</section>
+
+<!-- 4.3 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.3</div>
+  <div class="ptitle">직접 만들기: 공개 에이전트 빌딩 도구 가이드</div>
+  <div class="pcap">목적과 상황에 따라 선택하는 에이전트 빌딩 방법론</div>
+  <div class="body">
+    <div class="tbl fw">
+      <div class="tbl-row head" style="grid-template-columns: 1.4fr 1.6fr 1.4fr 1.5fr 2.4fr">
+        <div class="tbl-cell">방법</div>
+        <div class="tbl-cell">대표 도구</div>
+        <div class="tbl-cell">만드는 방식</div>
+        <div class="tbl-cell">결과물</div>
+        <div class="tbl-cell">적합한 상황</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 1.4fr 1.5fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">Claude로 만들기</div></div>
+        <div class="tbl-cell">Claude 채팅 + Claude Code / Cursor</div>
+        <div class="tbl-cell">챗으로 로직 기획 → 코딩 에이전트로 구현</div>
+        <div class="tbl-cell">작동하는 에이전트 코드, PoC</div>
+        <div class="tbl-cell">디자이너가 직접 에이전트 프로토타입을 만들고 싶을 때. 기획부터 구현까지 Claude 안에서 완결</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 1.4fr 1.5fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">OpenClaw로 만들기</div></div>
+        <div class="tbl-cell">OpenClaw + ClawHub</div>
+        <div class="tbl-cell">SOUL.md·SKILL.md로 에이전트 성격·능력 정의. 메시징 앱 연결</div>
+        <div class="tbl-cell">상시 실행되는 개인 자동화 에이전트</div>
+        <div class="tbl-cell">로컬 환경에서 지속 작동하는 에이전트가 필요할 때. 메시징 앱 기반 자동화</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 1.4fr 1.5fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">LLM 서비스 내 커스텀 에이전트</div></div>
+        <div class="tbl-cell">GPTs, Claude Projects</div>
+        <div class="tbl-cell">대화로 지시문·페르소나·툴 설정. 코드 불필요</div>
+        <div class="tbl-cell">특정 역할에 특화된 챗 에이전트</div>
+        <div class="tbl-cell">코드 없이 빠르게 만들고 싶을 때. 반복 업무용 개인 어시스턴트</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 1.4fr 1.5fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">워크플로우 자동화 도구</div></div>
+        <div class="tbl-cell">Make, n8n, Zapier</div>
+        <div class="tbl-cell">블록 조립으로 앱·API 연결</div>
+        <div class="tbl-cell">앱 간 자동화 파이프라인</div>
+        <div class="tbl-cell">여러 서비스를 연결하는 반복 작업 자동화. 코딩 없이 복잡한 멀티스텝 구성 가능</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.3</div>
+</div>
+</section>
+
+<!-- 4.4 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.4</div>
+  <div class="ptitle">디자인시스템의 진화</div>
+  <div class="pcap">컴포넌트 라이브러리에서 에이전트가 소비하는 규칙 시스템으로</div>
+  <div class="body col">
+    <div class="g2" style="height:230px">
+      <div class="card">
+        <div class="c-label">기존 디자인 시스템</div>
+        <div class="c-desc" style="flex:none">디자이너가 미리 만들어둔 컴포넌트·색상·타이포그래피 라이브러리. 사람이 골라서 쓰는 정적 에셋 모음. 잘 만들어도 에이전트는 읽지 못함.</div>
+      </div>
+      <div class="card">
+        <div class="c-label">에이전트 시대 디자인 시스템</div>
+        <div class="c-desc" style="flex:none">에이전트가 UI를 생성할 때 참조하는 규칙·판단 기준·컴포넌트 풀. 사람이 아닌 에이전트가 소비하는 시스템. 컴포넌트뿐 아니라 "어떤 상황에 어떤 UI를 써야 하는가"의 판단 로직까지 포함.</div>
+      </div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1fr 1.4fr">
+        <div class="tbl-cell">기존 레이어</div>
+        <div class="tbl-cell">추가되는 레이어</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 1.4fr">
+        <div class="tbl-cell">컴포넌트 라이브러리</div>
+        <div class="tbl-cell">UI 생성 룰 (어떤 상황에 어떤 컴포넌트를 쓸지 판단 기준)</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 1.4fr">
+        <div class="tbl-cell">컬러·타이포·그리드 토큰</div>
+        <div class="tbl-cell">에이전트용 컨텍스트 토큰 (상황·의도·데이터 타입별 매핑)</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 1.4fr">
+        <div class="tbl-cell">사용 가이드라인</div>
+        <div class="tbl-cell">예외 케이스 정의 (룰 밖의 상황에서 From Scratch 생성 기준)</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 1.4fr">
+        <div class="tbl-cell">Figma 파일</div>
+        <div class="tbl-cell">에이전트가 읽을 수 있는 구조화된 스펙 (JSON, SKILL.md 등)</div>
+      </div>
+    </div>
+    <div class="info-box fw">
+      <div class="ib-title">디자이너 역할의 전환</div>
+      <div class="ib-body">화면을 그리는 것이 아닌 UI가 생성되는 기준과 문법을 설계. 디자인 시스템이 사람을 위한 가이드북에서 에이전트를 위한 판단 엔진으로 진화.</div>
+    </div>
+  </div>
+  <div class="pnum">4.4</div>
+</div>
+</section>
+
+<!-- Chap B 간지 -->
+<section data-part="4">
+<div class="sa-base sa-chap">
+  <div class="backdrop">4B</div>
+  <div class="stage">
+    <div class="eyebrow">Chap. 4B</div>
+    <div class="title">에이전트와<br/><span class="grad">일하기.</span></div>
+    <div class="sub">반복은 맡기고, 한계는 없애고.</div>
+  </div>
+</div>
+</section>
+
+<!-- 4.5 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.5</div>
+  <div class="ptitle">디자인 자동화 루틴</div>
+  <div class="pcap">반복하는 일은 에이전트에게, 판단하는 일은 디자이너에게</div>
+  <div class="body col">
+    <div class="info-box fw">
+      <div class="ib-title">자동화 가능한 디자인 업무의 속성</div>
+      <div class="ib-body">반복적이고, 규칙이 있고, 대량 처리가 필요한 일이 자동화 적합. 디자이너는 기준을 세우고 에이전트는 그 기준대로 실행.</div>
+    </div>
+    <div class="tbl fw" style="flex:1">
+      <div class="tbl-row head" style="grid-template-columns: 1fr 2fr 2.4fr">
+        <div class="tbl-cell">프로세스</div>
+        <div class="tbl-cell">자동화 가능한 업무</div>
+        <div class="tbl-cell">에이전트에게 시키는 방식</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">리서치</div></div>
+        <div class="tbl-cell">경쟁사 UI 수집, 트렌드 키워드 모니터링, 레퍼런스 정리</div>
+        <div class="tbl-cell">"이 카테고리 앱 10개 UI 패턴 수집해서 공통점 정리해줘"</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">데이터 전처리</div></div>
+        <div class="tbl-cell">사용자 인터뷰 텍스트 분류, 피드백 태깅, 설문 결과 요약</div>
+        <div class="tbl-cell">"인터뷰 녹취록에서 pain point만 추출해서 카테고리별로 묶어줘"</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">베리에이션 생성</div></div>
+        <div class="tbl-cell">카피 변형, 레이아웃 옵션, 컬러 조합 생성</div>
+        <div class="tbl-cell">"이 버튼 카피 톤별로 5가지 버전 만들어줘"</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">스펙 문서화</div></div>
+        <div class="tbl-cell">컴포넌트 명세 작성, 레드라인 설명, 변경 이력 정리</div>
+        <div class="tbl-cell">"이 컴포넌트 상태별 스펙을 개발자용 마크다운으로 정리해줘"</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2.4fr">
+        <div class="tbl-cell"><div class="t-name">QA·검수</div></div>
+        <div class="tbl-cell">디자인 가이드라인 준수 여부 체크, 접근성 검토, 일관성 검사</div>
+        <div class="tbl-cell">"이 화면들이 우리 디자인 원칙 위반하는 부분 찾아줘"</div>
+      </div>
+    </div>
+    <div class="info-box fw">
+      <div class="ib-title">자동화 루틴 설계 원칙</div>
+      <ul class="bullet-list" style="margin-top:4px">
+        <li>에이전트에게 줄 수 있는 명확한 기준이 있는 일을 먼저 자동화</li>
+        <li>결과물은 항상 디자이너가 검토·판단</li>
+        <li>반복할수록 기준이 정교해지고 에이전트 퀄리티도 올라감</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pnum">4.5</div>
+</div>
+</section>
+
+<!-- 4.6 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.6</div>
+  <div class="ptitle">코딩 에이전트와 퀵 프로토타이핑</div>
+  <div class="pcap">코드를 몰라도 작동하는 것을 만들 수 있게 됐다</div>
+  <div class="body col">
+    <div class="g2" style="height:200px">
+      <div class="card">
+        <div class="c-label">Before</div>
+        <div class="c-desc" style="flex:none">프로토타이핑의 한계가 Figma였음. 실제로 작동하는 걸 만들려면 개발자에게 요청해야 했고, 그 사이에 아이디어가 죽거나 왜곡됨. 코드는 내 영역이 아니었음.</div>
+      </div>
+      <div class="card">
+        <div class="c-label">After</div>
+        <div class="c-desc" style="flex:none">코딩 에이전트에게 원하는 것을 말로 설명하면 작동하는 코드가 나옴. 디자이너가 직접 클릭되고 데이터가 흐르고 로직이 작동하는 프로토타입을 당일에 만들 수 있음.</div>
+      </div>
+    </div>
+    <div class="proto-grid">
+      <!-- L1 -->
+      <div class="proto-level">
+        <div class="pl-footer">
+          <div class="pf-item">
+            <div class="pf-label">목적</div>
+            <div class="pf-text">플로우·네비게이션 검증, 이해관계자 초기 피드백</div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-label">결과물</div>
+            <div class="pf-text">클릭 가능한 하이파이 프로토타입, 공유 링크</div>
+          </div>
+        </div>
+        <div class="pl-header">
+          <div class="pl-num">L1</div>
+          <div class="pl-name">인터랙티브 목업</div>
+        </div>
+        <div class="pl-train">
+          <div class="pl-box">Figma</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Figma Make</div>
+          <div class="pl-arrow dashed">⋮</div>
+          <div class="pl-box alt">Google Stitch</div>
+        </div>
+        <div class="pl-prompt">"Figma로 [화면 설명]을 디자인했어. 클릭하면 다음 화면으로 넘어가는 인터랙티브 프로토타입으로 만들고 싶은데 Figma Make로 어떻게 연결하면 돼?"</div>
+      </div>
+
+      <!-- L2 -->
+      <div class="proto-level">
+        <div class="pl-footer">
+          <div class="pf-item">
+            <div class="pf-label">목적</div>
+            <div class="pf-text">실제 인터랙션·로직 검증, 빠른 컨셉 확인</div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-label">결과물</div>
+            <div class="pf-text">브라우저에서 돌아가는 HTML/React, URL 공유 가능</div>
+          </div>
+        </div>
+        <div class="pl-header">
+          <div class="pl-num">L2</div>
+          <div class="pl-name">작동하는 UI</div>
+        </div>
+        <div class="pl-train">
+          <div class="pl-box">Claude 채팅</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Claude Design / Artifacts</div>
+          <div class="pl-arrow dashed">⋮</div>
+          <div class="pl-box alt">v0 / Bolt</div>
+        </div>
+        <div class="pl-prompt">"[만들고 싶은 기능 설명]. 실제로 클릭하고 입력이 되는 HTML 화면으로 만들어줘. 디자인보다 기능 동작 확인이 목적이야."</div>
+      </div>
+
+      <!-- L3 -->
+      <div class="proto-level">
+        <div class="pl-footer">
+          <div class="pf-item">
+            <div class="pf-label">목적</div>
+            <div class="pf-text">엣지 케이스 확인, 실제 데이터 흐름 검증</div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-label">결과물</div>
+            <div class="pf-text">API 붙인 작동 화면, 실데이터 기반 검증본</div>
+          </div>
+        </div>
+        <div class="pl-header">
+          <div class="pl-num">L3</div>
+          <div class="pl-name">데이터 연결</div>
+        </div>
+        <div class="pl-train">
+          <div class="pl-box">Claude Code / Cursor</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Google AI Studio</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Postman / 실데이터 검증</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Claude Design</div>
+        </div>
+        <div class="pl-prompt">"[만들고 싶은 기능 설명]. 실제 API 데이터를 받아서 보여주는 프로토타입이 필요해. Claude Code로 구현해줄 수 있어? 어떻게 시작하면 돼?"</div>
+      </div>
+
+      <!-- L4 -->
+      <div class="proto-level">
+        <div class="pl-footer">
+          <div class="pf-item">
+            <div class="pf-label">목적</div>
+            <div class="pf-text">이해관계자 데모, 실현 가능성 검증</div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-label">결과물</div>
+            <div class="pf-text">실제 URL로 접근 가능한 작동하는 데모</div>
+          </div>
+        </div>
+        <div class="pl-header">
+          <div class="pl-num">L4</div>
+          <div class="pl-name">배포 가능한 PoC</div>
+        </div>
+        <div class="pl-train">
+          <div class="pl-box">Claude Code</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Claude Design</div>
+          <div class="pl-arrow">↓</div>
+          <div class="pl-box">Vercel 배포</div>
+        </div>
+        <div class="pl-prompt">"[만들고 싶은 기능 설명]. 실제로 URL로 접근 가능한 데모를 만들고 싶어. Claude Code로 구현하고 Vercel로 배포하는 전 과정을 같이 진행해줄 수 있어?"</div>
+        <div class="pl-note">* 간단한 데모가 급할 땐 Lovable로 대체 가능 (코드 제어권 제한)</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.6</div>
+</div>
+</section>
+
+<!-- Chap C 간지 -->
+<section data-part="4">
+<div class="sa-base sa-chap">
+  <div class="backdrop">4C</div>
+  <div class="stage">
+    <div class="eyebrow">Chap. 4C</div>
+    <div class="title">개발자-에이전트-디자이너,<br/>함께 <span class="grad">일하기.</span></div>
+  </div>
+</div>
+</section>
+
+<!-- 4.7 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.7</div>
+  <div class="ptitle">정적 가이드에서 실행 가능한 로직으로</div>
+  <div class="pcap">Implementation over Description — 묘사를 넘어 구현으로 소통하기</div>
+  <div class="body">
+    <div class="g3 fw" style="height:100%">
+      <div class="card">
+        <div class="c-label">핵심 변화</div>
+        <div class="c-desc">Figma 픽셀·정적 화면을 넘겨주던 방식 → 디자인 단계에서 에이전트와 함께 검증한 로직을 넘겨주는 방식</div>
+      </div>
+      <div class="card">
+        <div class="c-label">소통 방식</div>
+        <div class="c-desc">"이 화면은 이렇게 보여야 해요" 대신 "에이전트와 함께 이 로직으로 PoC를 돌려봤을 때 유저 반응이 가장 좋았어요. 이 코드 스니펫을 참고해 주세요"</div>
+      </div>
+      <div class="card">
+        <div class="c-label">산출물</div>
+        <div class="c-desc">디자인 가이드라인 + 에이전트 협업으로 도출된 로직 명세 및 참조 코드</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.7</div>
+</div>
+</section>
+
+<!-- 4.8 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.8</div>
+  <div class="ptitle">시각적 검수에서 시스템적 검증으로</div>
+  <div class="pcap">Evaluation over Observation — 관찰을 넘어 평가로</div>
+  <div class="body">
+    <div class="g3 fw" style="height:100%">
+      <div class="card">
+        <div class="c-label">핵심 변화</div>
+        <div class="c-desc">개발 후 눈으로 디자인 정합성을 보던 관찰 중심 QA → 에이전트를 활용한 자동화된 시뮬레이션 기반 검증</div>
+      </div>
+      <div class="card">
+        <div class="c-label">소통 방식</div>
+        <div class="c-desc">디자이너·개발자가 평가 프레임워크를 공유. 에이전트가 수만 번의 시나리오를 돌려 발견한 엣지 케이스를 함께 공유하며 시각적 완성도뿐 아니라 성능·신뢰도를 함께 튜닝</div>
+      </div>
+      <div class="card">
+        <div class="c-label">산출물</div>
+        <div class="c-desc">디자인 QA 결과서 + 에이전트 시뮬레이션 기반 품질 성적표 및 예외 케이스 리포트</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.8</div>
+</div>
+</section>
+
+<!-- 4.9 -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">4.9</div>
+  <div class="ptitle">레이아웃 전달에서 구조적 페어링으로</div>
+  <div class="pcap">Co-creation over Handoff — 이관을 넘어 공동 설계로</div>
+  <div class="body">
+    <div class="g3 fw" style="height:100%">
+      <div class="card">
+        <div class="c-label">핵심 변화</div>
+        <div class="c-desc">디자인 완료 후 개발팀에 일방적으로 이관하던 방식 → 에이전트를 매개로 기술적 구조를 함께 설계하는 파트너십</div>
+      </div>
+      <div class="card">
+        <div class="c-label">소통 방식</div>
+        <div class="c-desc">디자이너가 에이전트와 PoC를 만드는 과정에서 얻은 기술적 이해를 바탕으로 API 효율성·데이터 구조에 대해 개발자와 대등하게 토론. 예: "이 데이터를 불러올 때 에이전트가 이런 병목을 겪던데, API 구조를 이렇게 가져가면 어떨까요?"</div>
+      </div>
+      <div class="card">
+        <div class="c-label">산출물</div>
+        <div class="c-desc">최종 디자인 에셋 + 디자이너-개발자 공동 설계 API/데이터 스키마 규격서</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">4.9</div>
+</div>
+</section>
+
+<!-- Part 4 Conclusion -->
+<section data-part="4">
+<div class="s-page">
+  <div class="plabel">Conclusion</div>
+  <div class="ptitle">지능이 벌어다 준 시간: 디자이너의 새로운 격차(Gap)</div>
+  <div class="pcap">에이전트가 반복을 떠맡은 시간, 디자이너가 어디에 쓸 것인가</div>
+  <div class="body">
+    <div class="g4 fw" style="height:100%">
+      <div class="card">
+        <div class="cc-title">현장 탐구</div>
+        <div class="cc-en">Physical Grounding</div>
+        <div class="cc-tagline">데이터가 없는 곳에 진짜 인사이트가 있다</div>
+        <ul class="cc-points">
+          <li>미묘한 표정, 망설임, 소음 — 에이전트가 절대 학습하지 못하는 것들</li>
+          <li>비정형적 맥락을 포착하는 유일한 존재</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="cc-title">지적 심화</div>
+        <div class="cc-en">Tech Deep-Dive</div>
+        <div class="cc-tagline">툴을 쓰는 사람과 기술을 설계하는 사람은 다르다</div>
+        <ul class="cc-points">
+          <li>논문과 특허 속 기술적 특이점을 서비스 인터랙션으로 번역</li>
+          <li>에이전트에게 시킬 일의 한계를 아는 아키텍트</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="cc-title">교차 지능</div>
+        <div class="cc-en">Cross-Sync</div>
+        <div class="cc-tagline">혼자 에이전트와 대화하면 편향만 강해진다</div>
+        <ul class="cc-points">
+          <li>개발자, 데이터 사이언티스트, 인문학자와의 지적 마찰</li>
+          <li>입체적 관점이 대체 불가능한 리더십을 만든다</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="cc-title">자산화</div>
+        <div class="cc-en">Knowledge Assetization</div>
+        <div class="cc-tagline">협업의 과정 자체가 포트폴리오다</div>
+        <ul class="cc-points">
+          <li>실패한 프롬프트, 성공한 로직, API 규격 — 나만의 AX 플레이북</li>
+          <li>시안 한 장보다 방법론 하나가 오래간다</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Conclusion</div>
+</div>
+</section>
+
+<!-- PART 5 표지 -->
+<section data-part="5">
+<div class="sa-base sa-part">
+  <div class="backdrop">5</div>
+  <div class="stage">
+    <div class="eyebrow">Part Five</div>
+    <div class="title">전략과<br/><span class="grad">침투.</span></div>
+    <div class="sub">에이전트 생태계와 비즈니스 확장.</div>
+  </div>
+</div>
+</section>
+
+<!-- 5.1 -->
+<section data-part="5">
+<div class="s-page">
+  <div class="plabel">5.1</div>
+  <div class="ptitle">버티컬 에이전트 Preset 전략</div>
+  <div class="pcap">특정 목적에 최적화된 에이전트를 단말에 미리 탑재해 Zero-effort 경험 제공</div>
+  <div class="body col">
+    <div class="g3 fw" style="height:200px">
+      <div class="card">
+        <div class="c-label">헬스 에이전트</div>
+        <div class="c-desc" style="flex:none">생체 센서 데이터를 실시간으로 읽고, 수면·운동·식단을 종합해서 맞춤 루틴을 자율적으로 조정</div>
+      </div>
+      <div class="card">
+        <div class="c-label">이동 에이전트</div>
+        <div class="c-desc" style="flex:none">일정·날씨·교통을 종합해서 출발 시간, 경로, 이동 수단까지 자율 제안·예약</div>
+      </div>
+      <div class="card">
+        <div class="c-label">커머스 에이전트</div>
+        <div class="c-desc" style="flex:none">사용 패턴을 보고 소모품 재주문, 가격 비교, 구매까지 자율 완결</div>
+      </div>
+    </div>
+    <div class="rr-section" style="flex:1">
+      <div class="rr-title">디자이너 R&amp;R — 총체적 페르소나와 목적지 설계</div>
+      <div class="rr-grid">
+        <div class="rr-card">
+          <div class="rr-num">①</div>
+          <div class="rr-name">페르소나 정의</div>
+          <div class="rr-desc">특정 도메인에 최적화된 에이전트의 성격, 말투, 반응 속도 설계</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">②</div>
+          <div class="rr-name">엔드투엔드 시나리오</div>
+          <div class="rr-desc">목적에 도달할 수 있는 자동화된 여정 기획</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">③</div>
+          <div class="rr-name">액추에이터 매핑</div>
+          <div class="rr-desc">하드웨어 피드백과 디지털 서비스를 통합한 다중 출력 경로 설계</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">5.1</div>
+</div>
+</section>
+
+<!-- 5.2 -->
+<section data-part="5">
+<div class="s-page">
+  <div class="plabel">5.2</div>
+  <div class="ptitle">특화 지능: 인지와 기억 에이전트</div>
+  <div class="pcap">제조사의 강점을 살린 전문 에이전트 분리 배치, Perception Agent와 Memory Agent</div>
+  <div class="body col">
+    <div class="g2 fw" style="height:230px">
+      <div class="card">
+        <div class="c-label">Perception 에이전트 (예시)</div>
+        <ul class="bullet-list" style="margin-top:10px;font-size:14px">
+          <li><strong>감정 인지</strong> — 카메라·마이크·생체 센서로 감지된 신호를 스트레스·집중도·감정 상태의 의미로 추론</li>
+          <li><strong>공간 인지</strong> — 사용자가 있는 공간(회의실, 주방, 침실)의 맥락을 파악해서 상황 정보로 변환</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="c-label">Memory 에이전트 (예시)</div>
+        <ul class="bullet-list" style="margin-top:10px;font-size:14px">
+          <li><strong>라이프로그</strong> — 하루 동안의 활동, 대화, 이동, 건강 데이터에서 패턴과 인사이트를 추출</li>
+          <li><strong>관계 기억</strong> — 가족·친구와의 대화 패턴, 중요한 날짜, 선호도를 바탕으로 관계 맥락 구성</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rr-section" style="flex:1">
+      <div class="rr-title">디자이너 R&amp;R — 데이터의 의미 추출과 윤리적 가이드라인 정의</div>
+      <div class="rr-grid">
+        <div class="rr-card">
+          <div class="rr-num">①</div>
+          <div class="rr-name">상황 인지 추상화</div>
+          <div class="rr-desc">센서에 유입되는 로우 데이터를 어떤 수준의 정보로 변환해 보고할지 인지의 깊이와 맥락적 의미 결정</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">②</div>
+          <div class="rr-name">프라이버시 및 투명성 설계</div>
+          <div class="rr-desc">인지 에이전트가 백그라운드 상시 작동 시 사용자가 '감시'가 아닌 '보살핌'으로 인지할 수 있도록 돕는 가시적 피드백과 데이터 통제권 설계</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">③</div>
+          <div class="rr-name">메모리 큐레이션</div>
+          <div class="rr-desc">방대한 라이프 로그 중 유의미한 가치를 주는 하이라이트 선별, Review Experience 디자인</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">5.2</div>
+</div>
+</section>
+
+<!-- 5.3 -->
+<section data-part="5">
+<div class="s-page">
+  <div class="plabel">5.3</div>
+  <div class="ptitle">기술 자산과 네이티브 서비스의 스킬화 Skill-as-a-Service</div>
+  <div class="pcap">제조사만의 독보적인 네이티브 서비스를 표준화된 스킬로 만들어 배포하고 사용자 의도에 맞는 스킬을 매칭해주는 스킬 스토어 구축</div>
+  <div class="body col">
+    <div class="info-box fw">
+      <div class="ib-title">실사례 레퍼런스 — 서비스 자산을 스킬로 유통하는 트렌드가 이미 시작됨</div>
+      <ul class="bullet-list" style="margin-top:6px;font-size:14px">
+        <li>Stripe, Figma, Atlassian 등이 자사 서비스를 Claude 스킬 생태계에 공식 참여</li>
+        <li>Google Stitch의 DESIGN.md, brand.md 등 브랜드·디자인 가이드를 AI가 읽을 수 있는 md 형식으로 공개하는 오픈 스탠다드 등장</li>
+        <li>Anthropic, Vercel, Cloudflare, Stripe 등 주요 기업들이 자사 기술 문서를 llms.txt 형식으로 공개</li>
+      </ul>
+    </div>
+    <div class="info-box fw">
+      <div class="ib-title">우리가 할 수 있는 것 — 단말 제조사 가상 시나리오</div>
+      <ul class="bullet-list" style="margin-top:6px;font-size:14px">
+        <li>카메라 야간 촬영 알고리즘을 스킬로 패키징 → 외부 에이전트가 "사진 찍어줘"라고 하면 자동 호출</li>
+        <li>노이즈 캔슬링 기술을 스킬로 배포 → 써드파티 AI 어시스턴트가 상황에 맞게 자율 활용</li>
+        <li>센서 데이터 분석 기술을 스킬로 제공 → 헬스·이동·커머스 에이전트가 필요시 호출</li>
+      </ul>
+    </div>
+    <div class="rr-section" style="flex:1">
+      <div class="rr-title">디자이너 R&amp;R — 기술의 규격화와 브랜드 어트리뷰션</div>
+      <div class="rr-grid">
+        <div class="rr-card">
+          <div class="rr-num">①</div>
+          <div class="rr-name">인텐트 스키마 설계</div>
+          <div class="rr-desc">우리 하드웨어의 기능을 외부 AI가 오해 없이 호출할 수 있도록 기능의 이름과 범위 규격화</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">②</div>
+          <div class="rr-name">브랜드 아이덴티티 유지</div>
+          <div class="rr-desc">타사 에이전트가 우리 브랜드의 기술력임을 사용자가 인지할 수 있는 시청각 단서 설계</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">③</div>
+          <div class="rr-name">권한 승인 UX</div>
+          <div class="rr-desc">외부 지능이 우리 센서에 접근할 때, 사용자가 불안하지 않게 제어권을 주는 승인 인터페이스</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">5.3</div>
+</div>
+</section>
+
+<!-- 5.4 -->
+<section data-part="5">
+<div class="s-page">
+  <div class="plabel">5.4</div>
+  <div class="ptitle">No-code 에이전트 조립 도구</div>
+  <div class="pcap">사용자가 코딩 없이 본인의 필요에 맞는 에이전트를 직접 조립하거나 커스텀할 수 있는 단말 전용 개발 환경 제공</div>
+  <div class="body col">
+    <div class="g2 fw" style="height:200px">
+      <div class="card">
+        <div class="c-label">모바일 에이전트 스튜디오</div>
+        <div class="c-desc" style="flex:none">OpenClaw처럼 스킬 단위로 에이전트를 조립하는 개념을 터치 기반 UI로 구현. 사용자가 블록을 드래그해서 "아침 7시에 날씨 확인 → 일정 체크 → 알람 조정" 같은 루틴을 직접 만드는 환경</div>
+      </div>
+      <div class="card">
+        <div class="c-label">단말 제조사 스킬 마켓</div>
+        <div class="c-desc" style="flex:none">필요한 스킬을 골라서 자기 에이전트에 붙이는 방식. 스마트폰 앱을 설치하듯 에이전트 능력을 확장</div>
+      </div>
+    </div>
+    <div class="rr-section" style="flex:1">
+      <div class="rr-title">디자이너 R&amp;R — 복잡한 논리의 시각적 도구화</div>
+      <div class="rr-grid">
+        <div class="rr-card">
+          <div class="rr-num">①</div>
+          <div class="rr-name">노코드 인터페이스 설계</div>
+          <div class="rr-desc">복잡한 로직을 자연어 또는 레고 블록처럼 쉽게 조립할 수 있는 툴킷 디자인</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">②</div>
+          <div class="rr-name">AI 역량 가시화</div>
+          <div class="rr-desc">에이전트가 할 수 있는 일과 없는 일을 직관적으로 이해할 수 있게 돕는 메타포 설계</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">③</div>
+          <div class="rr-name">디버깅 UX</div>
+          <div class="rr-desc">사용자가 만든 에이전트가 예상과 다르게 동작할 때, 그 이유를 쉽게 파악하고 수정할 수 있는 피드백 화면 설계</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">5.4</div>
+</div>
+</section>
+
+<!-- 5.5 -->
+<section data-part="5">
+<div class="s-page">
+  <div class="plabel">5.5</div>
+  <div class="ptitle">멀티 디바이스 오케스트레이션</div>
+  <div class="pcap">폰, 워치, 가전 등 제조사 생태계 내에서 에이전트가 중단 없이 사용자를 따라다니며, 상황에 가장 적합한 기기가 주도권을 이어받는 연속적 지능 환경 구축</div>
+  <div class="body col">
+    <div class="timeline">
+      <div class="tl-stage">
+        <div class="tl-device">워치</div>
+        <div class="tl-desc">아침 루틴 에이전트가 기상·건강 체크로 하루 시작</div>
+      </div>
+      <div class="tl-arrow">→</div>
+      <div class="tl-stage">
+        <div class="tl-device">폰</div>
+        <div class="tl-desc">집을 나서면 교통·일정 안내로 이어받음</div>
+      </div>
+      <div class="tl-arrow">→</div>
+      <div class="tl-stage">
+        <div class="tl-device">노트북</div>
+        <div class="tl-desc">회사 도착 후 오늘 브리핑·태스크 정리로 전환</div>
+      </div>
+      <div class="tl-arrow">→</div>
+      <div class="tl-stage">
+        <div class="tl-device">TV</div>
+        <div class="tl-desc">귀가 후 하루 요약·다음 일정 안내로 마무리</div>
+      </div>
+    </div>
+    <div class="rr-section" style="flex:1">
+      <div class="rr-title">디자이너 R&amp;R — 기기 간 경계 없는 지능의 Handoff 설계</div>
+      <div class="rr-grid">
+        <div class="rr-card">
+          <div class="rr-num">①</div>
+          <div class="rr-name">컨텍스트 연속성 설계</div>
+          <div class="rr-desc">기기가 바뀌어도 에이전트가 대화·상태·진행 중인 태스크를 그대로 이어받을 수 있도록 정보의 흐름과 인계 시점을 정의</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">②</div>
+          <div class="rr-name">주도권 전환 신호 설계</div>
+          <div class="rr-desc">어떤 상황에서 어떤 기기가 주도권을 가져야 하는지 판단 기준과 전환 순간을 사용자가 자연스럽게 인지할 수 있는 시각·청각·촉각 피드백 설계</div>
+        </div>
+        <div class="rr-card">
+          <div class="rr-num">③</div>
+          <div class="rr-name">멀티 디바이스 UI 문법 정의</div>
+          <div class="rr-desc">폰·워치·가전 등 각기 다른 화면 크기와 인터페이스 조건에서 일관된 경험을 제공할 수 있도록 기기별 표현 규칙과 공통 언어 정립</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">5.5</div>
+</div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  width: 1920,
+  height: 1080,
+  margin: 0,
+  minScale: 0.1,
+  maxScale: 3,
+  controls: false,
+  progress: false,
+  history: true,
+  keyboard: true,
+  overview: false,
+  center: false,
+  touch: true,
+  loop: false,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'none',
+  embedded: false,
+  help: false,
+  mouseWheel: false,
+});
+
+function updateUI() {
+  const slide = Reveal.getCurrentSlide();
+  const part = slide ? slide.dataset.part : '0';
+  document.querySelectorAll('#nav-tabs .ntab').forEach(t => {
+    t.classList.toggle('active', t.dataset.part === part);
+  });
+  const idx = Reveal.getIndices();
+  const total = Reveal.getTotalSlides();
+  document.getElementById('counter').textContent = `${idx.h + 1} / ${total}`;
+}
+
+Reveal.on('slidechanged', updateUI);
+Reveal.on('ready', updateUI);
+
+function goTo(i) { Reveal.slide(i); }
+function sendPrompt(p) { /* no-op: SVG 파일 내 onclick 호환 */ }
+</script>
+</body>
+</html>

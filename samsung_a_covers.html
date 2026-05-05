@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>AAX — Samsung A Cover Series (Handoff)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  as="style"
+  crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+<!--
+  ─────────────────────────────────────────────────────────────
+  HANDOFF NOTES (for Claude Code / engineer)
+  ─────────────────────────────────────────────────────────────
+  This file contains 3 cover-page templates for the AAX deck:
+    • COVER  — top-level title page              (.sa-cover)
+    • PART   — Part 1 / Part 2 ... section opener (.sa-part)
+    • CHAP   — Chapter opener (e.g. Chap. 4A)     (.sa-chap)
+
+  All three share the .sa-base layer (background, layout grid,
+  font stack). Apply ONLY to title / part / chapter cover
+  slides — do not touch body slides.
+
+  REQUIRED HEAD ASSETS (paste both into <head>):
+    1. Pretendard CDN link (Korean)
+    2. Google Fonts: Inter + Inter Tight (Latin / display)
+
+  TYPE SYSTEM:
+    --pretendard : "Pretendard Variable" (Korean body + title)
+    --display    : "Inter Tight"         (eyebrow + backdrop glyph)
+
+  COLOR SYSTEM (cosmic gradient):
+    blue   #5b9dff
+    purple #a26bff
+    pink   #ff6bc1
+    bg     #050510 with radial halos
+
+  LAYOUT (at 1920×1080):
+    .stage : top:480px, left/right:120px — eyebrow + title sit
+             at the same vertical baseline across all 3 covers.
+    .backdrop : top-right huge glyph (AX / 1 / 4A) acts as the
+                hierarchical marker. Cover=AX, Part=1, Chap=4A.
+
+  USAGE:
+    – Wrap a cover slide root with <div class="sa-base sa-cover">
+    – Add .backdrop with a 1–2 char glyph
+    – Add .stage > .eyebrow + .title + (optional .sub)
+    – Use <span class="grad"> on the highlight word in title
+
+  HIERARCHY HINTS:
+    Cover  : title 152px, biggest backdrop (760px AX)
+    Part   : title 144px, gigantic numeral (1200px)
+    Chap   : title 104px, medium glyph (720px)
+
+  Title break to 2 lines explicitly with <br/>.
+  ─────────────────────────────────────────────────────────────
+-->
+
+<style>
+  :root {
+    --pretendard: "Pretendard Variable", Pretendard, "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --display: "Inter Tight", "Pretendard Variable", "Inter", sans-serif;
+  }
+  html, body { margin: 0; padding: 0; background: #1a1a1f; font-family: var(--pretendard); }
+
+  /* Page chrome (handoff preview only — remove when integrating) */
+  .doc-wrap {
+    padding: 60px 40px;
+    display: flex; flex-direction: column; gap: 48px;
+    align-items: center;
+  }
+  .doc-head {
+    color: #fff;
+    font-family: var(--display);
+    max-width: 1200px;
+    width: 100%;
+  }
+  .doc-head h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .doc-head p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    font-family: var(--pretendard);
+    font-weight: 500;
+  }
+  .slide-label {
+    color: rgba(255,255,255,0.55);
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-frame {
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     A. Galaxy Unpacked / Keynote — COVER SYSTEM
+     ═══════════════════════════════════════════════════════════ */
+  .sa-base {
+    width: 1920px;
+    height: 1080px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background:
+      radial-gradient(ellipse at 22% 30%, rgba(83, 71, 255, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse at 78% 75%, rgba(255, 87, 178, 0.30) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(0, 122, 255, 0.18) 0%, transparent 70%),
+      #050510;
+    font-family: var(--pretendard);
+  }
+  .sa-base::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.5) 100%);
+    pointer-events: none;
+  }
+  .sa-base .stage {
+    position: absolute;
+    left: 120px;
+    right: 120px;
+    top: 480px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+  .sa-base .eyebrow {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: .42em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    background: linear-gradient(95deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sa-base .title {
+    font-family: var(--pretendard);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+  }
+  .sa-base .title .grad {
+    background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sa-base .sub {
+    font-family: var(--pretendard);
+    font-weight: 600;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.72);
+    margin-top: 32px;
+  }
+
+  /* big display backdrop word/numeral */
+  .sa-base .backdrop {
+    position: absolute;
+    font-family: var(--display);
+    font-weight: 900;
+    line-height: 0.78;
+    letter-spacing: -0.07em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* COVER */
+  .sa-cover .title { font-size: 152px; }
+  .sa-cover .sub { font-size: 30px; max-width: 900px; }
+  .sa-cover .backdrop {
+    top: -60px; right: 0;
+    font-size: 760px;
+    background: linear-gradient(135deg, rgba(91,157,255,0.18) 0%, rgba(162,107,255,0.12) 50%, rgba(255,107,193,0.05) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+  }
+
+  /* PART */
+  .sa-part .title { font-size: 144px; }
+  .sa-part .sub { font-size: 30px; max-width: 800px; margin-top: 40px; }
+  .sa-part .backdrop {
+    top: -120px; right: -40px;
+    font-size: 1200px;
+    background: linear-gradient(135deg, rgba(91,157,255,0.20) 0%, rgba(162,107,255,0.10) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+  }
+
+  /* CHAP */
+  .sa-chap .title { font-size: 104px; }
+  .sa-chap .backdrop {
+    top: -60px; right: -20px;
+    font-size: 720px;
+    background: linear-gradient(135deg, rgba(91,157,255,0.18) 0%, rgba(162,107,255,0.12) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-wrap">
+
+  <div class="doc-head">
+    <h1>Samsung A — Cover Page System</h1>
+    <p>
+      AAX 덱의 표지·파트·챕터 오프너에 사용할 3종 표지 템플릿입니다.
+      <code>.sa-base</code> + <code>.sa-cover / .sa-part / .sa-chap</code> 변형으로 위계를 표현합니다.
+      본문 슬라이드에는 적용하지 마세요. 1920×1080 기준.
+    </p>
+  </div>
+
+  <!-- ─── COVER ────────────────────────────────────────────── -->
+  <div>
+    <div class="slide-label">Cover · Top-level title page</div>
+    <div class="slide-frame">
+      <div class="sa-base sa-cover">
+        <div class="backdrop">AX</div>
+        <div class="stage">
+          <div class="eyebrow">For Designers</div>
+          <div class="title">AI 에이전트<br/>경험의 <span class="grad">정석.</span></div>
+          <div class="sub">개념 이해와 예제.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PART ─────────────────────────────────────────────── -->
+  <div>
+    <div class="slide-label">Part · Section opener (Part 1, 2, …)</div>
+    <div class="slide-frame">
+      <div class="sa-base sa-part">
+        <div class="backdrop">1</div>
+        <div class="stage">
+          <div class="eyebrow">Part One</div>
+          <div class="title">AI 프레임의<br/><span class="grad">전환.</span></div>
+          <div class="sub">도구에서 대리인으로.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CHAP ─────────────────────────────────────────────── -->
+  <div>
+    <div class="slide-label">Chap. · Chapter opener (Chap. 4A, 4B, …)</div>
+    <div class="slide-frame">
+      <div class="sa-base sa-chap">
+        <div class="backdrop">4A</div>
+        <div class="stage">
+          <div class="eyebrow">Chap. 4A</div>
+          <div class="title">디자이너가 만드는 것이<br/><span class="grad">달라졌다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
