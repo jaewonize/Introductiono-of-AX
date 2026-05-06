@@ -3,6 +3,29 @@
 
 ---
 
+## 작업 환경 안내 (중요)
+
+이 프로젝트는 GitHub과 연동되어 있어, Claude Desktop/Code는 새 세션마다 자동으로 git worktree(`.claude/worktrees/<랜덤이름>/`)를 생성한다. 사용자는 워크트리의 존재를 의식하지 않고 메인 폴더만 보면서 작업하길 원한다.
+
+**규칙: 워크트리에서 파일을 편집(Edit/Write)할 때마다, 같은 파일을 메인 폴더로 복사한다.**
+
+- 메인 폴더 절대 경로: `C:\Users\jaewo\OneDrive\Desktop\AI-Agent-Experience\`
+- 워크트리 절대 경로 패턴: `C:\Users\jaewo\OneDrive\Desktop\AI-Agent-Experience\.claude\worktrees\<랜덤이름>\`
+- 워크트리 내 상대 경로 그대로 메인 폴더에 매핑 (예: 워크트리의 `index.html` → 메인의 `index.html`, 워크트리의 `Design/x.html` → 메인의 `Design/x.html`)
+
+**복사 방법** (Bash 도구 사용):
+```bash
+cp "<워크트리 파일 절대경로>" "C:/Users/jaewo/OneDrive/Desktop/AI-Agent-Experience/<상대경로>"
+```
+
+**적용 시점**:
+- 단일 파일 편집 후 → 즉시 복사
+- 여러 파일을 연달아 편집 중 → 의미 있는 단위(작업 마무리, 사용자 확인 직전)마다 한꺼번에 복사
+
+신규 파일 생성 시에도 같은 규칙 적용. 삭제는 사용자 명시 요청 없이 하지 않는다.
+
+---
+
 ## 프로젝트 개요
 디자이너를 대상으로 한 AI 에이전트 경험 설계 교육 자료.
 HTML 기반 웹 슬라이드 덱으로 제작 중.

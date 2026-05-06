@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+ <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Agent Experience</title>
@@ -1999,6 +1999,1344 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     radial-gradient(ellipse at 50% 50%, #2a2a6a 0%, transparent 60%),
     #000;
 }
+
+/* ══════════════════════════════════════════════════════════
+   SA-SLIDE DESIGN SYSTEM (slides 3,4,5,6,9,10,11)
+   본문 슬라이드 디자인 — .sa-slide 컨테이너 안에서만 적용
+══════════════════════════════════════════════════════════ */
+.sa-slide {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  font-family: var(--pretendard);
+  background:
+    radial-gradient(ellipse at 18% 18%, rgba(83, 71, 255, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 88%, rgba(255, 87, 178, 0.10) 0%, transparent 45%),
+    #050510;
+}
+.sa-slide::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 35%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.sa-slide::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(91,157,255,0.35) 20%,
+    rgba(162,107,255,0.45) 50%,
+    rgba(255,107,193,0.35) 80%,
+    transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Header (shared) */
+.sa-slide .backdrop-hint {
+  position: absolute;
+  top: -60px; right: -40px;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 720px;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  background: linear-gradient(135deg, rgba(91,157,255,0.10) 0%, rgba(162,107,255,0.05) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.sa-slide .s-head {
+  position: absolute;
+  top: 80px; left: 120px; right: 120px;
+  z-index: 2;
+}
+.sa-slide .s-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.78);
+}
+.sa-slide .s-eyebrow .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5b9dff 0%, #a26bff 100%);
+  box-shadow: 0 0 12px rgba(91,157,255,0.6);
+}
+.sa-slide .s-title {
+  margin-top: 14px;
+  font-family: var(--pretendard);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+.sa-slide .s-title .grad {
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sa-slide .s-title .conj {
+  color: rgba(255,255,255,0.4); font-weight: 500;
+}
+.sa-slide .s-cap {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: -0.01em;
+  max-width: 1400px;
+}
+
+/* ─────── Slide 3 (1.1) — pillars ─────── */
+.sa-slide.s3 .s-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.sa-slide.s3 .s-title {
+  margin-top: 14px;
+  font-size: 88px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.sa-slide.s3 .s-caption {
+  position: absolute;
+  top: 270px; left: 120px; right: 120px;
+  z-index: 2;
+}
+.sa-slide.s3 .s-caption .lead {
+  font-family: var(--pretendard);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: -0.01em;
+  max-width: 1100px;
+}
+.sa-slide.s3 .s-caption .lead .grad {
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+.sa-slide.s3 .pillars {
+  position: absolute;
+  left: 120px; right: 120px;
+  bottom: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  z-index: 2;
+}
+.sa-slide.s3 .pillar {
+  position: relative;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 28px;
+  padding: 56px 48px 48px;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+.sa-slide.s3 .pillar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 1px;
+  background: linear-gradient(160deg,
+    rgba(91,157,255,0.4) 0%,
+    rgba(162,107,255,0.18) 35%,
+    transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.sa-slide.s3 .pillar .pn {
+  font-family: var(--display);
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #5b9dff 0%, #a26bff 60%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 32px;
+}
+.sa-slide.s3 .pillar .ptag {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 18px;
+}
+.sa-slide.s3 .pillar .pname {
+  font-family: var(--pretendard);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.sa-slide.s3 .pillar .pcap {
+  font-family: var(--pretendard);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 28px;
+}
+.sa-slide.s3 .pillar .ptext {
+  font-family: var(--pretendard);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.86);
+  flex: 1;
+  margin-bottom: 28px;
+  text-wrap: pretty;
+}
+.sa-slide.s3 .pillar .ptext .em {
+  color: #fff;
+  font-weight: 600;
+}
+.sa-slide.s3 .pillar .pdivider {
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.04) 100%);
+  margin-bottom: 22px;
+}
+.sa-slide.s3 .pillar .pkws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sa-slide.s3 .pillar .pkw {
+  font-family: var(--pretendard);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.85);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.sa-slide.s3 .pillar.p1::before {
+  background: linear-gradient(160deg,
+    rgba(91,157,255,0.55) 0%,
+    rgba(91,157,255,0.10) 40%,
+    transparent 65%);
+}
+.sa-slide.s3 .pillar.p1 .pn {
+  background: linear-gradient(135deg, #7eb6ff 0%, #5b9dff 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+.sa-slide.s3 .pillar.p2::before {
+  background: linear-gradient(160deg,
+    rgba(162,107,255,0.55) 0%,
+    rgba(162,107,255,0.10) 40%,
+    transparent 65%);
+}
+.sa-slide.s3 .pillar.p2 .pn {
+  background: linear-gradient(135deg, #c19eff 0%, #a26bff 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+.sa-slide.s3 .pillar.p3::before {
+  background: linear-gradient(160deg,
+    rgba(255,107,193,0.55) 0%,
+    rgba(255,107,193,0.10) 40%,
+    transparent 65%);
+}
+.sa-slide.s3 .pillar.p3 .pn {
+  background: linear-gradient(135deg, #ff95d3 0%, #ff6bc1 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+
+/* ─────── Slide 4 (1.2) — R&R cards + comparison table ─────── */
+.sa-slide.s4 .s-title {
+  font-size: 80px; line-height: 1;
+}
+.sa-slide.s4 .cards {
+  position: absolute;
+  left: 120px; right: 120px;
+  top: 320px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  z-index: 2;
+}
+.sa-slide.s4 .rcard {
+  position: relative;
+  border-radius: 24px;
+  padding: 36px 40px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+  min-height: 220px;
+  display: flex; flex-direction: column;
+}
+.sa-slide.s4 .rcard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.sa-slide.s4 .rcard.cat-for::before {
+  background: linear-gradient(160deg,
+    rgba(91,157,255,0.55) 0%,
+    rgba(91,157,255,0.10) 40%,
+    transparent 65%);
+}
+.sa-slide.s4 .rcard.cat-with::before {
+  background: linear-gradient(160deg,
+    rgba(162,107,255,0.55) 0%,
+    rgba(162,107,255,0.10) 40%,
+    transparent 65%);
+}
+.sa-slide.s4 .rcard .rc-pin {
+  position: absolute;
+  top: 36px; right: 40px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+}
+.sa-slide.s4 .rcard.cat-for .rc-pin {
+  background: #5b9dff;
+  box-shadow: 0 0 18px rgba(91,157,255,0.7);
+}
+.sa-slide.s4 .rcard.cat-with .rc-pin {
+  background: #a26bff;
+  box-shadow: 0 0 18px rgba(162,107,255,0.7);
+}
+.sa-slide.s4 .rcard .rc-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.sa-slide.s4 .rcard.cat-for .rc-label {
+  background: linear-gradient(135deg, #7eb6ff 0%, #5b9dff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s4 .rcard.cat-with .rc-label {
+  background: linear-gradient(135deg, #c19eff 0%, #a26bff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s4 .rcard .rc-desc {
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+/* Slide 4 comparison table — scoped under .sa-slide.s4 to avoid existing .tbl */
+.sa-slide.s4 .tbl {
+  position: absolute;
+  left: 120px; right: 120px;
+  top: 600px;
+  bottom: 80px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: auto;
+}
+.sa-slide.s4 .tbl-row {
+  display: grid;
+  grid-template-columns: 240px 1fr 1.4fr 1.4fr;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-top: none;
+  min-height: 72px;
+}
+.sa-slide.s4 .tbl-row:last-child { border-bottom: none; }
+.sa-slide.s4 .tbl-row.head {
+  background: rgba(255,255,255,0.04);
+  min-height: 60px;
+}
+.sa-slide.s4 .tbl-row.head .tbl-cell {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  padding: 18px 32px;
+  border-left: none;
+}
+.sa-slide.s4 .tbl-cell {
+  padding: 18px 32px;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: -0.01em;
+  border-left: none;
+  display: block;
+}
+.sa-slide.s4 .tbl-row .grp {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 32px;
+}
+.sa-slide.s4 .tbl-row .grp-bar {
+  width: 4px;
+  height: 28px;
+  border-radius: 2px;
+}
+.sa-slide.s4 .tbl-row.cat-for .grp-bar {
+  background: linear-gradient(180deg, #7eb6ff, #5b9dff);
+  box-shadow: 0 0 12px rgba(91,157,255,0.5);
+}
+.sa-slide.s4 .tbl-row.cat-with .grp-bar {
+  background: linear-gradient(180deg, #c19eff, #a26bff);
+  box-shadow: 0 0 12px rgba(162,107,255,0.5);
+}
+.sa-slide.s4 .tbl-row .grp-name {
+  font-family: var(--pretendard);
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.sa-slide.s4 .cat-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.sa-slide.s4 .cat-pill.for {
+  color: #cfe1ff;
+  background: rgba(91,157,255,0.16);
+  border: 1px solid rgba(91,157,255,0.45);
+  box-shadow: inset 0 0 12px rgba(91,157,255,0.12);
+}
+.sa-slide.s4 .cat-pill.with {
+  color: #e6daff;
+  background: rgba(162,107,255,0.18);
+  border: 1px solid rgba(162,107,255,0.45);
+  box-shadow: inset 0 0 12px rgba(162,107,255,0.14);
+}
+.sa-slide.s4 .tbl-row .as-is {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+.sa-slide.s4 .tbl-row .to-be {
+  font-weight: 600;
+  color: #fff;
+}
+.sa-slide.s4 .tbl-row.cat-for .to-be {
+  background: linear-gradient(115deg, #7eb6ff 0%, #a26bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sa-slide.s4 .tbl-row.cat-with .to-be {
+  background: linear-gradient(115deg, #a26bff 0%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ─────── Slides 5 & 6 (1.3, 1.4) — shifts ─────── */
+.sa-slide .shifts {
+  position: absolute;
+  left: 120px; right: 120px;
+  z-index: 2;
+  display: grid;
+  gap: 22px;
+}
+.sa-slide.s5 .shifts {
+  top: 320px;
+  bottom: 80px;
+  grid-template-rows: repeat(3, 1fr);
+}
+.sa-slide.s6 .shifts {
+  top: 300px;
+  bottom: 60px;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 14px;
+}
+.sa-slide .shift {
+  display: grid;
+  grid-template-columns: 380px 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  align-items: stretch;
+  border-radius: 20px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.03) 100%);
+  border: 1px solid transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: visible;
+  position: relative;
+}
+.sa-slide.s6 .shift {
+  grid-template-columns: 340px 1fr 1fr;
+}
+.sa-slide .shift::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(91,157,255,0.55) 0%,
+    rgba(162,107,255,0.35) 50%,
+    rgba(255,107,193,0.20) 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+.sa-slide .shift:nth-child(1)::before {
+  background: linear-gradient(135deg,
+    rgba(91,157,255,0.65) 0%,
+    rgba(126,182,255,0.30) 100%);
+}
+.sa-slide .shift:nth-child(2)::before {
+  background: linear-gradient(135deg,
+    rgba(190,120,255,0.65) 0%,
+    rgba(230,120,210,0.30) 100%);
+}
+.sa-slide .shift:nth-child(3)::before {
+  background: linear-gradient(135deg,
+    rgba(230,120,210,0.65) 0%,
+    rgba(190,120,255,0.30) 100%);
+}
+.sa-slide.s6 .shift:nth-child(4)::before {
+  background: linear-gradient(135deg,
+    rgba(255,107,193,0.65) 0%,
+    rgba(230,120,210,0.30) 100%);
+}
+.sa-slide .shift > .s-cat   { grid-row: 1 / -1; grid-column: 1; }
+.sa-slide .shift > .s-app   { grid-row: 1; grid-column: 2; }
+.sa-slide .shift > .s-agent { grid-row: 1; grid-column: 3; }
+.sa-slide .shift > .s-insight { grid-row: 2; grid-column: 2 / -1; }
+.sa-slide .shift .s-cat {
+  padding: 28px 56px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg,
+    rgba(91,157,255,0.10) 0%,
+    rgba(162,107,255,0.05) 100%);
+  clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 50%, calc(100% - 28px) 100%, 0 100%);
+  position: relative;
+  z-index: 2;
+}
+.sa-slide.s6 .shift .s-cat { padding: 18px 52px 18px 28px; }
+.sa-slide .shift:nth-child(1) .s-cat {
+  background: linear-gradient(135deg,
+    rgba(91,157,255,0.18) 0%,
+    rgba(126,182,255,0.06) 100%);
+}
+.sa-slide .shift:nth-child(2) .s-cat {
+  background: linear-gradient(135deg,
+    rgba(190,120,255,0.18) 0%,
+    rgba(230,120,210,0.06) 100%);
+}
+.sa-slide .shift:nth-child(3) .s-cat {
+  background: linear-gradient(135deg,
+    rgba(230,120,210,0.18) 0%,
+    rgba(190,120,255,0.06) 100%);
+}
+.sa-slide.s6 .shift:nth-child(4) .s-cat {
+  background: linear-gradient(135deg,
+    rgba(255,107,193,0.18) 0%,
+    rgba(230,120,210,0.06) 100%);
+}
+.sa-slide .shift .s-num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+.sa-slide .shift .s-en {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #7eb6ff 0%, #a26bff 60%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sa-slide.s6 .shift .s-en { font-size: 22px; }
+.sa-slide .shift:nth-child(1) .s-en {
+  background: linear-gradient(135deg, #7eb6ff 0%, #b9d4ff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide .shift:nth-child(2) .s-en {
+  background: linear-gradient(135deg, #be78ff 0%, #e878d2 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide .shift:nth-child(3) .s-en {
+  background: linear-gradient(135deg, #e878d2 0%, #be78ff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s6 .shift:nth-child(4) .s-en {
+  background: linear-gradient(135deg, #ff6bc1 0%, #e878d2 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide .shift .s-ko {
+  font-family: var(--pretendard);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: -0.01em;
+}
+.sa-slide .shift .s-side {
+  padding: 24px 32px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+.sa-slide.s6 .shift .s-side { padding: 16px 28px 16px 36px; }
+.sa-slide .shift .s-side + .s-side { border-left: 1px solid rgba(255,255,255,0.06); }
+.sa-slide .shift .s-side .s-side-tag {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+}
+.sa-slide .shift .s-side .s-side-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.sa-slide.s6 .shift .s-side .s-side-text { font-size: 16px; line-height: 1.42; }
+.sa-slide .shift .s-side.s-app .s-side-text {
+  color: rgba(255,255,255,0.62);
+  font-weight: 400;
+}
+.sa-slide .shift .s-side.s-agent .s-side-text { color: #fff; }
+.sa-slide .shift .s-insight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 26px 32px 28px 40px;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  background: transparent;
+  position: relative;
+}
+.sa-slide.s6 .shift .s-insight { padding: 16px 28px 18px 36px; }
+.sa-slide .shift .s-insight::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.28) 20%,
+    rgba(255,255,255,0.28) 80%,
+    transparent 100%);
+  pointer-events: none;
+}
+.sa-slide .shift .s-insight .ins-key {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  flex: none;
+}
+.sa-slide .shift .s-insight .ins-text {
+  font-family: var(--pretendard);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.4;
+}
+.sa-slide.s6 .shift .s-insight .ins-text { font-size: 15px; }
+.sa-slide .shift .s-insight .ins-text .em {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ─────── Slide 9 (2.2) — actuator ─────── */
+.sa-slide.s9 .s9-body {
+  position: absolute;
+  left: 120px; right: 120px;
+  top: 320px;
+  bottom: 80px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.sa-slide.s9 .s9-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.sa-slide.s9 .s9-card {
+  position: relative;
+  padding: 32px 32px 30px;
+  border-radius: 20px;
+  background: linear-gradient(180deg,
+    rgba(20,18,40,0.78) 0%,
+    rgba(15,12,28,0.62) 100%);
+  border: 1px solid transparent;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sa-slide.s9 .s9-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: var(--ring);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.sa-slide.s9 .s9-card .num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.5);
+}
+.sa-slide.s9 .s9-card .lbl {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+  background: var(--num-grad);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s9 .s9-card .desc {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.sa-slide.s9 .s9-card:nth-child(1) {
+  --ring: linear-gradient(135deg, rgba(91,157,255,0.65), rgba(126,182,255,0.25));
+  --num-grad: linear-gradient(135deg, #7eb6ff, #b9d4ff);
+}
+.sa-slide.s9 .s9-card:nth-child(2) {
+  --ring: linear-gradient(135deg, rgba(162,107,255,0.65), rgba(126,140,255,0.25));
+  --num-grad: linear-gradient(135deg, #be78ff, #8e9bff);
+}
+.sa-slide.s9 .s9-card:nth-child(3) {
+  --ring: linear-gradient(135deg, rgba(255,107,193,0.65), rgba(230,120,210,0.25));
+  --num-grad: linear-gradient(135deg, #ff6bc1, #e878d2);
+}
+.sa-slide.s9 .s9-table {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto repeat(3, 1fr);
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg,
+    rgba(20,18,40,0.62) 0%,
+    rgba(15,12,28,0.48) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.sa-slide.s9 .s9-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2.6fr 1.8fr;
+  align-items: center;
+  padding: 18px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  gap: 24px;
+}
+.sa-slide.s9 .s9-row:last-child { border-bottom: none; }
+.sa-slide.s9 .s9-row.head {
+  background: rgba(255,255,255,0.04);
+  padding: 14px 32px;
+}
+.sa-slide.s9 .s9-row.head .cell {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+}
+.sa-slide.s9 .s9-row .cell {
+  font-size: 18px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: -0.01em;
+}
+.sa-slide.s9 .s9-row .t-name {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--pretendard);
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.sa-slide.s9 .s9-row .t-name::before {
+  content: "";
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--dot);
+  box-shadow: 0 0 12px var(--dot);
+}
+.sa-slide.s9 .s9-row:nth-child(2) { --dot: #7eb6ff; }
+.sa-slide.s9 .s9-row:nth-child(3) { --dot: #be78ff; }
+.sa-slide.s9 .s9-row:nth-child(4) { --dot: #ff6bc1; }
+.sa-slide.s9 .s9-row .t-eg {
+  color: rgba(255,255,255,0.62);
+  font-size: 17px;
+}
+.sa-slide.s9 .s9-foot {
+  font-size: 14px;
+  color: rgba(255,255,255,0.42);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+
+/* ─────── Slide 10 v4 (2.4) — memory ─────── */
+.sa-slide.s10 .s10v4-grid {
+  position: absolute;
+  left: 120px; right: 120px;
+  top: 300px; bottom: 70px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 720px 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 44px;
+  row-gap: 16px;
+}
+.sa-slide.s10 .s10v4-sect-head {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 0 4px 6px;
+}
+.sa-slide.s10 .s10v4-sect-head .num {
+  font-family: var(--display); font-weight: 600;
+  font-size: 14px; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+}
+.sa-slide.s10 .s10v4-sect-head .ttl {
+  font-family: var(--pretendard); font-weight: 600;
+  font-size: 32px; letter-spacing: -0.02em; color: #fff;
+  line-height: 1;
+}
+.sa-slide.s10 .s10v4-sect-head .en {
+  font-family: var(--display); font-weight: 500;
+  font-size: 14px; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.42);
+  margin-left: auto;
+}
+.sa-slide.s10 .s10v4-timeline {
+  position: relative;
+  border-radius: 24px;
+  padding: 32px 36px 32px;
+  background: linear-gradient(180deg, rgba(20,18,40,0.72) 0%, rgba(15,12,28,0.50) 100%);
+  border: 1px solid transparent;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sa-slide.s10 .s10v4-timeline::before {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 24px; padding: 1px;
+  background: linear-gradient(160deg, rgba(91,157,255,0.55), rgba(190,120,255,0.35), rgba(255,107,193,0.45));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none;
+}
+.sa-slide.s10 .s10v4-timeline::after {
+  content: ""; position: absolute; left: -10%; right: -10%; top: -10%; bottom: -10%;
+  background:
+    radial-gradient(ellipse at 30% 10%, rgba(91,157,255,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 95%, rgba(255,107,193,0.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+.sa-slide.s10 .s10v4-rail {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+.sa-slide.s10 .s10v4-rail::before {
+  content: "";
+  position: absolute;
+  left: 23px; top: 12px; bottom: 12px;
+  width: 2px;
+  background: linear-gradient(180deg,
+    rgba(91,157,255,0.65) 0%,
+    rgba(190,120,255,0.65) 50%,
+    rgba(255,107,193,0.65) 100%);
+  border-radius: 2px;
+}
+.sa-slide.s10 .s10v4-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 22px;
+  align-items: start;
+  padding: 14px 0;
+}
+.sa-slide.s10 .s10v4-step .dot {
+  position: relative;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 700; font-size: 16px;
+  color: #050510;
+  letter-spacing: -0.02em;
+  z-index: 2;
+  box-shadow: 0 0 0 4px #0a0820, 0 0 24px var(--glow);
+}
+.sa-slide.s10 .s10v4-step .body {
+  padding-top: 4px;
+  flex: unset;
+  display: block;
+  gap: 0;
+  min-height: auto;
+}
+.sa-slide.s10 .s10v4-step .stage-tag {
+  display: inline-block;
+  font-family: var(--display); font-weight: 500;
+  font-size: 11px; letter-spacing: 0.16em;
+  color: var(--c2);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.sa-slide.s10 .s10v4-step .stage-name {
+  font-family: var(--pretendard); font-weight: 600;
+  font-size: 24px; letter-spacing: -0.02em;
+  color: #fff; line-height: 1.15;
+}
+.sa-slide.s10 .s10v4-step .stage-desc {
+  margin-top: 8px;
+  font-size: 15px; line-height: 1.55;
+  font-weight: 400;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.sa-slide.s10 .s10v4-step .stage-meta {
+  margin-top: 10px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  font-family: var(--display); font-weight: 500;
+  font-size: 12px; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.62);
+}
+.sa-slide.s10 .s10v4-step .stage-meta::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c2);
+}
+.sa-slide.s10 .s10v4-step:nth-child(1) { --c1:#5b9dff; --c2:#7eb6ff; --glow:rgba(91,157,255,0.35); }
+.sa-slide.s10 .s10v4-step:nth-child(2) { --c1:#8e9bff; --c2:#be78ff; --glow:rgba(190,120,255,0.35); }
+.sa-slide.s10 .s10v4-step:nth-child(3) { --c1:#e878d2; --c2:#ff6bc1; --glow:rgba(255,107,193,0.35); }
+.sa-slide.s10 .s10v4-loop {
+  position: relative; z-index: 1;
+  margin-top: 20px;
+  padding: 14px 18px 14px 22px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(91,157,255,0.10), rgba(255,107,193,0.10));
+  border: 1px dashed rgba(255,255,255,0.18);
+  display: flex; align-items: center; gap: 14px;
+}
+.sa-slide.s10 .s10v4-loop .loop-icon {
+  font-family: var(--display); font-weight: 600;
+  font-size: 22px;
+  background: linear-gradient(135deg, #5b9dff, #ff6bc1);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s10 .s10v4-loop .loop-txt {
+  font-size: 14px; line-height: 1.4;
+  font-weight: 400;
+  color: rgba(255,255,255,0.68);
+  letter-spacing: -0.01em;
+}
+.sa-slide.s10 .s10v4-loop .loop-txt b {
+  color: #fff; font-weight: 600;
+}
+.sa-slide.s10 .s10v4-types {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.sa-slide.s10 .s10v4-type {
+  position: relative;
+  border-radius: 20px;
+  padding: 22px 28px 22px 28px;
+  background: linear-gradient(180deg, rgba(20,18,40,0.78) 0%, rgba(15,12,28,0.55) 100%);
+  border: 1px solid transparent;
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+  overflow: hidden;
+}
+.sa-slide.s10 .s10v4-type::before {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 20px; padding: 1px;
+  background: var(--ring);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none;
+}
+.sa-slide.s10 .s10v4-type::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--accent-bar);
+}
+.sa-slide.s10 .s10v4-type .left-col {
+  position: relative; z-index: 1;
+}
+.sa-slide.s10 .s10v4-type .t-en {
+  font-family: var(--display); font-weight: 800;
+  font-size: 12px; letter-spacing: 0.16em;
+  color: var(--acc); text-transform: uppercase;
+}
+.sa-slide.s10 .s10v4-type .t-name {
+  margin-top: 6px;
+  font-family: var(--pretendard); font-weight: 600;
+  font-size: 30px; letter-spacing: -0.02em;
+  color: #fff; line-height: 1.1;
+  display: block;
+  margin-bottom: 0;
+}
+.sa-slide.s10 .s10v4-type .t-store {
+  margin-top: 8px;
+  font-size: 13px; line-height: 1.4;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: -0.01em;
+}
+.sa-slide.s10 .s10v4-type .mid-col {
+  position: relative; z-index: 1;
+  padding-left: 22px;
+  border-left: 1px solid rgba(255,255,255,0.10);
+}
+.sa-slide.s10 .s10v4-type .col-cap {
+  font-family: var(--display); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.42);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sa-slide.s10 .s10v4-type .col-body {
+  font-size: 15px; line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255,255,255,0.80);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.sa-slide.s10 .s10v4-type .right-col {
+  position: relative; z-index: 1;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--quote-bg);
+  border: 1px solid var(--quote-border);
+}
+.sa-slide.s10 .s10v4-type .right-col .col-cap {
+  color: var(--acc);
+  margin-bottom: 6px;
+}
+.sa-slide.s10 .s10v4-type .quote {
+  font-family: var(--pretendard); font-weight: 500;
+  font-size: 17px; line-height: 1.45;
+  color: rgba(255,255,255,0.95); letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+.sa-slide.s10 .s10v4-type .quote::before {
+  content: "“";
+  font-family: var(--display); font-weight: 800;
+  font-size: 22px; color: var(--acc);
+  margin-right: 4px; line-height: 0;
+  vertical-align: -3px;
+}
+.sa-slide.s10 .s10v4-type:nth-child(1) {
+  --ring: linear-gradient(135deg, rgba(126,182,255,0.65), rgba(91,157,255,0.20));
+  --accent-bar: linear-gradient(180deg, #7eb6ff, #5b9dff);
+  --acc: #7eb6ff;
+  --quote-bg: rgba(91,157,255,0.08);
+  --quote-border: rgba(91,157,255,0.20);
+}
+.sa-slide.s10 .s10v4-type:nth-child(2) {
+  --ring: linear-gradient(135deg, rgba(190,120,255,0.65), rgba(142,155,255,0.20));
+  --accent-bar: linear-gradient(180deg, #be78ff, #8e9bff);
+  --acc: #be78ff;
+  --quote-bg: rgba(190,120,255,0.08);
+  --quote-border: rgba(190,120,255,0.22);
+}
+.sa-slide.s10 .s10v4-type:nth-child(3) {
+  --ring: linear-gradient(135deg, rgba(255,107,193,0.65), rgba(232,120,210,0.20));
+  --accent-bar: linear-gradient(180deg, #ff6bc1, #e878d2);
+  --acc: #ff6bc1;
+  --quote-bg: rgba(255,107,193,0.08);
+  --quote-border: rgba(255,107,193,0.22);
+}
+.sa-slide.s10 .s10v4-foot {
+  position: absolute;
+  left: 120px; right: 120px;
+  bottom: 30px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: -0.01em;
+  z-index: 2;
+}
+
+/* ─────── Slide 11 (2.5) — frameworks ─────── */
+.sa-slide.s11 .s-head { top: 60px; }
+.sa-slide.s11 .s11-found {
+  position: absolute;
+  top: 260px; left: 120px; right: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+}
+.sa-slide.s11 .s11-found .axioms-wrap {
+  margin-top: 56px; position: relative;
+}
+.sa-slide.s11 .found-quote {
+  font-family: var(--pretendard); font-weight: 500;
+  font-size: 32px; line-height: 1.32;
+  letter-spacing: -0.025em;
+  color: rgba(255,255,255,0.94);
+  white-space: nowrap;
+}
+.sa-slide.s11 .found-quote em {
+  font-style: normal;
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 700;
+}
+.sa-slide.s11 .found-quote .lead {
+  display: block; margin-top: 10px;
+  font-size: 16px; line-height: 1.55;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  white-space: normal;
+}
+.sa-slide.s11 .found-axioms {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: baseline;
+  column-gap: 28px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  position: relative;
+}
+.sa-slide.s11 .found-axioms .head {
+  position: absolute;
+  left: 0; top: -22px;
+  font-family: var(--display); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.18em;
+  color: rgba(190,150,255,0.8);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sa-slide.s11 .axiom {
+  display: grid; grid-template-columns: 28px 1fr;
+  gap: 12px; align-items: baseline;
+}
+.sa-slide.s11 .axiom .n {
+  font-family: var(--display); font-weight: 700;
+  font-size: 14px; letter-spacing: 0.04em;
+  color: rgba(190,150,255,0.7);
+}
+.sa-slide.s11 .axiom .t {
+  font-size: 15px; line-height: 1.5; font-weight: 400;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.sa-slide.s11 .axiom .t b { color: #fff; font-weight: 600; }
+.sa-slide.s11 .s11-split {
+  position: absolute;
+  left: 0; right: 0;
+  top: 560px; bottom: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.sa-slide.s11 .s11-split::before {
+  content: ""; position: absolute;
+  left: 50%; top: 24px; bottom: 24px; width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.20) 12%, rgba(255,255,255,0.20) 88%, transparent 100%);
+  transform: translateX(-0.5px);
+}
+.sa-slide.s11 .side {
+  position: relative;
+  padding: 30px 60px 26px;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+.sa-slide.s11 .side.claw {
+  --acc: #5b9dff;
+  --acc-soft: rgba(91,157,255,0.14);
+  padding-left: 120px; padding-right: 50px;
+}
+.sa-slide.s11 .side.agentic {
+  --acc: #ff6bc1;
+  --acc-soft: rgba(255,107,193,0.14);
+  padding-right: 120px; padding-left: 50px;
+}
+.sa-slide.s11 .side::before {
+  content: ""; position: absolute;
+  top: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(180deg, var(--acc-soft) 0%, transparent 100%);
+  pointer-events: none;
+}
+.sa-slide.s11 .side-head {
+  display: flex; flex-direction: column; gap: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.sa-slide.s11 .side-tag {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-weight: 800;
+  font-size: 11px; letter-spacing: 0.20em;
+  color: var(--acc); text-transform: uppercase;
+}
+.sa-slide.s11 .side-tag .pip {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acc); box-shadow: 0 0 10px var(--acc);
+}
+.sa-slide.s11 .side-name {
+  font-family: var(--display); font-weight: 600;
+  font-size: 38px; letter-spacing: -0.025em;
+  color: rgba(255,255,255,0.95); line-height: 1.05;
+}
+.sa-slide.s11 .side-name .alt {
+  display: block; margin-top: 8px;
+  font-family: var(--pretendard); font-weight: 400;
+  font-size: 14px; letter-spacing: -0.005em;
+  color: rgba(255,255,255,0.50);
+}
+.sa-slide.s11 .side-line {
+  font-size: 17px; line-height: 1.45; font-weight: 500;
+  color: rgba(255,255,255,0.86);
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+.sa-slide.s11 .side-line b { color: var(--acc); font-weight: 600; }
+.sa-slide.s11 .attrs {
+  display: grid; grid-template-columns: 1fr 1fr;
+  column-gap: 28px; row-gap: 10px;
+}
+.sa-slide.s11 .attr {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 8px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.sa-slide.s11 .attr .k {
+  font-family: var(--display); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.42); text-transform: uppercase;
+}
+.sa-slide.s11 .attr .v {
+  font-size: 15px; line-height: 1.4;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+.sa-slide.s11 .attr.fit {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: var(--acc-soft);
+  border-radius: 12px;
+}
+.sa-slide.s11 .attr.fit .k { color: var(--acc); }
+.sa-slide.s11 .attr.fit .v {
+  font-size: 19px; font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
 </style>
 </head>
 <body>
@@ -2124,202 +3462,305 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 1.1 -->
 <section data-part="1">
-<div class="s-page">
-  <div class="plabel">1.1</div>
-  <div class="ptitle">AI 에이전트의 정의</div>
-  <div class="pcap">관계적·구조적·가치적 세 가지 층위로 정의하다</div>
-  <div class="body">
-    <div class="g3 fw" style="height:100%">
-      <div class="card">
-        <div class="c-label">관계적 정의</div>
-        <div class="c-sub">외적 현상</div>
-        <div class="c-title">사용자와 AI의 관계가 '명령'에서 '협업'으로 바뀌는 소통 방식</div>
-        <div class="kws">
-          <span class="kw">의도기반</span>
-          <span class="kw">위임</span>
-          <span class="kw">신뢰</span>
-        </div>
+<div class="sa-slide s3" data-screen-label="03 1.1 정의">
+  <div class="backdrop-hint">1.1</div>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="dot"></span>1.1</div>
+      <h1 class="s-title">AI 에이전트의 <span class="grad">정의</span></h1>
+    </div>
+  </div>
+  <div class="s-caption">
+    <p class="lead">
+      AI 에이전트는 <span class="grad">관계적·구조적·가치적</span> 세 가지 층위에서<br/>
+      동시에 정의될 때 비로소 온전해진다.
+    </p>
+  </div>
+  <div class="pillars">
+    <div class="pillar p1">
+      <div class="pn">01</div>
+      <div class="ptag">관계적 정의</div>
+      <div class="pname">사용자와의<br/>새로운 소통</div>
+      <div class="pcap">외적 현상</div>
+      <div class="ptext">
+        AI와의 상호작용이 <span class="em">'명령'에서 '협업'으로</span> 이동하며, 사용자는 결과 대신 의도를 위임한다.
       </div>
-      <div class="card">
-        <div class="c-label">구조적 정의</div>
-        <div class="c-sub">내부적 원리</div>
-        <div class="c-title">LLM의 추론과 도구가 결합되어 스스로 움직이는 지능적 아키텍처</div>
-        <div class="kws">
-          <span class="kw">추론</span>
-          <span class="kw">도구 활용</span>
-          <span class="kw">계획</span>
-        </div>
+      <div class="pdivider"></div>
+      <div class="pkws">
+        <span class="pkw">의도 기반</span>
+        <span class="pkw">위임</span>
+        <span class="pkw">신뢰</span>
       </div>
-      <div class="card">
-        <div class="c-label">가치적 정의</div>
-        <div class="c-sub">목적적 본질</div>
-        <div class="c-title">실제 세계의 과업을 종결짓는 생산 주체</div>
-        <div class="kws">
-          <span class="kw">실행</span>
-          <span class="kw">완결</span>
-          <span class="kw">가치창출</span>
-        </div>
+    </div>
+    <div class="pillar p2">
+      <div class="pn">02</div>
+      <div class="ptag">구조적 정의</div>
+      <div class="pname">스스로 움직이는<br/>아키텍처</div>
+      <div class="pcap">내부적 원리</div>
+      <div class="ptext">
+        LLM의 추론과 외부 도구가 결합되어, <span class="em">계획·실행·검증을 자율 순환</span>하는 지능 구조.
+      </div>
+      <div class="pdivider"></div>
+      <div class="pkws">
+        <span class="pkw">추론</span>
+        <span class="pkw">도구 활용</span>
+        <span class="pkw">계획</span>
+      </div>
+    </div>
+    <div class="pillar p3">
+      <div class="pn">03</div>
+      <div class="ptag">가치적 정의</div>
+      <div class="pname">과업을 종결짓는<br/>생산 주체</div>
+      <div class="pcap">목적적 본질</div>
+      <div class="ptext">
+        단순 응답이 아닌, <span class="em">실제 세계의 과업을 완결</span>지어 측정 가능한 가치를 생산한다.
+      </div>
+      <div class="pdivider"></div>
+      <div class="pkws">
+        <span class="pkw">실행</span>
+        <span class="pkw">완결</span>
+        <span class="pkw">가치 창출</span>
       </div>
     </div>
   </div>
-  <div class="pnum">1.1</div>
 </div>
 </section>
 
 <!-- 1.2 -->
 <section data-part="1">
-<div class="s-page">
-  <div class="plabel">1.2</div>
-  <div class="ptitle">디자인 R&R의 확장</div>
-  <div class="pcap">에이전트를 설계할 것인가? 에이전트로 디자인할 것인가?</div>
-  <div class="body col">
-    <div class="g2" style="height:170px">
-      <div class="card cat-for">
-        <div class="c-label">Designing FOR Agents</div>
-        <div class="c-sub" style="margin-bottom:14px">지능의 설계자</div>
-        <div class="c-desc">디자이너가 설계하는 대상이 '정적인 인터페이스'에서 '동적인 지능'으로 확장. 유저가 마주할 에이전트의 사고방식과 행동양식을 결정.</div>
-      </div>
-      <div class="card cat-with">
-        <div class="c-label">Designing WITH Agents</div>
-        <div class="c-sub" style="margin-bottom:14px">워크플로우 혁신가</div>
-        <div class="c-desc">디자이너가 일하는 방식 자체가 변화. 에이전트를 단순한 도구가 아닌 '지능형 파트너'로 부리며 생산성을 극대화.</div>
-      </div>
+<div class="sa-slide s4" data-screen-label="04 1.2 R&R 확장">
+  <div class="backdrop-hint">1.2</div>
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>1.2</div>
+    <h1 class="s-title">디자인 <span class="grad">R&amp;R</span>의 확장</h1>
+    <p class="s-cap">에이전트를 설계할 것인가? 에이전트로 디자인할 것인가?</p>
+  </div>
+  <div class="cards">
+    <div class="rcard cat-for">
+      <span class="rc-pin"></span>
+      <div class="rc-label">Designing FOR Agents,<span style="font-family:var(--pretendard);font-weight:700;margin-left:0.25em;">지능의 설계자</span></div>
+      <div class="rc-desc">디자이너가 설계하는 대상이 '정적인 인터페이스'에서 '동적인 지능'으로 확장.<br/>유저가 마주할 에이전트의 사고방식과 행동양식을 결정.</div>
     </div>
-    <div class="tbl fw" style="flex:1">
-      <div class="tbl-row head" style="grid-template-columns: 1.1fr 2fr 2fr">
-        <div class="tbl-cell">구분</div>
-        <div class="tbl-cell">AS-IS</div>
-        <div class="tbl-cell">TO-BE</div>
-      </div>
-      <div class="tbl-row cat-for" style="grid-template-columns: 1.1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">설계 대상</div></div>
-        <div class="tbl-cell">애플리케이션 화면</div>
-        <div class="tbl-cell">에이전트의 사고와 행동</div>
-      </div>
-      <div class="tbl-row cat-for" style="grid-template-columns: 1.1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">핵심 역량</div></div>
-        <div class="tbl-cell">비주얼 레이아웃, 인터랙션</div>
-        <div class="tbl-cell">맥락 이해, 추론 설계, 가치 필터링</div>
-      </div>
-      <div class="tbl-row cat-with" style="grid-template-columns: 1.1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">일하는 방식</div></div>
-        <div class="tbl-cell">툴을 활용한 수동 제작</div>
-        <div class="tbl-cell">에이전트와 협업하는 자동화 루틴</div>
-      </div>
-      <div class="tbl-row cat-with" style="grid-template-columns: 1.1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">산출물</div></div>
-        <div class="tbl-cell">디자인 가이드, 프로토타입</div>
-        <div class="tbl-cell">판단 정책, 프롬프트, 작동하는 PoC</div>
-      </div>
-      <div class="tbl-row cat-with" style="grid-template-columns: 1.1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">협업 파트너</div></div>
-        <div class="tbl-cell">기획자, 개발자</div>
-        <div class="tbl-cell">개발자 + 에이전트 + 데이터</div>
-      </div>
+    <div class="rcard cat-with">
+      <span class="rc-pin"></span>
+      <div class="rc-label">Designing WITH Agents,<span style="font-family:var(--pretendard);font-weight:700;margin-left:0.25em;">워크플로우 혁신가</span></div>
+      <div class="rc-desc">디자이너가 일하는 방식 자체가 변화.<br/>에이전트를 단순한 도구가 아닌 '지능형 파트너'로 부리며 생산성을 극대화.</div>
     </div>
   </div>
-  <div class="pnum">1.2</div>
+  <div class="tbl">
+    <div class="tbl-row head">
+      <div class="tbl-cell">구분</div>
+      <div class="tbl-cell"></div>
+      <div class="tbl-cell">AS-IS</div>
+      <div class="tbl-cell">TO-BE</div>
+    </div>
+    <div class="tbl-row cat-for">
+      <div class="grp">
+        <div class="grp-bar"></div>
+        <div class="grp-name">설계 대상</div>
+      </div>
+      <div class="tbl-cell"><span class="cat-pill for">FOR</span></div>
+      <div class="tbl-cell as-is">애플리케이션 화면</div>
+      <div class="tbl-cell to-be">에이전트의 사고와 행동</div>
+    </div>
+    <div class="tbl-row cat-for">
+      <div class="grp">
+        <div class="grp-bar"></div>
+        <div class="grp-name">핵심 역량</div>
+      </div>
+      <div class="tbl-cell"><span class="cat-pill for">FOR</span></div>
+      <div class="tbl-cell as-is">비주얼 레이아웃, 인터랙션</div>
+      <div class="tbl-cell to-be">맥락 이해, 추론 설계, 가치 필터링</div>
+    </div>
+    <div class="tbl-row cat-with">
+      <div class="grp">
+        <div class="grp-bar"></div>
+        <div class="grp-name">일하는 방식</div>
+      </div>
+      <div class="tbl-cell"><span class="cat-pill with">WITH</span></div>
+      <div class="tbl-cell as-is">툴을 활용한 수동 제작</div>
+      <div class="tbl-cell to-be">에이전트와 협업하는 자동화 루틴</div>
+    </div>
+    <div class="tbl-row cat-with">
+      <div class="grp">
+        <div class="grp-bar"></div>
+        <div class="grp-name">산출물</div>
+      </div>
+      <div class="tbl-cell"><span class="cat-pill with">WITH</span></div>
+      <div class="tbl-cell as-is">디자인 가이드, 프로토타입</div>
+      <div class="tbl-cell to-be">판단 정책, 프롬프트, 작동하는 PoC</div>
+    </div>
+    <div class="tbl-row cat-with">
+      <div class="grp">
+        <div class="grp-bar"></div>
+        <div class="grp-name">협업 파트너</div>
+      </div>
+      <div class="tbl-cell"><span class="cat-pill with">WITH</span></div>
+      <div class="tbl-cell as-is">기획자, 개발자</div>
+      <div class="tbl-cell to-be">개발자 + 에이전트 + 데이터</div>
+    </div>
+  </div>
 </div>
 </section>
 
 <!-- 1.3 -->
 <section data-part="1">
-<div class="s-page">
-  <div class="plabel">1.3</div>
-  <div class="ptitle">디자인 대상의 전환, 앱에서 에이전트의 시대로</div>
-  <div class="pcap">사용자가 기능을 찾아다니는 시대에서 에이전트가 목적을 대신 수행하는 시대로</div>
-  <div class="body">
-    <div class="tbl fw">
-      <div class="tbl-row head" style="grid-template-columns: 1.4fr 2fr 2fr">
-        <div class="tbl-cell">구분</div>
-        <div class="tbl-cell">앱</div>
-        <div class="tbl-cell">에이전트</div>
+<div class="sa-slide s5" data-screen-label="05 1.3 대상의 전환">
+  <div class="backdrop-hint">1.3</div>
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>1.3</div>
+    <h1 class="s-title">디자인 대상의 전환,<br/><span class="grad">앱</span>에서 <span class="grad">에이전트</span>의 시대로</h1>
+    <p class="s-cap">사용자가 기능을 찾아다니는 시대에서 에이전트가 목적을 대신 수행하는 시대로</p>
+  </div>
+  <div class="shifts">
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Shift 01</div>
+        <div class="s-en">UI to Intent</div>
+        <div class="s-ko">메뉴 중심에서 의도 중심으로</div>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.4fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">1. UI to Intent</div>
-          <div class="t-name">메뉴 중심에서 의도 중심으로</div>
-        </div>
-        <div class="tbl-cell">사용자가 메뉴를 탐색하고 기능을 하나씩 실행하는 도구함 (유저가 길을 알아야 함)</div>
-        <div class="tbl-cell">사용자의 추상적인 의도를 이해하고 최적의 경로를 스스로 생성 (에이전트가 길을 찾음)</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">How to use의 정교함보다 What to do의 정확성이 핵심</div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">App · 앱</div>
+        <div class="s-side-text">사용자가 메뉴를 탐색하고 기능을 하나씩<br/>실행하는 도구함 (유저가 길을 알아야 함)</div>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.4fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">2. Feature to Goal</div>
-          <div class="t-name">기능의 나열에서 과업의 완결로</div>
-        </div>
-        <div class="tbl-cell">'송금하기', '장바구니 담기' 같은 파편화된 기능 제공. 최종 결과는 유저의 노동으로 완성</div>
-        <div class="tbl-cell">'이번 주말 여행 준비해 줘' 하나의 목표를 이해, 여러 기능을 엮어 과업을 완결</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">성공지표가 '체류시간(Retention)'에서 '과업 성공률(Completion Rate)'로 이동</div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">Agent · 에이전트</div>
+        <div class="s-side-text">사용자의 추상적인 의도를 이해하고<br/>최적의 경로를 스스로 생성 (에이전트가 길을 찾음)</div>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.4fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">3. Passive to Proactive</div>
-          <div class="t-name">수동적 반응에서 선제적 대응으로</div>
-        </div>
-        <div class="tbl-cell">사용자가 아이콘을 눌러야만 움직이는 수동적 존재</div>
-        <div class="tbl-cell">상황과 맥락을 모니터링하다가 필요할 때 먼저 말을 걸거나 액션</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">인터랙션 트리거가 유저의 손가락이 아닌 에이전트의 상황 판단</div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text"><span class="em">How to use</span>의 정교함보다 <span class="em">What to do</span>의 정확성이 핵심</span>
+      </div>
+    </div>
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Shift 02</div>
+        <div class="s-en">Feature to Goal</div>
+        <div class="s-ko">기능의 나열에서 과업의 완결로</div>
+      </div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">App · 앱</div>
+        <div class="s-side-text">'송금하기', '장바구니 담기' 같은 파편화된 기능을<br/>제공. 최종 결과는 유저의 노동으로 완성</div>
+      </div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">Agent · 에이전트</div>
+        <div class="s-side-text">'이번 주말 여행 준비해 줘' 하나의 목표를 이해,<br/>여러 기능을 엮어 과업을 완결하는 존재</div>
+      </div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text">성공지표가 <span class="em">'체류시간(Retention)'</span>에서 <span class="em">'과업 성공률(Completion Rate)'</span>로 이동</span>
+      </div>
+    </div>
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Shift 03</div>
+        <div class="s-en">Passive to Proactive</div>
+        <div class="s-ko">수동적 반응에서 선제적 대응으로</div>
+      </div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">App · 앱</div>
+        <div class="s-side-text">사용자가 아이콘을 눌러야만 움직이는<br/>명령에 의존하는 수동적 존재</div>
+      </div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">Agent · 에이전트</div>
+        <div class="s-side-text">상황과 맥락을 모니터링하다가 필요한 순간에<br/>먼저 말을 걸거나 액션을 제안</div>
+      </div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text">인터랙션 트리거가 <span class="em">유저의 손가락</span>이 아닌 <span class="em">에이전트의 상황 판단</span></span>
       </div>
     </div>
   </div>
-  <div class="pnum">1.3</div>
 </div>
 </section>
 
 <!-- 1.4 -->
 <section data-part="1">
-<div class="s-page">
-  <div class="plabel">1.4</div>
-  <div class="ptitle">디자인 프로세스의 진화, 제작에서 지휘로</div>
-  <div class="pcap">에이전트를 파트너로 부리며 일할 때 발생하는 태도와 관점의 변화</div>
-  <div class="body">
-    <div class="tbl fw">
-      <div class="tbl-row head" style="grid-template-columns: 1.5fr 2fr 2fr">
-        <div class="tbl-cell">구분</div>
-        <div class="tbl-cell">UX 시대</div>
-        <div class="tbl-cell">AX 시대</div>
+<div class="sa-slide s6" data-screen-label="06 1.4 프로세스의 진화">
+  <div class="backdrop-hint">1.4</div>
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>1.4</div>
+    <h1 class="s-title">디자인 프로세스의 진화,<br/><span class="grad">제작</span>에서 <span class="grad">지휘</span>로</h1>
+    <p class="s-cap">에이전트를 파트너로 부리며 일할 때 발생하는 태도와 관점의 변화</p>
+  </div>
+  <div class="shifts">
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Phase 01</div>
+        <div class="s-en">Synthesis<br/>over Collection</div>
+        <div class="s-ko">리서치</div>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">1. 리서치</div>
-          <div class="t-name">Synthesis over Collection</div>
-        </div>
-        <div class="tbl-cell">유저 인터뷰, 데스크 리서치로 파편화된 정보를 직접 수집하는 데 많은 시간 할애</div>
-        <div class="tbl-cell">에이전트가 방대한 데이터를 실시간 요약·대조. 디자이너는 새로운 인사이트를 '합성'</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">정보 탐색의 물리적 시간이 줄어들고 질문의 질이 리서치의 성패를 결정</div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">UX 시대</div>
+        <div class="s-side-text">유저 인터뷰, 데스크 리서치로 파편화된 정보를<br/>직접 수집하는 데 많은 시간 할애</div>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">2. 아이데이션</div>
-          <div class="t-name">Co-creation over Ideation</div>
-        </div>
-        <div class="tbl-cell">화이트보드 앞에서 포스트잇을 붙이며 스스로 아이디어를 짜냄</div>
-        <div class="tbl-cell">코딩/이미지/텍스트 에이전트와 대화하며 수많은 시안을 초단위로 검토</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">무에서 유를 만드는 고통 대신, 제안받은 가능성 사이에서 최적의 논리를 선택하고 정교화</div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">AX 시대</div>
+        <div class="s-side-text">에이전트가 방대한 데이터를 실시간 요약·대조.<br/>디자이너는 새로운 인사이트를 '합성'</div>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">3. 프로토타이핑</div>
-          <div class="t-name">Implementation over Description</div>
-        </div>
-        <div class="tbl-cell">실제처럼 보이는 가짜 화면을 그려 개발자에게 설명 (Draw to show)</div>
-        <div class="tbl-cell">코딩 에이전트와 함께 실제로 돌아가는 지능의 로직을 즉시 코드로 구현 (Build to test)</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">시각적 묘사에 머물던 프로토타이핑이 작동하는 로직 검증으로 격상. 그림이 아닌 '작동하는 실체'로 소통</div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text">정보 탐색의 물리적 시간이 줄어들고 <span class="em">질문의 질</span>이 리서치의 성패를 결정</span>
       </div>
-      <div class="tbl-group" style="grid-template-columns: 1.5fr 2fr 2fr">
-        <div class="tbl-cell tbl-cat">
-          <div class="t-label">4. 검증</div>
-          <div class="t-name">Evaluation over Observation</div>
-        </div>
-        <div class="tbl-cell">사용자가 버튼을 잘 누르는지 뒤에서 지켜보는 관찰자</div>
-        <div class="tbl-cell">수만 개의 가상 시나리오를 통과시켜 답변 품질을 점수화, 로직을 수정하는 시스템 평가자</div>
-        <div class="tbl-cell insight-body" style="grid-column: 2 / 4">한두 명의 유저 반응을 보는 것을 넘어 시뮬레이션을 통해 테스트하고 튜닝</div>
+    </div>
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Phase 02</div>
+        <div class="s-en">Co-creation<br/>over Ideation</div>
+        <div class="s-ko">아이데이션</div>
+      </div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">UX 시대</div>
+        <div class="s-side-text">화이트보드 앞에서 포스트잇을 붙이며<br/>스스로 아이디어를 짜냄</div>
+      </div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">AX 시대</div>
+        <div class="s-side-text">코딩/이미지/텍스트 에이전트와 대화하며<br/>수많은 시안을 초단위로 검토</div>
+      </div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text">무에서 유를 만드는 고통 대신, 제안받은 가능성 사이에서 <span class="em">최적의 논리</span>를 선택하고 정교화</span>
+      </div>
+    </div>
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Phase 03</div>
+        <div class="s-en">Implementation<br/>over Description</div>
+        <div class="s-ko">프로토타이핑</div>
+      </div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">UX 시대</div>
+        <div class="s-side-text">실제처럼 보이는 가짜 화면을 그려<br/>개발자에게 설명 (Draw to show)</div>
+      </div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">AX 시대</div>
+        <div class="s-side-text">코딩 에이전트와 함께 실제로 돌아가는<br/>지능의 로직을 즉시 코드로 구현 (Build to test)</div>
+      </div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text">시각적 묘사에 머물던 프로토타이핑이 작동하는 로직 검증으로 격상. 그림이 아닌 <span class="em">'작동하는 실체'</span>로 소통</span>
+      </div>
+    </div>
+    <div class="shift">
+      <div class="s-cat">
+        <div class="s-num">Phase 04</div>
+        <div class="s-en">Evaluation<br/>over Observation</div>
+        <div class="s-ko">검증</div>
+      </div>
+      <div class="s-side s-app">
+        <div class="s-side-tag">UX 시대</div>
+        <div class="s-side-text">사용자가 버튼을 잘 누르는지<br/>뒤에서 지켜보는 관찰자</div>
+      </div>
+      <div class="s-side s-agent">
+        <div class="s-side-tag">AX 시대</div>
+        <div class="s-side-text">수만 개의 가상 시나리오를 통과시켜 답변 품질을<br/>점수화, 로직을 수정하는 시스템 평가자</div>
+      </div>
+      <div class="s-insight">
+        <span class="ins-key">Insight</span>
+        <span class="ins-text">한두 명의 유저 반응을 보는 것을 넘어 <span class="em">시뮬레이션</span>을 통해 테스트하고 튜닝</span>
       </div>
     </div>
   </div>
-  <div class="pnum">1.4</div>
 </div>
 </section>
 
@@ -2445,50 +3886,55 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 2.2 -->
 <section data-part="2">
-<div class="s-page">
-  <div class="plabel">2.2</div>
-  <div class="ptitle">에이전트 액추에이터</div>
-  <div class="pcap">에이전트의 추론(사고)을 물리적/디지털 행동으로 변환하는 하드웨어 및 소프트웨어적 실행 체계</div>
-  <div class="body col">
-    <div class="g3" style="height:230px">
-      <div class="card">
-        <div class="c-label">1. Translation</div>
-        <div class="c-desc">LLM이 내놓는 추상적 결론을 특정 통신 규격이나 구체적 디지털 신호로 번역</div>
-      </div>
-      <div class="card">
-        <div class="c-label">2. Interface</div>
-        <div class="c-desc">에이전트가 채팅창 밖 온/오프라인 세계와 접촉하는 '가상의 신체'</div>
-      </div>
-      <div class="card">
-        <div class="c-label">3. Feedback Loop</div>
-        <div class="c-desc">실행 결과를 다시 LLM에게 전달하는 신경계 역할. 에이전트가 다음 행동을 판단</div>
-      </div>
-    </div>
-    <div class="tbl fw" style="flex:1">
-      <div class="tbl-row head" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
-        <div class="tbl-cell">종류</div>
-        <div class="tbl-cell">설명</div>
-        <div class="tbl-cell">예시</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
-        <div class="tbl-cell"><div class="t-name">GUI 액추에이터</div></div>
-        <div class="tbl-cell">사람이 보는 화면을 인식하고 마우스/키보드처럼 직접 조작</div>
-        <div class="tbl-cell">Anthropic Computer Use, Microsoft UFO, OpenClaw*</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
-        <div class="tbl-cell"><div class="t-name">디지털 액추에이터</div></div>
-        <div class="tbl-cell">API 호출·워크플로우 트리거로 디지털 서비스를 직접 제어</div>
-        <div class="tbl-cell">Zapier, Make, n8n</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.2fr 2.5fr 1.8fr">
-        <div class="tbl-cell"><div class="t-name">물리적 액추에이터</div></div>
-        <div class="tbl-cell">센서·구동 신호로 IoT·로봇 등 물리 디바이스를 제어</div>
-        <div class="tbl-cell">IoT 제어, 로봇 제어</div>
-      </div>
-    </div>
-    <div class="footnote">* OpenClaw는 WhatsApp, Telegram 같은 메시징 플랫폼을 통해 GUI를 조작하는 로컬 오케스트레이션 레이어로, GUI 액추에이터이자 에이전트 프레임워크의 성격을 동시에 가짐</div>
+<div class="sa-slide s9" data-screen-label="09 2.2 에이전트 액추에이터">
+  <div class="backdrop-hint">2.2</div>
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>2.2</div>
+    <h1 class="s-title">에이전트 <span class="grad">액추에이터</span></h1>
+    <p class="s-cap">에이전트의 추론(사고)을 물리적 / 디지털 행동으로 변환하는 하드웨어 및 소프트웨어적 실행 체계</p>
   </div>
-  <div class="pnum">2.2</div>
+  <div class="s9-body">
+    <div class="s9-cards">
+      <div class="s9-card">
+        <div class="num">01</div>
+        <div class="lbl">Translation</div>
+        <div class="desc">LLM이 내놓는 추상적 결론을<br/>특정 통신 규격이나 구체적 디지털 신호로 번역</div>
+      </div>
+      <div class="s9-card">
+        <div class="num">02</div>
+        <div class="lbl">Interface</div>
+        <div class="desc">에이전트가 채팅창 밖<br/>온/오프라인 세계와 접촉하는 '가상의 신체'</div>
+      </div>
+      <div class="s9-card">
+        <div class="num">03</div>
+        <div class="lbl">Feedback Loop</div>
+        <div class="desc">실행 결과를 다시 LLM에게 전달하는 신경계 역할.<br/>에이전트가 다음 행동을 판단</div>
+      </div>
+    </div>
+    <div class="s9-table">
+      <div class="s9-row head">
+        <div class="cell">종류</div>
+        <div class="cell">설명</div>
+        <div class="cell">예시</div>
+      </div>
+      <div class="s9-row">
+        <div class="cell"><div class="t-name">GUI 액추에이터</div></div>
+        <div class="cell">사람이 보는 화면을 인식하고 마우스/키보드처럼 직접 조작</div>
+        <div class="cell t-eg">Anthropic Computer Use, Microsoft UFO, OpenClaw*</div>
+      </div>
+      <div class="s9-row">
+        <div class="cell"><div class="t-name">디지털 액추에이터</div></div>
+        <div class="cell">API 호출·워크플로우 트리거로 디지털 서비스를 직접 제어</div>
+        <div class="cell t-eg">Zapier, Make, n8n</div>
+      </div>
+      <div class="s9-row">
+        <div class="cell"><div class="t-name">물리적 액추에이터</div></div>
+        <div class="cell">센서·구동 신호로 IoT·로봇 등 물리 디바이스를 제어</div>
+        <div class="cell t-eg">IoT 제어, 로봇 제어</div>
+      </div>
+    </div>
+    <div class="s9-foot">* OpenClaw는 WhatsApp, Telegram 같은 메시징 플랫폼을 통해 GUI를 조작하는 로컬 오케스트레이션 레이어로, GUI 액추에이터이자 에이전트 프레임워크의 성격을 동시에 가짐</div>
+  </div>
 </div>
 </section>
 
@@ -2549,120 +3995,174 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 2.4 -->
 <section data-part="2">
-<div class="s-page">
-  <div class="plabel">2.4</div>
-  <div class="ptitle">메모리 아키텍처: 에이전트의 기억법</div>
-  <div class="pcap">에이전트는 어떻게 기억하고, 무엇을 기억하는가</div>
-  <div class="body col">
-    <div class="g2" style="height:230px">
-      <div class="card">
-        <div class="c-label">단기기억</div>
-        <div class="c-sub" style="margin-bottom:18px">In-Context Memory</div>
-        <div class="c-desc">현재 세션 안에서만 유지되는 작업 기억. 지금 처리 중인 정보, 대화 히스토리, 태스크 중간 결과. 세션이 끝나면 사라짐.</div>
-      </div>
-      <div class="card">
-        <div class="c-label">장기기억</div>
-        <div class="c-sub" style="margin-bottom:18px">External Memory</div>
-        <div class="c-desc">세션이 끝나도 유지되는 기억. 외부 저장소에 저장되고 필요할 때 RAG(Retrieval-Augmented Generation) 방식으로 꺼내옴.</div>
-      </div>
-    </div>
-    <div class="tbl fw" style="flex:1">
-      <div class="tbl-row head" style="grid-template-columns: 1.4fr 1.6fr 2fr">
-        <div class="tbl-cell">유형</div>
-        <div class="tbl-cell">저장하는 것</div>
-        <div class="tbl-cell">예시</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 2fr">
-        <div class="tbl-cell">
-          <div class="t-label">Episodic</div>
-          <div class="t-name">경험 기억</div>
-        </div>
-        <div class="tbl-cell">과거 상호작용의 기록</div>
-        <div class="tbl-cell">"지난 세션에서 사용자가 배송지를 강남구로 바꿨다"</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 2fr">
-        <div class="tbl-cell">
-          <div class="t-label">Semantic</div>
-          <div class="t-name">사실 기억</div>
-        </div>
-        <div class="tbl-cell">사용자 정보·선호·도메인 지식</div>
-        <div class="tbl-cell">"이 사용자는 나이키를 선호하고 신용카드는 삼성카드다"</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 1.6fr 2fr">
-        <div class="tbl-cell">
-          <div class="t-label">Procedural</div>
-          <div class="t-name">절차 기억</div>
-        </div>
-        <div class="tbl-cell">반복 수행하는 워크플로우·판단 로직</div>
-        <div class="tbl-cell">"최저가 탐색 시 배송비 포함해서 계산한다"</div>
-      </div>
-    </div>
-    <div class="footnote">* Procedural 메모리는 2.3에서 다룬 스킬로 구현됨 — 판단 로직을 SKILL.md로 패키징하면 재사용 가능한 절차 기억이 됨</div>
+<div class="sa-slide s10" data-screen-label="10 2.4 메모리 아키텍처 v4">
+  <div class="backdrop-hint">2.4</div>
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>2.4</div>
+    <h1 class="s-title">메모리 아키텍처: <span class="grad">에이전트의 기억법</span></h1>
+    <p class="s-cap">에이전트는 어떻게 기억하고, 무엇을 기억하는가</p>
   </div>
-  <div class="pnum">2.4</div>
+  <div class="s10v4-grid">
+    <div class="s10v4-sect-head">
+      <span class="num">A.</span>
+      <span class="ttl">메모리 타임라인</span>
+      <span class="en">FLOW</span>
+    </div>
+    <div class="s10v4-sect-head">
+      <span class="num">B.</span>
+      <span class="ttl">장기기억의 3가지 타입</span>
+      <span class="en">TYPES</span>
+    </div>
+    <div class="s10v4-timeline">
+      <div class="s10v4-rail">
+        <div class="s10v4-step">
+          <div class="dot">01</div>
+          <div class="body">
+            <div class="stage-tag">SESSION</div>
+            <div class="stage-name">현재 세션 — 단기기억</div>
+            <div class="stage-desc">사용자와 주고받는 대화·상태가 컨텍스트 윈도우에 적재된다. 빠르지만 세션 종료 시 휘발.</div>
+            <div class="stage-meta">In-context · Working Memory</div>
+          </div>
+        </div>
+        <div class="s10v4-step">
+          <div class="dot">02</div>
+          <div class="body">
+            <div class="stage-tag">EXTERNAL STORE</div>
+            <div class="stage-name">외부 저장 — 장기기억</div>
+            <div class="stage-desc">중요 정보는 벡터·지식 그래프·룰 스토어에 영속화된다. 세션을 넘어 누적·재사용 가능한 기억의 풀.</div>
+            <div class="stage-meta">Vector DB · Knowledge Base</div>
+          </div>
+        </div>
+        <div class="s10v4-step">
+          <div class="dot">03</div>
+          <div class="body">
+            <div class="stage-tag">RETRIEVAL</div>
+            <div class="stage-name">검색 — RAG 주입</div>
+            <div class="stage-desc">새 입력이 들어오면 관련 기억을 검색해 컨텍스트에 주입한다. 응답은 항상 현재 + 누적 기억의 합산.</div>
+            <div class="stage-meta">RAG · Context Injection</div>
+          </div>
+        </div>
+      </div>
+      <div class="s10v4-loop">
+        <span class="loop-icon">↻</span>
+        <span class="loop-txt">매 턴마다 <b>세션 → 저장 → 검색</b> 사이클이 반복되어, 에이전트는 시간이 갈수록 사용자에 대해 더 잘 알게 된다.</span>
+      </div>
+    </div>
+    <div class="s10v4-types">
+      <div class="s10v4-type">
+        <div class="left-col">
+          <div class="t-en">EPISODIC MEMORY</div>
+          <div class="t-name">경험 기억</div>
+          <div class="t-store">과거 상호작용의 기록</div>
+        </div>
+        <div class="mid-col">
+          <div class="col-cap">WHAT IT STORES</div>
+          <div class="col-body">언제·무엇을·어떻게 했는지 — 시간 순으로 누적되는 사용자별 행동 이력.</div>
+        </div>
+        <div class="right-col">
+          <div class="col-cap">EXAMPLE</div>
+          <div class="quote">지난번에도 강남으로 배송 받았다</div>
+        </div>
+      </div>
+      <div class="s10v4-type">
+        <div class="left-col">
+          <div class="t-en">SEMANTIC MEMORY</div>
+          <div class="t-name">사실 기억</div>
+          <div class="t-store">사용자 정보 · 선호 · 도메인 지식</div>
+        </div>
+        <div class="mid-col">
+          <div class="col-cap">WHAT IT STORES</div>
+          <div class="col-body">변하지 않는 사실과 선호. 사용자의 프로필, 취향, 도메인 상수 같은 영속 지식.</div>
+        </div>
+        <div class="right-col">
+          <div class="col-cap">EXAMPLE</div>
+          <div class="quote">이 사용자는 나이키를 선호한다</div>
+        </div>
+      </div>
+      <div class="s10v4-type">
+        <div class="left-col">
+          <div class="t-en">PROCEDURAL MEMORY</div>
+          <div class="t-name">절차 기억</div>
+          <div class="t-store">반복 워크플로우 · 판단 로직</div>
+        </div>
+        <div class="mid-col">
+          <div class="col-cap">WHAT IT STORES</div>
+          <div class="col-body">"이런 상황에서는 이렇게 처리한다"는 룰과 휴리스틱 — 행동 패턴 자체.</div>
+        </div>
+        <div class="right-col">
+          <div class="col-cap">EXAMPLE</div>
+          <div class="quote">최저가 탐색 시 배송비 포함 계산</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s10v4-foot">왼쪽: 시간축으로 본 메모리 흐름 — 세션의 단기기억은 외부 저장소로 영속화되고, 검색 단계에서 RAG로 다시 주입된다.   |   오른쪽: 외부 저장소에 쌓이는 장기기억은 성격에 따라 3가지 타입으로 분류된다.</div>
 </div>
 </section>
 
 <!-- 2.5 -->
 <section data-part="2">
-<div class="s-page">
-  <div class="plabel">2.5</div>
-  <div class="ptitle">OpenClaw와 Agentic AI Framework</div>
-  <div class="pcap">에이전트를 움직이게 하는 두 가지 방식의 프레임워크</div>
-  <div class="body col">
-    <div class="g2">
-      <div class="info-box">
-        <div class="ib-title">에이전트 프레임워크란 무엇인가</div>
-        <div class="ib-body">프레임워크는 LLM의 추론을 실제 환경에서 작동시키는 실행 레이어다.<br><br>LLM 단독으로는 단일 응답을 넘어선 과업을 수행할 수 없다 — 작동 환경이 있어야 비로소 에이전트가 된다.</div>
-      </div>
-      <div class="info-box">
-        <div class="ib-title">두 프레임워크가 공유하는 설계 원칙</div>
-        <ul class="bullet-list" style="margin-top:4px">
-          <li>LLM은 두뇌, 프레임워크는 신체와 환경</li>
-          <li>메모리·스킬·액추에이터가 조합되어야 에이전트가 완성됨</li>
-          <li>오케스트레이션 레이어가 추론·도구 호출·메모리 접근을 하나의 작업 흐름으로 엮는다</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tbl fw" style="flex:1">
-      <div class="tbl-row head" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"></div>
-        <div class="tbl-cell">OpenClaw</div>
-        <div class="tbl-cell">Agentic AI Framework <span style="font-weight:300;text-transform:none;letter-spacing:0;color:rgba(255,255,255,0.5);font-size:13px">(AutoGen/CrewAI 계열)</span></div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">성격</div></div>
-        <div class="tbl-cell">상시 실행 개인 자동화 에이전트</div>
-        <div class="tbl-cell">멀티에이전트 오케스트레이션 프레임워크</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">실행 환경</div></div>
-        <div class="tbl-cell">로컬 머신, 메시징 앱 연결</div>
-        <div class="tbl-cell">클라우드·로컬 모두 가능, 코드 기반 배포</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">에이전트 구조</div></div>
-        <div class="tbl-cell">단일 에이전트 + 스킬 확장</div>
-        <div class="tbl-cell">역할 분담된 멀티에이전트 협업</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">진입장벽</div></div>
-        <div class="tbl-cell">설치 후 대화로 바로 사용</div>
-        <div class="tbl-cell">코드로 에이전트·태스크 설계 필요</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">스킬/툴</div></div>
-        <div class="tbl-cell">ClawHub 커뮤니티 스킬</div>
-        <div class="tbl-cell">커스텀 툴·API 코드로 직접 정의</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1fr 2fr 2fr">
-        <div class="tbl-cell"><div class="t-name">적합한 용도</div></div>
-        <div class="tbl-cell">개인 자동화, 빠른 프로토타이핑</div>
-        <div class="tbl-cell">복잡한 멀티스텝 업무 파이프라인</div>
+<div class="sa-slide s11" data-screen-label="11 2.5 OpenClaw vs Agentic">
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>2.5</div>
+    <h1 class="s-title">OpenClaw <span class="conj">와</span> Agentic AI <span class="grad">Framework</span></h1>
+    <p class="s-cap">에이전트를 움직이게 하는 두 가지 방식의 프레임워크</p>
+  </div>
+  <div class="s11-found">
+    <p class="found-quote">
+      프레임워크는 LLM의 추론을 <em>실제 환경에서 작동시키는 실행 레이어</em>다.
+      <span class="lead">작동 환경이 있어야 LLM은 비로소 에이전트가 된다.</span>
+    </p>
+    <div class="axioms-wrap">
+      <div class="found-axioms">
+        <div class="head">Shared Principles</div>
+        <div class="axiom">
+          <div class="n">01</div>
+          <div class="t"><b>LLM은 두뇌</b>, 프레임워크는 신체와 환경.</div>
+        </div>
+        <div class="axiom">
+          <div class="n">02</div>
+          <div class="t"><b>메모리·스킬·액추에이터</b>가 조합되어야 에이전트가 완성된다.</div>
+        </div>
+        <div class="axiom">
+          <div class="n">03</div>
+          <div class="t"><b>오케스트레이션</b>이 추론·도구·메모리를 하나의 흐름으로 엮는다.</div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="pnum">2.5</div>
+  <div class="s11-split">
+    <div class="side claw">
+      <div class="side-head">
+        <div class="side-tag"><span class="pip"></span>Personal · Always-on</div>
+        <h2 class="side-name">OpenClaw<span class="alt">로컬 오케스트레이션 · 메시징 인터페이스 · ClawHub</span></h2>
+      </div>
+      <div class="side-line">상시 실행되는 <b>개인 자동화 에이전트</b> — 설치 후 대화로 바로 사용한다.</div>
+      <div class="attrs">
+        <div class="attr"><div class="k">성격</div><div class="v">상시 실행 개인 자동화 에이전트</div></div>
+        <div class="attr"><div class="k">실행 환경</div><div class="v">로컬 머신, 메시징 앱 연결</div></div>
+        <div class="attr"><div class="k">에이전트 구조</div><div class="v">단일 에이전트 + 스킬 확장</div></div>
+        <div class="attr"><div class="k">진입장벽</div><div class="v">설치 후 대화로 바로 사용</div></div>
+        <div class="attr"><div class="k">스킬 / 툴</div><div class="v">ClawHub 커뮤니티 스킬</div></div>
+        <div class="attr fit"><div class="k">적합한 용도</div><div class="v">개인 자동화 · 빠른 프로토타이핑</div></div>
+      </div>
+    </div>
+    <div class="side agentic">
+      <div class="side-head">
+        <div class="side-tag"><span class="pip"></span>Multi-agent · Code-first</div>
+        <h2 class="side-name">Agentic AI<span class="alt">AutoGen · CrewAI 계열 · 멀티에이전트 오케스트레이션</span></h2>
+      </div>
+      <div class="side-line">코드로 설계하는 <b>멀티에이전트 협업 파이프라인</b> — 역할이 분담된 에이전트들이 함께 일한다.</div>
+      <div class="attrs">
+        <div class="attr"><div class="k">성격</div><div class="v">멀티에이전트 오케스트레이션 프레임워크</div></div>
+        <div class="attr"><div class="k">실행 환경</div><div class="v">클라우드·로컬 모두 가능, 코드 기반 배포</div></div>
+        <div class="attr"><div class="k">에이전트 구조</div><div class="v">역할 분담된 멀티에이전트 협업</div></div>
+        <div class="attr"><div class="k">진입장벽</div><div class="v">코드로 에이전트·태스크 설계 필요</div></div>
+        <div class="attr"><div class="k">스킬 / 툴</div><div class="v">커스텀 툴·API 코드로 직접 정의</div></div>
+        <div class="attr fit"><div class="k">적합한 용도</div><div class="v">복잡한 멀티스텝 업무 파이프라인</div></div>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
