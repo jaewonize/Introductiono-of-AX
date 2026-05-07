@@ -4155,6 +4155,441 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   border: 0;
   padding: 0;
 }
+
+/* ─────── Slide 15 / 3.2 (s32) — Generative UI ─────── */
+.sa-slide.s32 {
+  background:
+    radial-gradient(ellipse at 18% 18%, rgba(83, 71, 255, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 88%, rgba(255, 87, 178, 0.10) 0%, transparent 45%),
+    linear-gradient(180deg, #0a0814 0%, #050309 100%);
+}
+.sa-slide.s32::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(91,157,255,0.35) 20%,
+    rgba(162,107,255,0.55) 50%,
+    rgba(255,107,193,0.35) 80%,
+    transparent 100%);
+}
+.sa-slide.s32 .backdrop-hint {
+  font-size: 380px;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-stroke: 0;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -0.06em;
+}
+.sa-slide.s32 .s-head {
+  top: 100px; left: 120px; right: auto;
+  max-width: 1100px;
+  z-index: 5;
+}
+.sa-slide.s32 .s-eyebrow {
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(200,180,255,0.85);
+}
+.sa-slide.s32 .s-eyebrow .dot {
+  background: linear-gradient(135deg, #5b9dff, #a26bff 50%, #ff6bc1);
+  box-shadow: 0 0 16px rgba(162,107,255,0.7);
+}
+.sa-slide.s32 .s-title {
+  margin-top: 12px;
+  font-size: 64px;
+  line-height: 1;
+}
+.sa-slide.s32 .s-cap {
+  margin-top: 18px;
+  font-size: 19px;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: -0.005em;
+}
+
+/* Body — two columns */
+.sa-slide.s32 .s32-body {
+  position: absolute;
+  left: 120px; right: 120px; top: 400px; bottom: 100px;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 64px;
+  z-index: 2;
+}
+.sa-slide.s32 .left {
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  height: 100%;
+}
+
+/* LEFT — statement */
+.sa-slide.s32 .statement {
+  position: relative;
+  padding-left: 40px;
+}
+.sa-slide.s32 .statement .from {
+  font-family: var(--display); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  margin-bottom: 14px;
+}
+.sa-slide.s32 .statement .from-text {
+  font-size: 24px; line-height: 1.5;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 32px;
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,0.18);
+  text-decoration-thickness: 1px;
+}
+.sa-slide.s32 .statement .to {
+  position: relative;
+  font-family: var(--display); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: #c4b5ff;
+  margin-bottom: 16px;
+}
+.sa-slide.s32 .statement .to::before {
+  content: "“"; position: absolute; left: -48px; top: -42px;
+  font-family: var(--display); font-size: 180px; font-weight: 900;
+  color: rgba(162,107,255,0.22);
+  line-height: 1;
+  pointer-events: none;
+}
+.sa-slide.s32 .statement .to-text {
+  font-size: 34px; line-height: 1.4;
+  color: rgba(255,255,255,0.96);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+}
+.sa-slide.s32 .statement .to-text em {
+  font-style: normal;
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 800;
+}
+
+/* DESIGN.md band */
+.sa-slide.s32 .dms-band {
+  position: relative;
+  padding: 22px 28px;
+  border: 1px solid rgba(91,157,255,0.45);
+  background: linear-gradient(135deg, rgba(91,157,255,0.12), rgba(91,157,255,0.03));
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  box-shadow: 0 0 32px rgba(91,157,255,0.15);
+  min-height: 156px;
+}
+.sa-slide.s32 .dms-band .conn {
+  position: absolute; top: -12px; left: 28px;
+  font-family: var(--mono); font-size: 12px;
+  color: #8fb8ff;
+  background: #0a0814; padding: 2px 12px;
+  letter-spacing: 0.04em;
+}
+.sa-slide.s32 .dms-band .ttl-block {
+  display: flex; flex-direction: column; gap: 6px;
+  border-right: 1px dashed rgba(255,255,255,0.14);
+  padding-right: 24px;
+}
+.sa-slide.s32 .dms-band .ttl-block .lab {
+  font-family: var(--display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(143,184,255,0.85);
+}
+.sa-slide.s32 .dms-band .ttl-block .ttl {
+  font-family: var(--mono); font-size: 30px; font-weight: 700; color:#fff;
+  letter-spacing: -0.005em;
+}
+.sa-slide.s32 .dms-band .desc {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.sa-slide.s32 .dms-band .desc p {
+  font-size: 16px; line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+}
+.sa-slide.s32 .dms-band .meta {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.sa-slide.s32 .dms-band .pill {
+  font-family: var(--mono); font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(91,157,255,0.10);
+  border: 1px solid rgba(91,157,255,0.30);
+  border-radius: 4px;
+  color: rgba(168,196,255,0.9);
+  letter-spacing: 0.04em;
+}
+
+/* RIGHT — 3 answers */
+.sa-slide.s32 .answers {
+  position: relative;
+  display: flex; flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  justify-content: space-between;
+}
+.sa-slide.s32 .answers-head {
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 6px;
+}
+.sa-slide.s32 .answers-head .ttl {
+  font-size: 26px; font-weight: 700; color: #fff;
+  letter-spacing: -0.018em;
+  line-height: 1.35;
+}
+.sa-slide.s32 .answers-head .ttl em {
+  font-style: normal;
+  font-weight: 800;
+}
+.sa-slide.s32 .answers-head .ttl em.grad {
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s32 .answer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 28px;
+  padding: 22px 26px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.022);
+  align-items: center;
+  transition: border-color 0.2s;
+}
+.sa-slide.s32 .answer.a1 {
+  border-color: rgba(91,157,255,0.55);
+  background: linear-gradient(120deg, rgba(91,157,255,0.10), rgba(91,157,255,0.02));
+  box-shadow: 0 0 28px rgba(91,157,255,0.18);
+}
+.sa-slide.s32 .answer.a2 {
+  border-color: rgba(162,107,255,0.45);
+  background: linear-gradient(120deg, rgba(162,107,255,0.08), rgba(162,107,255,0.02));
+}
+.sa-slide.s32 .answer.a3 {
+  border-color: rgba(255,107,193,0.40);
+  background: linear-gradient(120deg, rgba(255,107,193,0.06), rgba(255,107,193,0.015));
+}
+.sa-slide.s32 .answer .num {
+  font-family: var(--display);
+  font-size: 86px; font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  color: rgba(255,255,255,0.10);
+  text-align: center;
+}
+.sa-slide.s32 .answer.a1 .num {
+  background: linear-gradient(160deg, #5b9dff, #8fb8ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s32 .answer.a2 .num {
+  background: linear-gradient(160deg, #a26bff, #c4b5ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s32 .answer.a3 .num {
+  background: linear-gradient(160deg, #ff6bc1, #ffb8de);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s32 .answer .meta {
+  display: flex; flex-direction: column;
+  gap: 6px;
+}
+.sa-slide.s32 .answer .cat {
+  font-family: var(--display); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.sa-slide.s32 .answer.a1 .cat { color: #8fb8ff; }
+.sa-slide.s32 .answer.a2 .cat { color: #c4b5ff; }
+.sa-slide.s32 .answer.a3 .cat { color: #ffb8de; }
+.sa-slide.s32 .answer .name {
+  font-size: 24px; font-weight: 700; color: #fff;
+  letter-spacing: -0.018em; line-height: 1.2;
+}
+.sa-slide.s32 .answer .desc {
+  font-size: 15px; line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  margin-top: 4px;
+}
+.sa-slide.s32 .answer .fit {
+  font-family: var(--mono); font-size: 12px;
+  color: rgba(255,255,255,0.42);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+.sa-slide.s32 .answer .fit::before {
+  content: "FIT  ·  ";
+  color: rgba(255,255,255,0.26);
+}
+.sa-slide.s32 .answer.a1::after {
+  content: "↓ DESIGN.md";
+  position: absolute;
+  right: 22px; bottom: 14px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #8fb8ff;
+}
+
+/* ─────── Slide 16 / 3.3 (s33) — Ambient AX (Venn poster) ─────── */
+.sa-slide.s33 {
+  background:
+    radial-gradient(ellipse at 18% 18%, rgba(83, 71, 255, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 88%, rgba(255, 87, 178, 0.10) 0%, transparent 45%),
+    linear-gradient(180deg, #0a0814 0%, #050309 100%);
+}
+.sa-slide.s33::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(91,157,255,0.35) 20%,
+    rgba(162,107,255,0.55) 50%,
+    rgba(255,107,193,0.35) 80%,
+    transparent 100%);
+}
+.sa-slide.s33 .backdrop-hint {
+  font-size: 380px;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-stroke: 0;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -0.06em;
+}
+.sa-slide.s33 .s-head {
+  top: 100px; left: 120px; right: auto;
+  max-width: 1100px;
+  z-index: 5;
+}
+.sa-slide.s33 .s-eyebrow {
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(200,180,255,0.85);
+}
+.sa-slide.s33 .s-eyebrow .dot {
+  background: linear-gradient(135deg, #5b9dff, #a26bff 50%, #ff6bc1);
+  box-shadow: 0 0 16px rgba(162,107,255,0.7);
+}
+.sa-slide.s33 .s-title {
+  margin-top: 12px;
+  font-size: 64px;
+  line-height: 1;
+}
+.sa-slide.s33 .s-cap {
+  margin-top: 18px;
+  font-size: 19px;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: -0.005em;
+  max-width: 920px;
+}
+
+/* Poster */
+.sa-slide.s33 .poster {
+  position: absolute;
+  left: 120px; right: 120px; top: 360px; bottom: 70px;
+  z-index: 2;
+}
+
+/* Venn stage */
+.sa-slide.s33 .venn-stage {
+  position: absolute;
+  left: 360px; right: 360px; top: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  pointer-events: none;
+}
+.sa-slide.s33 .venn-svg {
+  width: 100%;
+  height: calc(100% - 120px);
+  display: block;
+}
+
+/* Tagline */
+.sa-slide.s33 .tagline {
+  margin-top: -8px;
+  font-family: var(--display);
+  font-size: 56px; font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  display: flex; align-items: baseline; gap: 12px;
+  white-space: nowrap;
+}
+.sa-slide.s33 .tagline em {
+  font-style: normal; font-weight: 800;
+  color: rgba(255,255,255,0.95);
+}
+.sa-slide.s33 .tagline .tg-grad {
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 900;
+}
+.sa-slide.s33 .tagline .tg-q {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 76px;
+  color: rgba(162,107,255,0.45);
+  line-height: 0.6;
+}
+
+/* Floaters */
+.sa-slide.s33 .floater {
+  position: absolute;
+  width: 340px;
+  z-index: 5;
+}
+.sa-slide.s33 .fl-def { left: 0; top: 220px; }
+.sa-slide.s33 .fl-rules { right: 0; top: 220px; width: 340px; }
+.sa-slide.s33 .fl-eyebrow {
+  font-family: var(--display);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(200,180,255,0.85);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.sa-slide.s33 .fl-body {
+  font-size: 16px; line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+}
+.sa-slide.s33 .fl-body em {
+  font-style: normal; font-weight: 700;
+  color: #fff;
+}
+
+/* Rules list */
+.sa-slide.s33 .rules {
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 18px;
+}
+.sa-slide.s33 .rules li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+.sa-slide.s33 .rules .rn {
+  font-family: var(--display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(212,186,255,0.7);
+}
+.sa-slide.s33 .rules .rwrap {
+  display: flex; flex-direction: column;
+  gap: 4px;
+}
+.sa-slide.s33 .rules .rk {
+  font-family: var(--display);
+  font-size: 18px; font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.005em;
+}
+.sa-slide.s33 .rules .rv {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+}
 </style>
 </head>
 <body>
@@ -5063,7 +5498,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
   <header class="s-head">
     <div class="s-eyebrow"><span class="dot"></span>3.1</div>
-    <h1 class="s-title">3.1 Human-in-the-loop<br/>사고과정의 <span class="grad">공유와 개입</span></h1>
+    <h1 class="s-title">Human-in-the-loop<br/>사고과정의 <span class="grad">공유와 개입</span></h1>
     <p class="s-cap">지능이 인간을 불러야 한다고 판단하는 명분과 절차</p>
   </header>
 
@@ -5166,113 +5601,155 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 3.2 -->
 <section data-part="3">
-<div class="s-page">
-  <div class="plabel">3.2</div>
-  <div class="ptitle">유동적 인터페이스 Generative UI</div>
-  <div class="pcap">에이전트가 답변의 성격과 의도에 따라 UI를 스스로 결정하고 생성하는 인터페이스 패러다임</div>
-  <div class="body col">
-    <div class="g2" style="height:180px">
-      <div class="card">
-        <div class="c-label">기존 앱 UX</div>
-        <div class="c-desc" style="flex:none;font-size:15px;line-height:1.55">미리 설계된 화면 레이아웃과 확정된 에셋 라이브러리 안에서만 작동. 사용자가 할 수 있는 행동과 볼 수 있는 정보가 설계 시점에 모두 확정됨. 설계되지 않은 상황은 존재하지 않음.</div>
+<div class="sa-slide s32" data-screen-label="15 3.2 Generative UI">
+  <div class="backdrop-hint">3.2</div>
+
+  <header class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>3.2</div>
+    <h1 class="s-title">Generative UI<br/>유동적 <span class="grad">인터페이스</span></h1>
+    <p class="s-cap">에이전트가 답변의 성격과 의도에 따라 UI를 스스로 결정하고 생성하는 인터페이스 패러다임</p>
+  </header>
+
+  <div class="s32-body">
+    <!-- LEFT: paradigm statement + DESIGN.md band -->
+    <div class="left">
+      <div class="statement">
+        <div class="from">기존 앱 UX</div>
+        <div class="from-text">미리 설계된 화면, 확정된 에셋 라이브러리. 설계된 상황 안에서만 작동.</div>
+        <div class="to">에이전트 UX</div>
+        <div class="to-text">답변의 성격·의도·데이터 구조에 따라<br/><em>UI 자체를 매번 새로</em> 만든다.</div>
       </div>
-      <div class="card">
-        <div class="c-label">에이전트 UX</div>
-        <div class="c-desc" style="flex:none;font-size:15px;line-height:1.55">답변의 성격·의도·데이터 구조에 따라 그때그때 가장 적합한 UI를 에이전트가 판단하고 생성. 사전에 모든 상황을 설계할 수 없기 때문에 UI 자체가 동적으로 만들어져야 함.</div>
-      </div>
-    </div>
-    <div class="tbl fw">
-      <div class="tbl-row head" style="grid-template-columns: 1.4fr 2.4fr 2fr">
-        <div class="tbl-cell">방식</div>
-        <div class="tbl-cell">설명</div>
-        <div class="tbl-cell">적합한 상황</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 2.4fr 2fr">
-        <div class="tbl-cell"><div class="t-name">Rule-based Generation</div></div>
-        <div class="tbl-cell">상황별 최적 UI 룰이 사전 정의되어 있고 에이전트가 룰을 참조해 UI 결정</div>
-        <div class="tbl-cell">반복적·예측 가능한 답변 유형</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 2.4fr 2fr">
-        <div class="tbl-cell"><div class="t-name">Library-based Generation</div></div>
-        <div class="tbl-cell">UI 컴포넌트 라이브러리에서 에이전트가 적합한 컴포넌트를 조합해 생성</div>
-        <div class="tbl-cell">구조화된 데이터, 비교·선택이 필요한 상황</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 2.4fr 2fr">
-        <div class="tbl-cell"><div class="t-name">From Scratch Generation</div></div>
-        <div class="tbl-cell">기존 룰이나 라이브러리로 커버되지 않는 예외적 상황에서 에이전트가 UI를 직접 설계</div>
-        <div class="tbl-cell">경향을 벗어난 복합적·특수한 답변</div>
-      </div>
-    </div>
-    <div class="dms-section" style="flex:1">
-      <div class="dms-header">
-        <div class="dms-title">DESIGN.md <span class="dms-sub">— 에이전트를 위한 디자인 시스템</span></div>
-        <div class="dms-conn">↑ Rule-based Generation의 실제 구현체</div>
-      </div>
-      <div class="g2 fw" style="flex:1">
-        <div class="card">
-          <div class="c-label">기존 방식</div>
-          <div class="c-desc" style="flex:none;font-size:14px;line-height:1.55">에이전트에게 매번 브랜드 컬러·폰트·컴포넌트를 설명해야 함. 툴을 바꿀 때마다, 새 대화를 시작할 때마다 처음부터 다시.</div>
+
+      <div class="dms-band">
+        <div class="conn">↑ 01 Rule-based의 구현체</div>
+        <div class="ttl-block">
+          <div class="lab">Implementation</div>
+          <div class="ttl">DESIGN.md</div>
         </div>
-        <div class="card" style="border-color:rgba(180,160,240,0.4);background:rgba(180,160,240,0.06)">
-          <div class="c-label" style="color:rgba(180,160,240,0.95)">DESIGN.md 방식</div>
-          <div class="c-desc" style="flex:none;font-size:14px;line-height:1.55">파일 하나로 끝. YAML 토큰(정확한 값) + 마크다운 텍스트(왜 이 값인지 이유)를 함께 담아 에이전트가 자동으로 읽고 적용.<br><br>Google Labs가 2026년 4월 오픈소스로 공개. Claude Code, Cursor, Copilot 모두 지원.</div>
+        <div class="desc">
+          <p>에이전트를 위한 디자인 시스템. YAML 토큰 + 마크다운을 한 파일에 담아 에이전트가 자동으로 읽고 적용.</p>
+          <div class="meta">
+            <span class="pill">Google Labs</span>
+            <span class="pill">2026.04 OSS</span>
+            <span class="pill">Claude Code</span>
+            <span class="pill">Cursor</span>
+            <span class="pill">Copilot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: 3 answers -->
+    <div class="answers">
+      <div class="answers-head">
+        <span class="ttl">UI는 더 이상 <em>고정된 화면</em>이 아닌 <em>생성되는 응답</em>이다</span>
+      </div>
+
+      <div class="answer a1">
+        <div class="num">01</div>
+        <div class="meta">
+          <div class="cat">Rule-based</div>
+          <div class="name">사전 정의된 룰을 따른다</div>
+          <div class="desc">상황별 최적 UI가 룰로 정의되어 있고, 에이전트는 룰을 참조해 UI를 결정.</div>
+          <div class="fit">반복적이고 예측 가능한 답변 유형</div>
+        </div>
+      </div>
+
+      <div class="answer a2">
+        <div class="num">02</div>
+        <div class="meta">
+          <div class="cat">Library-based</div>
+          <div class="name">컴포넌트를 조합한다</div>
+          <div class="desc">에이전트가 컴포넌트 라이브러리에서 적합한 것들을 골라 조합해 화면을 구성.</div>
+          <div class="fit">구조화된 데이터, 비교·선택이 필요한 상황</div>
+        </div>
+      </div>
+
+      <div class="answer a3">
+        <div class="num">03</div>
+        <div class="meta">
+          <div class="cat">From Scratch</div>
+          <div class="name">즉석에서 설계한다</div>
+          <div class="desc">룰이나 라이브러리로 커버되지 않는 예외 상황에서 에이전트가 UI를 직접 설계.</div>
+          <div class="fit">경향을 벗어난 복합적·특수한 답변</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="pnum">3.2</div>
 </div>
 </section>
 
 <!-- 3.3 -->
 <section data-part="3">
-<div class="s-page">
-  <div class="plabel">3.3</div>
-  <div class="ptitle">비가시적 경험 Ambient AX</div>
-  <div class="pcap">HITL과 Generative UI가 만나는 최적 지점</div>
-  <div class="body col">
-    <div class="info-box fw">
-      <div class="ib-title">Ambient AX 정의</div>
-      <div class="ib-body">제로 인터랙션이 아닌 미니멈 인터랙션. 에이전트가 백그라운드에서 조용히 작동하다가, 꼭 인간이 필요한 순간에만 개입을 요청하고, 그 순간에 가장 적합한 형태의 UI를 생성해 출력하는 경험.<br><br>존재감을 최소화하되 개입의 질을 극대화하는 인터페이스 철학.</div>
-    </div>
-    <div class="converge fw" style="flex:1;justify-content:center">
-      <div class="converge-row">
-        <div class="converge-box">
-          <div class="cb-label">HITL</div>
-          <div class="cb-desc">불필요한 개입을 걷어내고 꼭 필요한 순간만 남김</div>
-        </div>
-        <div class="converge-op">×</div>
-        <div class="converge-box">
-          <div class="cb-label">Generative UI</div>
-          <div class="cb-desc">그 순간에 맥락에 맞는 UI를 즉석에서 생성</div>
-        </div>
-      </div>
-      <div class="converge-arrow">↓</div>
-      <div class="converge-result">
-        <div class="cr-name">Ambient AX</div>
-        <div class="cr-tag">"불렸을 때 완벽하게"</div>
-      </div>
-    </div>
-    <div class="tbl fw">
-      <div class="tbl-row head" style="grid-template-columns: 1.4fr 3fr">
-        <div class="tbl-cell">원칙</div>
-        <div class="tbl-cell">내용</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 3fr">
-        <div class="tbl-cell"><div class="t-name">Invisible by default</div></div>
-        <div class="tbl-cell">에이전트는 기본적으로 보이지 않음. 작동 중이라는 신호만 최소한으로</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 3fr">
-        <div class="tbl-cell"><div class="t-name">Visible when needed</div></div>
-        <div class="tbl-cell">개입이 필요한 순간, 맥락에 맞는 최적 UI로 존재를 드러냄</div>
-      </div>
-      <div class="tbl-row" style="grid-template-columns: 1.4fr 3fr">
-        <div class="tbl-cell"><div class="t-name">Gone when done</div></div>
-        <div class="tbl-cell">개입이 끝나면 다시 사라짐. 잔여 UI를 남기지 않음</div>
+<div class="sa-slide s33" data-screen-label="16 3.3 Ambient AX">
+  <div class="backdrop-hint">3.3</div>
+
+  <header class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>3.3</div>
+    <h1 class="s-title">Ambient AX<br/>비가시적 <span class="grad">경험</span></h1>
+    <p class="s-cap">HITL과 Generative UI가 만나는 최적 지점 — 존재감을 최소화하되 개입의 질을 극대화하는 인터페이스 철학</p>
+  </header>
+
+  <div class="poster">
+    <aside class="floater fl-def">
+      <div class="fl-eyebrow">DEFINITION</div>
+      <p class="fl-body">제로 인터랙션이 아닌 <em>미니멈 인터랙션</em>. 에이전트는 백그라운드에서 조용히 작동하다, 꼭 필요한 순간에만 개입을 요청하고 그 순간에 가장 적합한 UI를 생성해 출력한다.</p>
+    </aside>
+
+    <aside class="floater fl-rules">
+      <div class="fl-eyebrow">THREE PRINCIPLES</div>
+      <ol class="rules">
+        <li><span class="rn">01</span><div class="rwrap"><span class="rk">Invisible by default</span><span class="rv">기본은 보이지 않음</span></div></li>
+        <li><span class="rn">02</span><div class="rwrap"><span class="rk">Visible when needed</span><span class="rv">필요한 순간에만 드러남</span></div></li>
+        <li><span class="rn">03</span><div class="rwrap"><span class="rk">Gone when done</span><span class="rv">끝나면 다시 사라짐</span></div></li>
+      </ol>
+    </aside>
+
+    <div class="venn-stage">
+      <svg class="venn-svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="s33-cA" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="rgba(91,157,255,0.55)"/>
+            <stop offset="55%" stop-color="rgba(91,157,255,0.18)"/>
+            <stop offset="100%" stop-color="rgba(91,157,255,0)"/>
+          </radialGradient>
+          <radialGradient id="s33-cB" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="rgba(255,107,193,0.55)"/>
+            <stop offset="55%" stop-color="rgba(255,107,193,0.18)"/>
+            <stop offset="100%" stop-color="rgba(255,107,193,0)"/>
+          </radialGradient>
+          <radialGradient id="s33-cCore" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="rgba(20,12,40,0.85)"/>
+            <stop offset="55%" stop-color="rgba(40,20,70,0.4)"/>
+            <stop offset="100%" stop-color="rgba(40,20,70,0)"/>
+          </radialGradient>
+        </defs>
+
+        <circle cx="420" cy="450" r="420" fill="url(#s33-cA)" stroke="rgba(91,157,255,0.6)" stroke-width="1.4"/>
+        <circle cx="780" cy="450" r="420" fill="url(#s33-cB)" stroke="rgba(255,107,193,0.6)" stroke-width="1.4"/>
+        <ellipse cx="600" cy="450" rx="170" ry="320" fill="url(#s33-cCore)"/>
+
+        <text x="260" y="450" fill="#8fb8ff" font-family="Inter Tight" font-size="78" font-weight="800" letter-spacing="-2" text-anchor="middle">HITL</text>
+        <text x="260" y="492" fill="rgba(143,184,255,0.65)" font-family="Inter Tight" font-size="13" letter-spacing="3" text-anchor="middle">HUMAN-IN-THE-LOOP</text>
+
+        <text x="940" y="450" fill="#ffb8de" font-family="Inter Tight" font-size="68" font-weight="800" letter-spacing="-2" text-anchor="middle">GEN UI</text>
+        <text x="940" y="492" fill="rgba(255,184,222,0.65)" font-family="Inter Tight" font-size="13" letter-spacing="3" text-anchor="middle">GENERATIVE INTERFACE</text>
+
+        <text x="260" y="544" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">불필요한 개입을 걷어내고</text>
+        <text x="260" y="568" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">꼭 필요한 순간만 남긴다</text>
+        <text x="940" y="544" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">그 순간 맥락에 맞는 UI를</text>
+        <text x="940" y="568" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">즉석에서 생성한다</text>
+
+        <text x="600" y="430" fill="#ffffff" font-family="Inter Tight" font-size="64" font-weight="800" letter-spacing="-2.5" text-anchor="middle">AMBIENT</text>
+        <text x="600" y="494" fill="#ffffff" font-family="Inter Tight" font-size="64" font-weight="800" letter-spacing="-2.5" text-anchor="middle">AX</text>
+        <text x="600" y="534" fill="rgba(212,186,255,0.7)" font-family="JetBrains Mono" font-size="12" letter-spacing="3" text-anchor="middle">THE INTERSECTION</text>
+      </svg>
+
+      <div class="tagline">
+        <span class="tg-q">"</span><em>불렸을 때</em> <span class="tg-grad">완벽하게</span><span class="tg-q">"</span>
       </div>
     </div>
   </div>
-  <div class="pnum">3.3</div>
 </div>
 </section>
 
