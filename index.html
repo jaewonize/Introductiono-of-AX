@@ -3868,6 +3868,293 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   color: rgba(255,255,255,0.85);
   font-weight: 600;
 }
+
+/* ─────── Slide 14 / 3.1 (s31) — Human-in-the-loop ─────── */
+.sa-slide.s31 {
+  background:
+    radial-gradient(ellipse at 18% 18%, rgba(83, 71, 255, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 88%, rgba(255, 87, 178, 0.10) 0%, transparent 45%),
+    linear-gradient(180deg, #0a0814 0%, #050309 100%);
+}
+.sa-slide.s31::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(91,157,255,0.35) 20%,
+    rgba(162,107,255,0.55) 50%,
+    rgba(255,107,193,0.35) 80%,
+    transparent 100%);
+}
+.sa-slide.s31 .backdrop-hint {
+  font-size: 380px;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-stroke: 0;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -0.06em;
+}
+.sa-slide.s31 .s-head {
+  top: 100px; left: 120px; right: auto;
+  max-width: 1100px;
+  z-index: 5;
+}
+.sa-slide.s31 .s-eyebrow {
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(200,180,255,0.85);
+}
+.sa-slide.s31 .s-eyebrow .dot {
+  background: linear-gradient(135deg, #5b9dff, #a26bff 50%, #ff6bc1);
+  box-shadow: 0 0 16px rgba(162,107,255,0.7);
+}
+.sa-slide.s31 .s-title {
+  margin-top: 12px;
+  font-size: 64px;
+  line-height: 1;
+}
+.sa-slide.s31 .s-cap {
+  margin-top: 18px;
+  font-size: 19px;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: -0.005em;
+}
+
+/* Two-track layout */
+.sa-slide.s31 .tracks {
+  position: absolute;
+  left: 120px; right: 120px; top: 400px; bottom: 100px;
+  z-index: 2;
+}
+.sa-slide.s31 .track-label {
+  font-family: var(--display);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.sa-slide.s31 .track-label.agent { color: #b8d2ff; margin-bottom: 40px; }
+.sa-slide.s31 .track-label.human { color: #f0d9ff; margin-top: 16px; }
+.sa-slide.s31 .track-label .ico {
+  width: 22px; height: 22px; border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+}
+.sa-slide.s31 .track-label.agent .ico {
+  background: rgba(91,157,255,0.14);
+  border: 1px solid rgba(91,157,255,0.4);
+  color: #b8d2ff;
+}
+.sa-slide.s31 .track-label.human .ico {
+  background: rgba(255,107,193,0.14);
+  border: 1px solid rgba(255,107,193,0.4);
+  color: #f0d9ff;
+}
+.sa-slide.s31 .agent-section { position: absolute; left: 0; right: 0; top: 0; }
+.sa-slide.s31 .human-section { position: absolute; left: 0; right: 0; top: 290px; }
+
+/* Agent strip */
+.sa-slide.s31 .agent-track {
+  display: flex; align-items: center; gap: 6px;
+  height: 60px;
+}
+.sa-slide.s31 .a-stage {
+  flex: 1;
+  height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; line-height: 1.15;
+  background: rgba(91,157,255,0.05);
+  border: 1px solid rgba(91,157,255,0.22);
+  border-radius: 8px;
+  font-family: var(--display);
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  position: relative;
+  padding: 0 6px;
+}
+.sa-slide.s31 .a-stage::before {
+  content: attr(data-num);
+  position: absolute; top: -16px; left: 0;
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.08em;
+}
+.sa-slide.s31 .a-stage.gate {
+  background: linear-gradient(180deg, rgba(255,107,193,0.30), rgba(162,107,255,0.22));
+  border: 1px solid rgba(255,140,210,0.85);
+  color: #fff; font-weight: 700;
+  height: 56px;
+  border-radius: 10px;
+  box-shadow: 0 0 32px rgba(255,107,193,0.32), 0 0 0 1px rgba(255,140,210,0.25);
+}
+.sa-slide.s31 .a-stage.gate::after {
+  content: "GATE"; position: absolute;
+  top: -32px; left: 50%; transform: translateX(-50%);
+  font-family: var(--display); font-size: 9px; font-weight: 800;
+  letter-spacing: 0.24em;
+  color: #ff8fd0;
+}
+
+/* Connector pins */
+.sa-slide.s31 .connector {
+  position: absolute;
+  left: 0; right: 0;
+  top: 140px;
+  height: 130px;
+  pointer-events: none;
+  z-index: 2;
+}
+.sa-slide.s31 .connector svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+/* Human cards */
+.sa-slide.s31 .human-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.sa-slide.s31 .h-pair {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+.sa-slide.s31 .h-card {
+  position: relative;
+  padding: 20px 22px;
+  background: linear-gradient(180deg, rgba(255,107,193,0.18), rgba(162,107,255,0.10));
+  border: 1px solid rgba(255,140,210,0.85);
+  border-radius: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  box-shadow: 0 0 32px rgba(255,107,193,0.22), 0 0 0 1px rgba(255,140,210,0.18);
+}
+.sa-slide.s31 .h-stage {
+  font-size: 22px; font-weight: 700; color: #fff;
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+}
+.sa-slide.s31 .h-purpose-line {
+  font-family: var(--display);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #ffb8de;
+}
+.sa-slide.s31 .h-quote {
+  font-size: 14px; line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+  font-style: italic;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.025);
+  border-left: 2px solid rgba(255,107,193,0.4);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Abstract UI mockups */
+.sa-slide.s31 .h-ui-card {
+  padding: 22px 24px;
+  background: rgba(0,0,0,0.28);
+  border: 1px dashed rgba(255,255,255,0.18);
+  border-radius: 12px;
+  display: flex; flex-direction: column; gap: 10px;
+  justify-content: center;
+}
+.sa-slide.s31 .h-ui-card > * { max-width: 180px; }
+.sa-slide.s31 .h-ui-card .ui-row-bars { max-width: 180px; width: 100%; }
+.sa-slide.s31 .ui-bar {
+  height: 14px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+.sa-slide.s31 .ui-bar.head { width: 60%; height: 10px; background: rgba(255,255,255,0.14); }
+.sa-slide.s31 .ui-bar.short { width: 45%; }
+.sa-slide.s31 .ui-bar.long { width: 100%; }
+.sa-slide.s31 .ui-bar.med { width: 75%; }
+.sa-slide.s31 .ui-bar.pick {
+  position: relative;
+  padding-left: 22px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.14);
+  height: 22px;
+  display: flex; align-items: center;
+}
+.sa-slide.s31 .ui-bar.pick::before {
+  content: ""; position: absolute;
+  left: 8px; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+}
+.sa-slide.s31 .ui-bar.pick .inner {
+  height: 6px; flex: 1;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  margin-right: 10px;
+}
+.sa-slide.s31 .ui-bar.pick.on {
+  border-color: rgba(255,140,210,0.7);
+  background: rgba(255,107,193,0.10);
+}
+.sa-slide.s31 .ui-bar.pick.on::before {
+  background: #ff6bc1;
+  border-color: #ff8fd0;
+  box-shadow: 0 0 0 2px rgba(255,107,193,0.18);
+}
+.sa-slide.s31 .ui-bar.pick.on .inner { background: rgba(255,180,220,0.5); }
+.sa-slide.s31 .ui-row-bars {
+  display: flex; gap: 8px;
+}
+.sa-slide.s31 .ui-row-bars .ui-cell {
+  flex: 1; height: 36px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  position: relative;
+}
+.sa-slide.s31 .ui-row-bars .ui-cell.on {
+  background: rgba(255,107,193,0.14);
+  border-color: rgba(255,140,210,0.7);
+  box-shadow: 0 0 18px rgba(255,107,193,0.25);
+}
+.sa-slide.s31 .ui-row-bars .ui-cell::after {
+  content: ""; position: absolute;
+  left: 8px; right: 8px; bottom: 8px; height: 4px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+}
+.sa-slide.s31 .ui-row-bars .ui-cell.on::after { background: rgba(255,180,220,0.6); }
+.sa-slide.s31 .ui-stars {
+  display: flex; gap: 6px;
+}
+.sa-slide.s31 .ui-stars .dotc {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.sa-slide.s31 .ui-stars .dotc.on { background: rgba(255,107,193,0.7); border-color: #ff8fd0; }
+
+/* Footer */
+.sa-slide.s31 .center-msg {
+  position: absolute;
+  right: 120px; bottom: 56px;
+  font-size: 16px; color: rgba(255,255,255,0.52);
+  letter-spacing: -0.005em;
+  text-align: right;
+  font-family: var(--display);
+  z-index: 5;
+}
+.sa-slide.s31 .center-msg b {
+  font-weight: 700;
+  background: linear-gradient(115deg, #a26bff, #ff6bc1);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s31 .footnote {
+  position: absolute;
+  right: 120px; top: 394px;
+  font-family: var(--mono);
+  font-size: 12px; color: rgba(255,255,255,0.32);
+  letter-spacing: 0.02em;
+  text-align: right;
+  z-index: 4;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
 </style>
 </head>
 <body>
@@ -4771,64 +5058,109 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 3.1 -->
 <section data-part="3">
-<div class="s-page">
-  <div class="plabel">3.1</div>
-  <div class="ptitle">Human-in-the-loop 사고과정의 공유와 개입</div>
-  <div class="pcap">지능이 인간을 불러야 한다고 판단하는 명분과 절차</div>
-  <div class="body col">
-    <div class="train">
-      <div class="train-step">User<br>Request</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step highlight">Goal<br>Interpretation</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step">Task<br>Planning</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step">Agent/Tool<br>Selection</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step">Information<br>Gathering</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step">Option<br>Generation</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step highlight">Evaluation /<br>Negotiation</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step">Action<br>Execution</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step">Observation</div>
-      <div class="train-arrow">→</div>
-      <div class="train-step highlight">Feedback /<br>Refinement</div>
+<div class="sa-slide s31" data-screen-label="14 3.1 HITL">
+  <div class="backdrop-hint">3.1</div>
+
+  <header class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>3.1</div>
+    <h1 class="s-title">3.1 Human-in-the-loop<br/>사고과정의 <span class="grad">공유와 개입</span></h1>
+    <p class="s-cap">지능이 인간을 불러야 한다고 판단하는 명분과 절차</p>
+  </header>
+
+  <div class="tracks">
+    <!-- Agent section -->
+    <div class="agent-section">
+      <div class="track-label agent"><span class="ico">A</span>Agent flow · 11 stages</div>
+      <div class="agent-track">
+        <div class="a-stage" data-num="01">User<br/>Request</div>
+        <div class="a-stage gate" data-num="02">Goal<br/>Interpretation</div>
+        <div class="a-stage" data-num="03">Task<br/>Planning</div>
+        <div class="a-stage" data-num="04">Agent /<br/>Tool Sel.</div>
+        <div class="a-stage" data-num="05">Information<br/>Gathering</div>
+        <div class="a-stage" data-num="06">Option<br/>Generation</div>
+        <div class="a-stage gate" data-num="07">Evaluation /<br/>Negotiation</div>
+        <div class="a-stage" data-num="08">Action<br/>Execution</div>
+        <div class="a-stage" data-num="09">Observation</div>
+        <div class="a-stage" data-num="10">Result<br/>Delivery</div>
+        <div class="a-stage gate" data-num="11">Feedback /<br/>Refinement</div>
+      </div>
+
+      <div class="connector">
+        <svg viewBox="0 0 1680 130" preserveAspectRatio="none">
+          <path d="M 229 0 C 229 50, 154 70, 154 128"   stroke="#ff8fd0" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+          <path d="M 993 0 C 993 50, 742 70, 742 128"   stroke="#ff8fd0" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+          <path d="M 1604 0 C 1604 50, 1330 70, 1330 128" stroke="#ff8fd0" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+          <circle cx="229"  cy="0"   r="4" fill="#ff8fd0"/>
+          <circle cx="993"  cy="0"   r="4" fill="#ff8fd0"/>
+          <circle cx="1604" cy="0"   r="4" fill="#ff8fd0"/>
+          <circle cx="154"  cy="128" r="4" fill="#ff8fd0"/>
+          <circle cx="742"  cy="128" r="4" fill="#ff8fd0"/>
+          <circle cx="1330" cy="128" r="4" fill="#ff8fd0"/>
+        </svg>
+      </div>
     </div>
-    <div class="footnote">* AutoGPT, LangChain Agents, CrewAI, CAMEL Multi-agent 프레임워크에서 공통적으로 나타나는 단계를 참고해 작성</div>
-    <div class="g3 fw" style="flex:1">
-      <div class="card">
-        <div class="c-label">① Goal Interpretation</div>
-        <div class="c-sub" style="margin-bottom:18px;color:rgba(255,255,255,0.85);font-size:17px">목적: Goal Alignment</div>
-        <div class="c-desc" style="flex:1">AI-사용자 의도 간 misalignment가 자주 발생.<br><br>"사용자의 의도를 명확히 드러내고 AI와의 목표 정렬 필요"</div>
-        <div class="theory-tag">
-          <div class="tt-label">Theory</div>
-          <div class="tt-content">Mental Model / Constructed Preference</div>
+
+    <!-- Human section -->
+    <div class="human-section">
+      <div class="human-track">
+        <div class="h-pair">
+          <div class="h-card">
+            <div class="h-stage">Goal Interpretation</div>
+            <div class="h-purpose-line">Goal Alignment</div>
+            <div class="h-quote">사용자의 의도를 명확히 드러내고 AI와 목표를 정렬</div>
+          </div>
+          <div class="h-ui-card">
+            <div class="ui-bar head"></div>
+            <div class="ui-bar long"></div>
+            <div class="ui-bar pick on"><span class="inner"></span></div>
+            <div class="ui-bar pick"><span class="inner"></span></div>
+          </div>
+        </div>
+
+        <div class="h-pair">
+          <div class="h-card">
+            <div class="h-stage">Evaluation / Negotiation</div>
+            <div class="h-purpose-line">Decision Support</div>
+            <div class="h-quote">인지 부담을 줄이면서 합리적 선택을 도울 필요</div>
+          </div>
+          <div class="h-ui-card">
+            <div class="ui-bar head"></div>
+            <div class="ui-row-bars">
+              <div class="ui-cell on"></div>
+              <div class="ui-cell"></div>
+              <div class="ui-cell"></div>
+            </div>
+            <div class="ui-bar med"></div>
+            <div class="ui-bar short"></div>
+          </div>
+        </div>
+
+        <div class="h-pair">
+          <div class="h-card">
+            <div class="h-stage">Feedback / Refinement</div>
+            <div class="h-purpose-line">Adaptive Learning</div>
+            <div class="h-quote">사용자 경험 기반의 지속 학습과 신뢰 관계 형성</div>
+          </div>
+          <div class="h-ui-card">
+            <div class="ui-bar head"></div>
+            <div class="ui-bar long"></div>
+            <div class="ui-stars">
+              <span class="dotc on"></span>
+              <span class="dotc on"></span>
+              <span class="dotc on"></span>
+              <span class="dotc"></span>
+              <span class="dotc"></span>
+            </div>
+            <div class="ui-bar med"></div>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <div class="c-label">② Evaluation / Negotiation</div>
-        <div class="c-sub" style="margin-bottom:18px;color:rgba(255,255,255,0.85);font-size:17px">목적: Decision Support</div>
-        <div class="c-desc" style="flex:1">멀티에이전트 환경에서는 옵션이 급격히 증가.<br><br>"인간의 인지 부담을 줄이면서 합리적 선택을 도울 필요"</div>
-        <div class="theory-tag">
-          <div class="tt-label">Theory</div>
-          <div class="tt-content">Bounded Rationality / Prospect Theory</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="c-label">③ Feedback / Refinement</div>
-        <div class="c-sub" style="margin-bottom:18px;color:rgba(255,255,255,0.85);font-size:17px">목적: Adaptive Learning</div>
-        <div class="c-desc" style="flex:1">피드백 = 단순 평가가 아닌 모델 개선에 활용.<br><br>"사용자 경험 기반 AI 지속 학습 및 신뢰 관계 형성 필요"</div>
-        <div class="theory-tag">
-          <div class="tt-label">Theory</div>
-          <div class="tt-content">Reinforcement Learning / Trust Calibration</div>
-        </div>
-      </div>
+      <div class="track-label human"><span class="ico">H</span>Human-in-the-loop · interface</div>
     </div>
   </div>
-  <div class="pnum">3.1</div>
+
+  <div class="footnote">* AutoGPT, LangChain Agents, CrewAI, CAMEL Multi-agent 프레임워크에서 공통적으로 나타나는 단계</div>
+  <div class="center-msg">두 트랙이 만나는 세 지점 = <b>의도 해석 · 선택 · 학습</b></div>
 </div>
 </section>
 
