@@ -4590,6 +4590,363 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   font-size: 14px;
   color: rgba(255,255,255,0.6);
 }
+
+/* ─────── Slide 19 / 4.1 (.s-page.s4-1) — 화면 기획에서 로직 기획으로 ─────── */
+.s-page.s4-1 {
+  background:
+    radial-gradient(ellipse at 22% 28%, rgba(83,71,255,0.32) 0%, transparent 55%),
+    radial-gradient(ellipse at 78% 80%, rgba(255,87,178,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0,122,255,0.10) 0%, transparent 70%),
+    #050510;
+}
+.s-page.s4-1::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 35%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.s-page.s4-1::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(91,157,255,0.35) 20%, rgba(162,107,255,0.45) 50%, rgba(255,107,193,0.35) 80%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.s-page.s4-1 > * { position: relative; z-index: 2; }
+
+.s-page.s4-1 .backdrop-hint {
+  position: absolute;
+  top: -90px; right: -20px;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 620px;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  pointer-events: none;
+  user-select: none;
+  background: linear-gradient(135deg, rgba(91,157,255,0.14) 0%, rgba(162,107,255,0.10) 50%, rgba(255,107,193,0.05) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+  z-index: 0 !important;
+}
+.s-page.s4-1 .s-head {
+  position: absolute;
+  top: 80px; left: 120px; right: 120px;
+  z-index: 5;
+}
+.s-page.s4-1 .s-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 0;
+}
+.s-page.s4-1 .s-eyebrow .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  box-shadow: 0 0 14px rgba(162,107,255,0.7);
+}
+.s-page.s4-1 .s-title {
+  font-family: var(--pretendard);
+  font-size: 64px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 14px 0 0;
+  max-width: 1500px;
+}
+.s-page.s4-1 .s-title .grad {
+  font-weight: 800;
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.s-page.s4-1 .s-cap {
+  font-family: var(--pretendard);
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  max-width: 1100px;
+  padding-bottom: 0;
+  margin: 18px 0 0;
+}
+.s-page.s4-1 .s-cap .em {
+  color: rgba(240,217,255,0.92);
+  font-weight: 600;
+}
+.s-page.s4-1 .plabel { display: none; }
+.s-page.s4-1 > .body { margin-top: 156px; }
+
+/* Slide 4.1 callouts: per-bubble theme + cp-grad */
+.s-page.s4-1 .cp-overlay .cp-grad { font-weight: 800; color: inherit; }
+.s-page.s4-1 .cp-overlay.cp-1 .cp-num { background: #5b9dff; }
+.s-page.s4-1 .cp-overlay.cp-1 .cp-grad { color: #2f6fd6; }
+.s-page.s4-1 .cp-overlay.cp-2 .cp-num { background: #a26bff; }
+.s-page.s4-1 .cp-overlay.cp-2 .cp-grad { color: #7d40e0; }
+.s-page.s4-1 .cp-overlay.cp-3 .cp-num { background: #ff6bc1; }
+.s-page.s4-1 .cp-overlay.cp-3 .cp-grad { color: #d83a96; }
+
+.s-page.s4-1 .slide-meta {
+  top: -28px;
+  color: rgba(255,255,255,0.5);
+}
+.s-page.s4-1 .cp-1 { bottom: 560px; top: auto; left: -50px; max-width: 360px; }
+.s-page.s4-1 .cp-2 { top: -40px; right: 40px; max-width: 340px; }
+.s-page.s4-1 .cp-3 { top: 620px; left: 310px; max-width: 460px; }
+
+/* ─────── Slide 20 / 4.2 (.s-page.s4-2) — 하네스 엔지니어링 ─────── */
+.s-page.s4-2 {
+  background:
+    radial-gradient(ellipse at 22% 28%, rgba(83,71,255,0.32) 0%, transparent 55%),
+    radial-gradient(ellipse at 78% 80%, rgba(255,87,178,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0,122,255,0.10) 0%, transparent 70%),
+    #050510;
+}
+.s-page.s4-2::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 35%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.s-page.s4-2::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(91,157,255,0.35) 20%, rgba(162,107,255,0.45) 50%, rgba(255,107,193,0.35) 80%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.s-page.s4-2 > * { position: relative; z-index: 2; }
+.s-page.s4-2 .plabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: "Inter Tight", "Pretendard Variable", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(200,180,255,0.85);
+  margin-bottom: 14px;
+}
+.s-page.s4-2 .plabel::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5b9dff, #a26bff 50%, #ff6bc1);
+  box-shadow: 0 0 16px rgba(162,107,255,0.7);
+  flex-shrink: 0;
+}
+.s-page.s4-2 .ptitle {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.s-page.s4-2 .ptitle .grad {
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.s-page.s4-2 .pcap {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: -0.005em;
+  line-height: 1.45;
+  max-width: 1100px;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 32px;
+}
+.s-page.s4-2 .cp-42-1 .cp-num { background: #5b9dff; }
+.s-page.s4-2 .cp-42-2 .cp-num { background: #a26bff; }
+.s-page.s4-2 .cp-overlay em { font-style: normal; font-weight: 700; }
+.s-page.s4-2 .cp-42-1 em { color: #2f6fd6; }
+.s-page.s4-2 .cp-42-2 em { color: #7d40e0; }
+.s-page.s4-2 .slide-meta {
+  top: -28px;
+  color: rgba(255,255,255,0.5);
+}
+.s-page.s4-2 .cp-42-1 { top: -50px; right: 220px; left: auto; max-width: 460px; }
+.s-page.s4-2 .cp-42-2 { bottom: 790px; top: auto; right: -80px; max-width: 360px; }
+
+/* ═════════════════════════════════════════════════════════
+   본문 슬라이드 헤더 일관성 override (1.1~4.2 통일)
+   기준: Part 1 패턴 (lowercase 흰색 eyebrow, 64px title, 720px gradient backdrop)
+═════════════════════════════════════════════════════════ */
+
+/* Backdrop-hint — 720px / 그라데이션 + text-stroke (Part 1 패턴) */
+.sa-slide.s3 .backdrop-hint,
+.sa-slide.s4 .backdrop-hint,
+.sa-slide.s5 .backdrop-hint,
+.sa-slide.s6 .backdrop-hint,
+.sa-slide.s7 .backdrop-hint,
+.sa-slide.s9 .backdrop-hint,
+.sa-slide.s10 .backdrop-hint,
+.sa-slide.s11 .backdrop-hint,
+.sa-slide.s23 .backdrop-hint,
+.sa-slide.s31 .backdrop-hint,
+.sa-slide.s32 .backdrop-hint,
+.sa-slide.s33 .backdrop-hint,
+.s-page.s4-1 .backdrop-hint,
+.s-page.s4-2 .backdrop-hint {
+  position: absolute;
+  top: -60px; right: -40px;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 720px;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  background: linear-gradient(135deg, rgba(91,157,255,0.10) 0%, rgba(162,107,255,0.05) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Eyebrow — 16px / 0.06em / lowercase / 흰색 (Part 1 패턴) */
+.sa-slide.s3 .s-eyebrow,
+.sa-slide.s4 .s-eyebrow,
+.sa-slide.s5 .s-eyebrow,
+.sa-slide.s6 .s-eyebrow,
+.sa-slide.s7 .s-eyebrow,
+.sa-slide.s9 .s-eyebrow,
+.sa-slide.s10 .s-eyebrow,
+.sa-slide.s11 .s-eyebrow,
+.sa-slide.s23 .s-eyebrow,
+.sa-slide.s31 .s-eyebrow,
+.sa-slide.s32 .s-eyebrow,
+.sa-slide.s33 .s-eyebrow,
+.s-page.s4-1 .s-eyebrow,
+.s-page.s4-2 .plabel {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: rgba(255,255,255,0.78);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+/* Eyebrow dot — 2-stop gradient blue→purple / 12px glow (Part 1 패턴) */
+.sa-slide.s3 .s-eyebrow .dot,
+.sa-slide.s4 .s-eyebrow .dot,
+.sa-slide.s5 .s-eyebrow .dot,
+.sa-slide.s6 .s-eyebrow .dot,
+.sa-slide.s7 .s-eyebrow .dot,
+.sa-slide.s9 .s-eyebrow .dot,
+.sa-slide.s10 .s-eyebrow .dot,
+.sa-slide.s11 .s-eyebrow .dot,
+.sa-slide.s23 .s-eyebrow .dot,
+.sa-slide.s31 .s-eyebrow .dot,
+.sa-slide.s32 .s-eyebrow .dot,
+.sa-slide.s33 .s-eyebrow .dot,
+.s-page.s4-1 .s-eyebrow .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5b9dff 0%, #a26bff 100%);
+  box-shadow: 0 0 12px rgba(91,157,255,0.6);
+}
+.s-page.s4-2 .plabel::before {
+  width: 8px; height: 8px;
+  background: linear-gradient(135deg, #5b9dff 0%, #a26bff 100%);
+  box-shadow: 0 0 12px rgba(91,157,255,0.6);
+}
+
+/* Title — 64px / 800 / pretendard / -0.04em / lh 1.05 */
+.sa-slide.s3 .s-title,
+.sa-slide.s4 .s-title,
+.sa-slide.s5 .s-title,
+.sa-slide.s6 .s-title,
+.sa-slide.s7 .s-title,
+.sa-slide.s9 .s-title,
+.sa-slide.s10 .s-title,
+.sa-slide.s11 .s-title,
+.sa-slide.s23 .s-title,
+.sa-slide.s31 .s-title,
+.sa-slide.s32 .s-title,
+.sa-slide.s33 .s-title,
+.s-page.s4-1 .s-title,
+.s-page.s4-2 .ptitle {
+  font-family: var(--pretendard);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+/* Title gradient span — 부모와 동일 폰트, 색상만 그라데이션 */
+.sa-slide.s3 .s-title .grad,
+.sa-slide.s4 .s-title .grad,
+.sa-slide.s5 .s-title .grad,
+.sa-slide.s6 .s-title .grad,
+.sa-slide.s7 .s-title .grad,
+.sa-slide.s9 .s-title .grad,
+.sa-slide.s10 .s-title .grad,
+.sa-slide.s11 .s-title .grad,
+.sa-slide.s23 .s-title .grad,
+.sa-slide.s31 .s-title .grad,
+.sa-slide.s32 .s-title .grad,
+.sa-slide.s33 .s-title .grad,
+.s-page.s4-1 .s-title .grad,
+.s-page.s4-2 .ptitle .grad {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  background: linear-gradient(115deg, #5b9dff 0%, #a26bff 50%, #ff6bc1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Cap — 22px / 500 / 60% white / max-width 1100 */
+.sa-slide.s4 .s-cap,
+.sa-slide.s5 .s-cap,
+.sa-slide.s6 .s-cap,
+.sa-slide.s7 .s-cap,
+.sa-slide.s9 .s-cap,
+.sa-slide.s10 .s-cap,
+.sa-slide.s11 .s-cap,
+.sa-slide.s23 .s-cap,
+.sa-slide.s31 .s-cap,
+.sa-slide.s32 .s-cap,
+.sa-slide.s33 .s-cap,
+.s-page.s4-1 .s-cap,
+.s-page.s4-2 .pcap {
+  font-family: var(--pretendard);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.6);
+  margin-top: 18px;
+  max-width: 1100px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
 </style>
 </head>
 <body>
@@ -5416,6 +5773,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 <!-- 2.5 -->
 <section data-part="2">
 <div class="sa-slide s11" data-screen-label="11 2.5 OpenClaw vs Agentic">
+  <div class="backdrop-hint">2.5</div>
   <div class="s-head">
     <div class="s-eyebrow"><span class="dot"></span>2.5</div>
     <h1 class="s-title">OpenClaw <span class="conj">와</span> Agentic AI <span class="grad">Framework</span></h1>
@@ -5778,14 +6136,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 4.1 -->
 <section data-part="4">
-<div class="s-page">
-  <div class="plabel">4.1</div>
-  <div class="ptitle">화면 기획에서 로직 기획으로</div>
-  <div class="pcap">와이어프레임 대신 시스템 프롬프트와 페르소나 설계하기</div>
+<div class="s-page s4-1" data-screen-label="19 4.1 화면 기획에서 로직 기획으로">
+  <div class="backdrop-hint">4.1</div>
+  <div class="s-head">
+    <div class="s-eyebrow"><span class="dot"></span>4.1</div>
+    <h1 class="s-title">화면 기획에서 <span class="grad">로직 기획</span>으로</h1>
+    <p class="s-cap">와이어프레임 대신 시스템 프롬프트와 페르소나를 설계한다</p>
+  </div>
   <div class="body" style="justify-content:center;align-items:flex-start">
     <div class="captured-slide">
       <div class="slide-meta">
-        디자이너가 직접 쓸, 또는 엔드 유저가 쓸 에이전트를 기획하고 프로토타이핑하는 프로세스. Claude에게 만들고자 하는 에이전트의 내용을 자연어로 설명하고 에이전트 설계도와 시스템 프롬프트 작성 요청
+        * 디자이너가 직접 쓸, 또는 엔드 유저가 쓸 에이전트를 기획하고 프로토타이핑하는 프로세스. Claude에게 만들고자 하는 에이전트의 내용을 자연어로 설명하고 에이전트 설계도와 시스템 프롬프트 작성 요청
       </div>
 
       <!-- 섹션 오버레이 -->
@@ -5796,11 +6157,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
       <!-- 오버레이와 말풍선 연결하는 표시선 -->
       <svg class="leader-lines" viewBox="0 0 1600 1100" preserveAspectRatio="none">
         <!-- 차트 오버레이 → 1번 말풍선 -->
-        <line x1="40" y1="588" x2="270" y2="540"/>
+        <line x1="200" y1="590" x2="200" y2="540"/>
         <!-- 우측 컬럼 오버레이 → 2번 말풍선 -->
-        <line x1="1188" y1="140" x2="1188" y2="40"/>
+        <line x1="1390" y1="140" x2="1390" y2="40"/>
         <!-- 파일명 오버레이 → 3번 말풍선 -->
-        <line x1="288" y1="678" x2="320" y2="660"/>
+        <line x1="286" y1="659" x2="310" y2="655"/>
       </svg>
 
       <div class="cs-header">
@@ -5987,18 +6348,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
       <!-- 슬라이드 위 오버레이 콜아웃 -->
       <div class="cp-overlay cp-1">
         <span class="cp-num">1</span>
-        <span>"이 에이전트의 핵심 도구 파이프라인 또는 워크플로우 그려줘"</span>
+        <span>"어떤어떤 에이전트를 만들고 싶어. 이 에이전트의 <span class="cp-grad">핵심 도구 파이프라인</span>, 또는 <span class="cp-grad">워크플로우</span> 그려줘."</span>
       </div>
       <div class="cp-overlay cp-2">
         <span class="cp-num">2</span>
-        <span>"이 에이전트를 만들기 위한 시스템 프롬프트 작성해줘"</span>
+        <span>"이 에이전트를 만들기 위한 <span class="cp-grad">시스템 프롬프트</span> 작성해줘"</span>
       </div>
       <div class="cp-overlay cp-3">
         <span class="cp-num">3</span>
         <span>
-          "최종 시스템 프롬프트를 md 파일로 만들어줘"
+          "최종 시스템 프롬프트를 <span class="cp-grad">md 파일</span>로 만들어줘"
           <span class="cp-aside">(다운로드 받은 후, 코딩/챗 모드에서)</span>
-          "html로 코딩해줘"
+          "<span class="cp-grad">html로 코딩</span>해줘"
         </span>
       </div>
     </div>
@@ -6009,14 +6370,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 <!-- 4.2 -->
 <section data-part="4">
-<div class="s-page">
+<div class="s-page s4-2">
+  <div class="backdrop-hint">4.2</div>
   <div class="plabel">4.2</div>
-  <div class="ptitle">하네스 엔지니어링</div>
-  <div class="pcap">Human-in-the-loop 게이트 조건과 행동 가이드레일 정의</div>
+  <div class="ptitle"><span class="grad">하네스</span> 엔지니어링</div>
+  <div class="pcap">에이전트의 자율성을 제어하는 디자인 — 멈춰야 할 지점과 늘 지켜야 할 원칙을 미리 정해두는 작업</div>
   <div class="body" style="justify-content:center;align-items:flex-start">
     <div class="captured-slide">
       <div class="slide-meta">
-        "사용자가 직접 고를 수 있게 해줘", "출처 없는 말은 하지 마" 같은 단편적인 요구사항도 Claude가 HITL 게이트와 행동 원칙으로 변환해서 시스템 프롬프트에 반영.
+        * "사용자가 직접 고를 수 있게 해줘", "출처 없는 말은 하지 마" 같은 단편적인 요구사항도 Claude가 HITL 게이트와 행동 원칙으로 변환해서 시스템 프롬프트에 반영.
       </div>
 
       <!-- 섹션 오버레이 -->
@@ -6025,10 +6387,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
       <!-- 표시선 -->
       <svg class="leader-lines" viewBox="0 0 1600 1100" preserveAspectRatio="none">
-        <!-- HITL 오버레이 → 1번 말풍선 (하단 변 중앙에서 cp-1 좌상단으로 사선) -->
-        <line x1="412" y1="600" x2="38" y2="640"/>
-        <!-- 행동 원칙 오버레이 → 2번 말풍선 (우상단) -->
-        <line x1="1188" y1="360" x2="1480" y2="280"/>
+        <!-- HITL 오버레이 → 1번 말풍선 -->
+        <line x1="786" y1="180" x2="930" y2="30"/>
+        <!-- 행동 원칙 오버레이 → 2번 말풍선 -->
+        <line x1="1188" y1="360" x2="1320" y2="222"/>
       </svg>
 
       <div class="cs-header">
@@ -6085,11 +6447,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
       <!-- 콜아웃 -->
       <div class="cp-overlay cp-42-1">
         <span class="cp-num">1</span>
-        <span>"HITL 게이트 조건 정의해줘"</span>
+        <span>"이런이런 상황에서는 에이전트가 사용자의 승인을 꼭 받아야 해. 이에 기반해서 <em>Human-in-the-loop 게이트 조건</em> 정의해줘."</span>
       </div>
       <div class="cp-overlay cp-42-2">
         <span class="cp-num">2</span>
-        <span>"행동 가이드레일 정의해줘"</span>
+        <span>"이 에이전트가 답변할 때마다 지켜야 할 <em>공통 행동 원칙</em> 정의해줘. 출처 표기, 도메인 특수성, Human 게이트 준수, 언어 규칙 포함해서."</span>
       </div>
     </div>
   </div>
