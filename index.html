@@ -1535,6 +1535,22 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   margin-top: 50px;
   position: relative;
 }
+/* 코발트 블루 → 마젠타 그라데이션 glow halo */
+.captured-slide::before {
+  content: "";
+  position: absolute;
+  inset: -90px;
+  border-radius: 28px;
+  background: linear-gradient(135deg,
+    rgba(30, 107, 255, 0.95) 0%,
+    rgba(120, 90, 230, 0.7) 40%,
+    rgba(220, 80, 200, 0.8) 75%,
+    rgba(255, 45, 184, 0.95) 100%);
+  filter: blur(72px);
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+}
 .cs-header {
   border-bottom: 0.5px solid #d4d4d0;
   padding-bottom: 14px;
