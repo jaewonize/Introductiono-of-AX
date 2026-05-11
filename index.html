@@ -2021,6 +2021,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   line-height: 1.55;
   font-weight: 400;
 }
+/* 4.2 — 가상 보조 시스템 프롬프트 영역 (세로 바 제거, 한글 줄바꿈 안전화, 하위문단 간격 축소) */
+.captured-slide .principle-item.gh-supp { border-left: none; padding-left: 0; }
+.captured-slide .gh-supp { word-break: keep-all; }
+.captured-slide .gh-supp .pi-desc { line-height: 1.45; }
+.captured-slide .principle-item.gh-supp + .principle-item.gh-supp { margin-top: -6px; }
+.captured-slide .gh-supp + .cs-tag { margin-top: 32px; }
+/* 4.2 전용 — Step 2 / 공통 행동 원칙 타이틀만 강조 */
+.s-page.s4-2 .captured-slide .md-label { font-size: 22px; }
+.s-page.s4-2 .captured-slide .cs-tag { font-size: 22px; }
+/* Step 3·4, 리포트 작성 규칙은 원래 사이즈 유지 */
+.s-page.s4-2 .captured-slide .gh-supp .md-label { font-size: 17px; }
+.s-page.s4-2 .captured-slide .cs-tag.gh-supp { font-size: 18px; }
 
 /* 좌우 콜아웃 컬럼 */
 .cp-col {
@@ -2667,8 +2679,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 }
 .sa-slide .shift:nth-child(2)::before {
   background: linear-gradient(135deg,
-    rgba(190,120,255,0.65) 0%,
-    rgba(230,120,210,0.30) 100%);
+    rgba(138,131,255,0.65) 0%,
+    rgba(180,173,255,0.30) 100%);
 }
 .sa-slide .shift:nth-child(3)::before {
   background: linear-gradient(135deg,
@@ -2705,8 +2717,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 }
 .sa-slide .shift:nth-child(2) .s-cat {
   background: linear-gradient(135deg,
-    rgba(190,120,255,0.18) 0%,
-    rgba(230,120,210,0.06) 100%);
+    rgba(138,131,255,0.18) 0%,
+    rgba(180,173,255,0.06) 100%);
 }
 .sa-slide .shift:nth-child(3) .s-cat {
   background: linear-gradient(135deg,
@@ -2717,6 +2729,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   background: linear-gradient(135deg,
     rgba(255,107,193,0.18) 0%,
     rgba(230,120,210,0.06) 100%);
+}
+/* 1.4 전용 — 박스 3 컬러 위치 재분배 (블루→핑크 균일 간격) */
+.sa-slide.s6 .shift:nth-child(3)::before {
+  background: linear-gradient(135deg,
+    rgba(200,120,230,0.65) 0%,
+    rgba(220,160,240,0.30) 100%);
+}
+.sa-slide.s6 .shift:nth-child(3) .s-cat {
+  background: linear-gradient(135deg,
+    rgba(200,120,230,0.18) 0%,
+    rgba(220,160,240,0.06) 100%);
 }
 .sa-slide .shift .s-num {
   font-family: var(--display);
@@ -2743,7 +2766,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .sa-slide .shift:nth-child(2) .s-en {
-  background: linear-gradient(135deg, #be78ff 0%, #e878d2 100%);
+  background: linear-gradient(135deg, #8a83ff 0%, #b9b1ff 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .sa-slide .shift:nth-child(3) .s-en {
@@ -2752,6 +2775,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 }
 .sa-slide.s6 .shift:nth-child(4) .s-en {
   background: linear-gradient(135deg, #ff6bc1 0%, #e878d2 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sa-slide.s6 .shift:nth-child(3) .s-en {
+  background: linear-gradient(135deg, #c878e6 0%, #dca0f0 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .sa-slide .shift .s-ko {
@@ -4082,19 +4109,19 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   letter-spacing: 0.08em;
 }
 .sa-slide.s31 .a-stage.gate {
-  background: linear-gradient(180deg, rgba(255,107,193,0.30), rgba(162,107,255,0.22));
-  border: 1px solid rgba(255,140,210,0.85);
+  background: linear-gradient(180deg, rgba(91,157,255,0.32), rgba(126,182,255,0.20));
+  border: 1px solid rgba(126,200,255,0.85);
   color: #fff; font-weight: 700;
   height: 56px;
   border-radius: 10px;
-  box-shadow: 0 0 32px rgba(255,107,193,0.32), 0 0 0 1px rgba(255,140,210,0.25);
+  box-shadow: 0 0 32px rgba(91,157,255,0.35), 0 0 0 1px rgba(126,200,255,0.25);
 }
 .sa-slide.s31 .a-stage.gate::after {
   content: "GATE"; position: absolute;
   top: -32px; left: 50%; transform: translateX(-50%);
   font-family: var(--display); font-size: 9px; font-weight: 800;
   letter-spacing: 0.24em;
-  color: #ff8fd0;
+  color: #7eb6ff;
 }
 
 /* Connector pins */
@@ -4163,18 +4190,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 .sa-slide.s31 .h-ui-card .ui-row-bars { max-width: 180px; width: 100%; }
 .sa-slide.s31 .ui-bar {
   height: 14px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.12);
   border-radius: 4px;
 }
-.sa-slide.s31 .ui-bar.head { width: 60%; height: 10px; background: rgba(255,255,255,0.14); }
+.sa-slide.s31 .ui-bar.head { width: 60%; height: 10px; background: rgba(255,255,255,0.24); }
 .sa-slide.s31 .ui-bar.short { width: 45%; }
 .sa-slide.s31 .ui-bar.long { width: 100%; }
 .sa-slide.s31 .ui-bar.med { width: 75%; }
 .sa-slide.s31 .ui-bar.pick {
   position: relative;
   padding-left: 22px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.24);
   height: 22px;
   display: flex; align-items: center;
 }
@@ -4182,12 +4209,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   content: ""; position: absolute;
   left: 8px; top: 50%; transform: translateY(-50%);
   width: 8px; height: 8px;
-  border: 1px solid rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.55);
   border-radius: 50%;
 }
 .sa-slide.s31 .ui-bar.pick .inner {
   height: 6px; flex: 1;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.22);
   border-radius: 2px;
   margin-right: 10px;
 }
@@ -4206,8 +4233,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 }
 .sa-slide.s31 .ui-row-bars .ui-cell {
   flex: 1; height: 36px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.24);
   border-radius: 5px;
   position: relative;
 }
@@ -4219,7 +4246,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 .sa-slide.s31 .ui-row-bars .ui-cell::after {
   content: ""; position: absolute;
   left: 8px; right: 8px; bottom: 8px; height: 4px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.22);
   border-radius: 2px;
 }
 .sa-slide.s31 .ui-row-bars .ui-cell.on::after { background: rgba(255,180,220,0.6); }
@@ -4228,7 +4255,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 }
 .sa-slide.s31 .ui-stars .dotc {
   width: 10px; height: 10px; border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.5);
 }
 .sa-slide.s31 .ui-stars .dotc.on { background: rgba(255,107,193,0.7); border-color: #ff8fd0; }
 
@@ -4605,13 +4632,16 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 }
 .sa-slide.s33 .venn-svg {
   width: 100%;
-  height: calc(100% - 120px);
+  height: calc(100% - 170px);
   display: block;
 }
 
 /* Tagline */
 .sa-slide.s33 .tagline {
-  margin-top: -8px;
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: var(--display);
   font-size: 56px; font-weight: 800;
   letter-spacing: -0.03em;
@@ -4642,8 +4672,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   width: 340px;
   z-index: 5;
 }
-.sa-slide.s33 .fl-def { left: 0; top: 220px; }
-.sa-slide.s33 .fl-rules { right: 0; top: 220px; width: 340px; }
+.sa-slide.s33 .fl-def { left: 0; top: 190px; }
+.sa-slide.s33 .fl-rules { right: 0; top: 190px; width: 340px; }
 .sa-slide.s33 .fl-eyebrow {
   font-family: var(--display);
   font-size: 11px; font-weight: 700;
@@ -5469,9 +5499,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   flex: 1;
 }
 .s-page.s4-4 .arti.before .comp {
-  border: 1px solid rgba(180,200,235,0.16);
+  border: 1px solid rgba(180,200,235,0.32);
   border-radius: 8px;
-  background: rgba(180,200,235,0.04);
+  background: rgba(180,200,235,0.10);
   padding: 12px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
@@ -5479,27 +5509,28 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.16em;
-  color: rgba(180,200,235,0.4);
+  color: rgba(200,215,240,0.70);
   text-transform: uppercase;
 }
 .s-page.s4-4 .arti.before .btn-mock {
   height: 28px; border-radius: 4px;
-  background: rgba(180,200,235,0.18);
-  border: 1px solid rgba(180,200,235,0.22);
+  background: rgba(180,200,235,0.42);
+  border: 1px solid rgba(200,215,240,0.55);
 }
 .s-page.s4-4 .arti.before .input-mock {
   height: 28px; border-radius: 4px;
-  border: 1px solid rgba(180,200,235,0.18);
+  background: rgba(180,200,235,0.10);
+  border: 1px solid rgba(200,215,240,0.45);
 }
 .s-page.s4-4 .arti.before .card-mock {
   height: 28px; border-radius: 4px;
-  background: rgba(180,200,235,0.06);
-  border: 1px solid rgba(180,200,235,0.18);
+  background: rgba(180,200,235,0.16);
+  border: 1px solid rgba(200,215,240,0.45);
   display: flex; align-items: center;
 }
 .s-page.s4-4 .arti.before .card-mock::before {
   content: ''; width: 16px; height: 16px; border-radius: 3px;
-  background: rgba(180,200,235,0.22);
+  background: rgba(200,215,240,0.55);
   margin-left: 6px;
 }
 .s-page.s4-4 .arti.before .lib-foot {
@@ -6637,11 +6668,29 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   display: flex;
   flex-direction: column;
  }
-.s27 .viz.code .code-area .ln { 
+.s27 .viz.code .code-area .code-stream {
+  display: flex; flex-direction: column;
+  transform: translateY(-322px);  /* 정적/PDF 상태: 마지막 커서가 visible area 하단에 오는 최종 프레임 */
+}
+.s27 .viz.code .code-area .ln {
   display: flex;
   align-items: baseline;
   gap: 14px;
  }
+/* 터미널 로그 라인 */
+.s27 .viz.code .code-area .ln.term .num { color: rgba(255,255,255,0); }
+.s27 .viz.code .code-area .ln.term .code { color: rgba(255,255,255,0.78); }
+.s27 .viz.code .code-area .prompt { color: rgba(255,255,255,0.40); }
+.s27 .viz.code .code-area .pass { color: #6effa8; font-weight: 600; }
+.s27 .viz.code .code-area .termdim { color: rgba(255,255,255,0.42); }
+.s27 .viz.code .code-area .cursor-blink {
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+  background: rgba(110,255,168,0.85);
+  vertical-align: -2px;
+  margin-left: 2px;
+}
 .s27 .viz.code .code-area .ln .num { 
   flex: 0 0 26px;
   font-size: 13px;
@@ -6650,7 +6699,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   user-select: none;
  }
 .s27 .viz.code .code-area .ln .code {  flex: 1; min-width: 0;  }
-.s27 .viz.code .code-area .kw {  color: #ff8fd0;  }
+.s27 .viz.code .code-area .kw {
+  color: #ff8fd0;
+  /* 전역 .kw 알약(border-radius/border/padding) 무효화 */
+  border: none; border-radius: 0; padding: 0;
+  font-size: inherit; font-weight: inherit; letter-spacing: normal;
+}
 .s27 .viz.code .code-area .fn {  color: #c79bff;  }
 .s27 .viz.code .code-area .var {  color: #7eb6ff;  }
 .s27 .viz.code .code-area .str {  color: #ffb8da;  }
@@ -8670,8 +8724,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 .s5-3 .s-cap {  font-family: var(--pretendard); font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.7); letter-spacing: -0.005em; margin: 18px 0 0; max-width: 1500px;  }
 .s5-3 .s-cap .em {  color: rgba(240,217,255,0.95); font-weight: 600;  }
 .s5-3 /* SKILL STORE — two columns */
-.store { 
-  position: absolute; top: 320px; left: 120px; right: 120px;
+.store {
+  position: absolute; top: 400px; left: 120px; right: 120px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
   z-index: 3;
  }
@@ -8791,8 +8845,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 .s5-4 .s-cap {  font-family: var(--pretendard); font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.7); letter-spacing: -0.005em; margin: 18px 0 0; max-width: 1500px;  }
 .s5-4 .s-cap .em {  color: rgba(240,217,255,0.95); font-weight: 600;  }
 .s5-4 /* MAIN — 2 column compare */
-.compare { 
-  position: absolute; top: 320px; left: 120px; right: 120px;
+.compare {
+  position: absolute; top: 400px; left: 120px; right: 120px;
   display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; align-items: stretch;
   z-index: 3;
  }
@@ -9305,9 +9359,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 .s9 .viz-gui .ui-chip.target::after {
   content: ""; position: absolute; inset: -7px; border: 1.5px dashed #ff86cc; border-radius: 12px; opacity: 0.6;
 }
-.s9 .viz-gui .cursor { position: absolute; right: 56px; bottom: 18px; width: 18px; height: 22px; }
+.s9 .viz-gui .cursor { position: absolute; left: 118px; top: 58px; width: 18px; height: 22px; }
 .s9 .viz-gui .cursor svg { width: 100%; height: 100%; filter: drop-shadow(0 0 8px rgba(255,107,193,0.6)); }
-.s9 .viz-gui .click-trace { position: absolute; right: 70px; bottom: 32px; width: 8px; height: 8px; border-radius: 50%; background: #ff86cc; box-shadow: 0 0 0 5px rgba(255,134,204,0.18), 0 0 0 12px rgba(255,134,204,0.10); }
+.s9 .viz-gui .click-trace { position: absolute; left: 116px; top: 56px; width: 8px; height: 8px; border-radius: 50%; background: #ff86cc; box-shadow: 0 0 0 5px rgba(255,134,204,0.18), 0 0 0 12px rgba(255,134,204,0.10); }
 
 /* DIGITAL viz */
 .s9 .viz-digital .api-bar { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; }
@@ -9663,6 +9717,222 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 .s5-3 .s-cap .em,
 .s5-4 .s-cap .em,
 .s5-5 .s-cap .em { color: inherit; font-weight: inherit; }
+
+/* ═════════════════════════════════════════════════════════
+   슬라이드 진입 시 애니메이션 (JS .is-active 트리거)
+   ─ PDF/PPT 출력 시 정적 디자인(=peak/end frame) 그대로 출력
+═════════════════════════════════════════════════════════ */
+
+@media print {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ───────── 2.2 (.s9) 액추에이터 도식 — loop ───────── */
+/* GUI: 커서가 화면 배회 후 target chip 위로 착지 → 클릭 → 활성화 */
+@keyframes s9-gui-cursor {
+  0%, 3%    { transform: translate(180px, -55px); }   /* 우상단 진입 */
+  11%       { transform: translate(70px, -45px); }    /* 좌측으로 이동 */
+  20%       { transform: translate(-90px, -25px); }   /* 좌상 모서리 근처 */
+  29%       { transform: translate(-60px, 30px); }    /* 좌하 둘러봄 */
+  38%       { transform: translate(50px, 15px); }     /* target 근처 접근 */
+  46%, 49%  { transform: translate(0, 0); }            /* target 위 착지 (정지) */
+  50%, 53%  { transform: translate(0, 0) scale(0.82); }/* 클릭 press */
+  54%, 80%  { transform: translate(0, 0) scale(1); }   /* 활성화 유지 */
+  98%, 100% { transform: translate(180px, -55px); }
+}
+@keyframes s9-gui-trace {
+  0%, 50%  { opacity: 0; transform: scale(0.5); }
+  52%      { opacity: 1; transform: scale(1); }
+  64%      { opacity: 0; transform: scale(2.4); }
+  100%     { opacity: 0; }
+}
+@keyframes s9-gui-target {
+  0%, 46%   { box-shadow: 0 0 8px rgba(255,107,193,0.30); filter: brightness(0.7); }
+  51%, 58%  { box-shadow: 0 0 30px rgba(255,134,204,0.95); filter: brightness(1.18); }
+  72%, 95%  { box-shadow: 0 0 18px rgba(255,107,193,0.55); filter: brightness(1); }
+  100%      { box-shadow: 0 0 8px rgba(255,107,193,0.30); filter: brightness(0.7); }
+}
+section.is-active .s9 .viz-gui .cursor       { animation: s9-gui-cursor 6.5s ease-in-out infinite; }
+section.is-active .s9 .viz-gui .click-trace  { animation: s9-gui-trace 6.5s ease-out infinite; }
+section.is-active .s9 .viz-gui .ui-chip.target { animation: s9-gui-target 6.5s ease-in-out infinite; }
+
+/* Digital: 코드 실행 - flow 노드 순차 펄스 */
+@keyframes s9-digital-node {
+  0%, 100% { background: rgba(255,107,193,0.14); border-color: rgba(255,107,193,0.34); color: rgba(255,255,255,0.85); }
+  50%      { background: rgba(255,107,193,0.50); border-color: rgba(255,134,204,0.85); color: #fff; box-shadow: 0 0 16px rgba(255,134,204,0.55); }
+}
+section.is-active .s9 .viz-digital .flow .node:nth-child(1) { animation: s9-digital-node 3s ease-in-out infinite; }
+section.is-active .s9 .viz-digital .flow .node:nth-child(3) { animation: s9-digital-node 3s ease-in-out infinite; animation-delay: 1s; }
+section.is-active .s9 .viz-digital .flow .node:nth-child(5) { animation: s9-digital-node 3s ease-in-out infinite; animation-delay: 2s; }
+
+/* Physical: 파형 펄스 */
+@keyframes s9-physical-wave {
+  0%, 100% { opacity: 0.72; filter: drop-shadow(0 0 4px rgba(255,134,204,0.4)); }
+  50%      { opacity: 1;    filter: drop-shadow(0 0 14px rgba(255,134,204,0.95)); }
+}
+section.is-active .s9 .viz-physical .wave path { animation: s9-physical-wave 1.6s ease-in-out infinite; }
+
+
+/* ───────── 3.3 (.sa-slide.s33) Venn storytelling 시퀀스 (1회) ─────────
+   Phase 1 (HITL): stroke 그리기 → 채움(그라데이션) + 텍스트 + "불렸을 때" 타이핑
+   Phase 2 (GEN UI): stroke 그리기 → 채움 + 텍스트 + "완벽하게" 타이핑
+   Phase 3 (Ambient): 교집합 영역에 AMBIENT AX 텍스트 등장 */
+
+@keyframes s33-stroke-draw { to { stroke-dashoffset: 0; } }
+@keyframes s33-fadein      { to { opacity: 1; } }
+@keyframes s33-type        { to { clip-path: inset(0 0 0 0); } }
+
+/* 초기 상태 — .is-active 일 때만 적용. PDF/정적 상태에서는 default(visible)로 표시 */
+section.is-active .sa-slide.s33 .vn-stroke {
+  stroke-dasharray: 2640;
+  stroke-dashoffset: 2640;
+  animation: s33-stroke-draw 1.1s ease-in-out forwards;
+}
+section.is-active .sa-slide.s33 .vn-fill,
+section.is-active .sa-slide.s33 .vn-text,
+section.is-active .sa-slide.s33 .vn-core {
+  opacity: 0;
+  animation: s33-fadein 0.55s ease-out forwards;
+}
+
+/* Phase 1 — HITL */
+section.is-active .sa-slide.s33 .vn-hitl-stroke { animation-delay: 0.10s; }
+section.is-active .sa-slide.s33 .vn-hitl-fill,
+section.is-active .sa-slide.s33 .vn-hitl-label,
+section.is-active .sa-slide.s33 .vn-hitl-sub,
+section.is-active .sa-slide.s33 .vn-hitl-line1,
+section.is-active .sa-slide.s33 .vn-hitl-line2 { animation-delay: 1.30s; }
+
+/* Phase 2 — GEN UI */
+section.is-active .sa-slide.s33 .vn-gui-stroke { animation-delay: 2.10s; }
+section.is-active .sa-slide.s33 .vn-gui-fill,
+section.is-active .sa-slide.s33 .vn-gui-label,
+section.is-active .sa-slide.s33 .vn-gui-sub,
+section.is-active .sa-slide.s33 .vn-gui-line1,
+section.is-active .sa-slide.s33 .vn-gui-line2 { animation-delay: 3.30s; }
+
+/* Phase 3 — Intersection (Phase 2 완료 후 약간의 시간차) */
+section.is-active .sa-slide.s33 .vn-core    { animation-delay: 4.75s; }
+section.is-active .sa-slide.s33 .vn-amb-1   { animation-delay: 5.00s; }
+section.is-active .sa-slide.s33 .vn-amb-2   { animation-delay: 5.25s; }
+section.is-active .sa-slide.s33 .vn-amb-sub { animation-delay: 5.50s; }
+
+/* Tagline — Phase 1: 좌측 quote + "불렸을 때" 타이핑, Phase 2: 우측 quote + "완벽하게" 타이핑 */
+section.is-active .sa-slide.s33 .tagline em,
+section.is-active .sa-slide.s33 .tagline .tg-grad {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  animation: s33-type 0.85s steps(16, end) forwards;
+}
+section.is-active .sa-slide.s33 .tagline em      { animation-delay: 1.30s; }
+section.is-active .sa-slide.s33 .tagline .tg-grad { animation-delay: 3.30s; }
+
+section.is-active .sa-slide.s33 .tagline .tg-q {
+  opacity: 0;
+  animation: s33-fadein 0.40s ease-out forwards;
+}
+section.is-active .sa-slide.s33 .tagline .tg-q:nth-child(1) { animation-delay: 1.30s; }
+section.is-active .sa-slide.s33 .tagline .tg-q:nth-child(4) { animation-delay: 4.15s; }
+
+
+/* ───────── 4.7 (.s27) 코드 타이핑 → 터미널 로그 스크롤 → 커서 blink — 1회 ─────────
+   Phase 1: 코드 13줄 한 글자씩 타이핑 (0.10s ~ ~3.0s)
+   Phase 2: 터미널 로그 9줄 fade-in + 스트림 위로 스크롤 (~3.0s ~ ~5.4s)
+   Phase 3: 터미널 커서 무한 blink (5.4s 부터) */
+
+@keyframes s27-typing {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes s27-stream-scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-322px); }
+}
+@keyframes s27-blink {
+  0%, 50%       { opacity: 1; }
+  50.01%, 100%  { opacity: 0; }
+}
+
+/* Phase 1 & 2 — 모든 줄(.ln) 한 글자씩 타이핑 */
+section.is-active .s27 .t-card.after .code-area .ln {
+  animation: s27-typing 0.22s steps(36, end) backwards;
+}
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(1)  { animation-delay: 0.10s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(2)  { animation-delay: 0.32s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(3)  { animation-delay: 0.54s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(4)  { animation-delay: 0.76s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(5)  { animation-delay: 0.98s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(6)  { animation-delay: 1.20s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(7)  { animation-delay: 1.42s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(8)  { animation-delay: 1.64s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(9)  { animation-delay: 1.86s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(10) { animation-delay: 2.08s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(11) { animation-delay: 2.30s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(12) { animation-delay: 2.52s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(13) { animation-delay: 2.74s; }
+
+/* Phase 2 — 터미널 로그 9줄: 각 라인이 visible area 하단에 도달하는 순간 타이핑 시작
+   (스크롤 속도 128.8 px/s, 한 줄 ≈ 25.5px → 0.20s stagger) */
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(14) { animation-delay: 3.87s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(15) { animation-delay: 4.07s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(16) { animation-delay: 4.27s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(17) { animation-delay: 4.47s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(18) { animation-delay: 4.67s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(19) { animation-delay: 4.87s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(20) { animation-delay: 5.07s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(21) { animation-delay: 5.27s; }
+section.is-active .s27 .t-card.after .code-area .ln:nth-child(22) { animation-delay: 5.47s; }
+
+/* Phase 2 — 코드 스트림 스크롤-업 (linear timing으로 line typing과 동기화)
+   2.95s ~ 5.45s 동안 322px 스크롤 → 약 128.8 px/s 일정 속도 */
+section.is-active .s27 .code-area .code-stream {
+  animation: s27-stream-scroll 2.5s linear 2.95s both;
+}
+
+/* Phase 3 — 마지막 커서 무한 blink */
+section.is-active .s27 .cursor-blink {
+  opacity: 0;
+  animation: s27-blink 1s steps(1, end) 5.75s infinite;
+}
+
+
+/* ───────── 4.8 (.s28) 검증 — 듬성듬성 스캔 후 flagged 셀만 점등 (1회) ─────────
+   1. 중립 셀 중 ~15%(.scan)가 짧게 회색 flash → 스캔하고 지나가는 느낌
+   2. fail/warn/dim 셀은 스캔 종료(~1.1초) 이후 본인의 색으로 reveal */
+@keyframes s28-scan-flash {
+  0%, 100% { background-color: transparent; transform: scale(1); }
+  45%      { background-color: rgba(200,210,235,0.45); transform: scale(1.08); }
+}
+@keyframes s28-cell-reveal {
+  from { opacity: 0; transform: scale(0.55); }
+  60%  { opacity: 1; transform: scale(1.15); }
+  to   { opacity: 1; transform: scale(1); }
+}
+section.is-active .s28 #matrix .cell.scan {
+  animation: s28-scan-flash 0.42s ease-in-out backwards;
+  animation-delay: var(--d, 0ms);
+}
+section.is-active .s28 #matrix .cell.fail,
+section.is-active .s28 #matrix .cell.warn,
+section.is-active .s28 #matrix .cell.dim {
+  animation: s28-cell-reveal 0.5s ease-out backwards;
+  animation-delay: calc(var(--d, 0ms) * 0.4 + 1200ms);
+}
+
+
+/* ───────── 5.5 (.s5-5) 4개 도트 순차 점등 — 1회 ───────── */
+@keyframes s5-5-dot-pop {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.4); }
+  100% { opacity: 1; transform: scale(1); }
+}
+section.is-active.s5-5 .stage.st-1 .node { animation: s5-5-dot-pop 0.55s ease-out 0.30s backwards; }
+section.is-active.s5-5 .stage.st-2 .node { animation: s5-5-dot-pop 0.55s ease-out 1.80s backwards; }
+section.is-active.s5-5 .stage.st-3 .node { animation: s5-5-dot-pop 0.55s ease-out 3.30s backwards; }
+section.is-active.s5-5 .stage.st-4 .node { animation: s5-5-dot-pop 0.55s ease-out 4.80s backwards; }
 
 /* ═════════════════════════════════════════════════════════
    본문 슬라이드 배경 그라데이션 일관성 override (Part 3 기준)
@@ -10799,12 +11069,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
       <div class="connector">
         <svg viewBox="0 0 1680 130" preserveAspectRatio="none">
-          <path d="M 229 0 C 229 50, 154 70, 154 128"   stroke="#ff8fd0" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
-          <path d="M 993 0 C 993 50, 742 70, 742 128"   stroke="#ff8fd0" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
-          <path d="M 1604 0 C 1604 50, 1330 70, 1330 128" stroke="#ff8fd0" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
-          <circle cx="229"  cy="0"   r="4" fill="#ff8fd0"/>
-          <circle cx="993"  cy="0"   r="4" fill="#ff8fd0"/>
-          <circle cx="1604" cy="0"   r="4" fill="#ff8fd0"/>
+          <defs>
+            <linearGradient id="hitl-agent-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#7eb6ff" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#ff8fd0" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <path d="M 229 0 C 229 50, 154 70, 154 128"   stroke="url(#hitl-agent-grad)" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+          <path d="M 993 0 C 993 50, 742 70, 742 128"   stroke="url(#hitl-agent-grad)" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+          <path d="M 1604 0 C 1604 50, 1330 70, 1330 128" stroke="url(#hitl-agent-grad)" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+          <circle cx="229"  cy="0"   r="4" fill="#7eb6ff"/>
+          <circle cx="993"  cy="0"   r="4" fill="#7eb6ff"/>
+          <circle cx="1604" cy="0"   r="4" fill="#7eb6ff"/>
           <circle cx="154"  cy="128" r="4" fill="#ff8fd0"/>
           <circle cx="742"  cy="128" r="4" fill="#ff8fd0"/>
           <circle cx="1330" cy="128" r="4" fill="#ff8fd0"/>
@@ -10983,7 +11259,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     </aside>
 
     <div class="venn-stage">
-      <svg class="venn-svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet">
+      <svg class="venn-svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMin meet">
         <defs>
           <radialGradient id="s33-cA" cx="50%" cy="50%" r="55%">
             <stop offset="0%" stop-color="rgba(91,157,255,0.55)"/>
@@ -11002,28 +11278,30 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
           </radialGradient>
         </defs>
 
-        <circle cx="420" cy="450" r="420" fill="url(#s33-cA)" stroke="rgba(91,157,255,0.6)" stroke-width="1.4"/>
-        <circle cx="780" cy="450" r="420" fill="url(#s33-cB)" stroke="rgba(255,107,193,0.6)" stroke-width="1.4"/>
-        <ellipse cx="600" cy="450" rx="170" ry="320" fill="url(#s33-cCore)"/>
+        <circle class="vn-fill vn-hitl-fill" cx="420" cy="450" r="420" fill="url(#s33-cA)"/>
+        <circle class="vn-stroke vn-hitl-stroke" cx="420" cy="450" r="420" fill="none" stroke="rgba(91,157,255,0.6)" stroke-width="1.4"/>
+        <circle class="vn-fill vn-gui-fill" cx="780" cy="450" r="420" fill="url(#s33-cB)"/>
+        <circle class="vn-stroke vn-gui-stroke" cx="780" cy="450" r="420" fill="none" stroke="rgba(255,107,193,0.6)" stroke-width="1.4"/>
+        <ellipse class="vn-core" cx="600" cy="450" rx="170" ry="320" fill="url(#s33-cCore)"/>
 
-        <text x="260" y="450" fill="#8fb8ff" font-family="Inter Tight" font-size="78" font-weight="800" letter-spacing="-2" text-anchor="middle">HITL</text>
-        <text x="260" y="492" fill="rgba(143,184,255,0.65)" font-family="Inter Tight" font-size="13" letter-spacing="3" text-anchor="middle">HUMAN-IN-THE-LOOP</text>
+        <text class="vn-text vn-hitl-label" x="260" y="450" fill="#8fb8ff" font-family="Inter Tight" font-size="78" font-weight="800" letter-spacing="-2" text-anchor="middle">HITL</text>
+        <text class="vn-text vn-hitl-sub" x="260" y="492" fill="rgba(143,184,255,0.65)" font-family="Inter Tight" font-size="13" letter-spacing="3" text-anchor="middle">HUMAN-IN-THE-LOOP</text>
 
-        <text x="940" y="450" fill="#ffb8de" font-family="Inter Tight" font-size="68" font-weight="800" letter-spacing="-2" text-anchor="middle">GEN UI</text>
-        <text x="940" y="492" fill="rgba(255,184,222,0.65)" font-family="Inter Tight" font-size="13" letter-spacing="3" text-anchor="middle">GENERATIVE INTERFACE</text>
+        <text class="vn-text vn-gui-label" x="940" y="450" fill="#ffb8de" font-family="Inter Tight" font-size="68" font-weight="800" letter-spacing="-2" text-anchor="middle">GEN UI</text>
+        <text class="vn-text vn-gui-sub" x="940" y="492" fill="rgba(255,184,222,0.65)" font-family="Inter Tight" font-size="13" letter-spacing="3" text-anchor="middle">GENERATIVE INTERFACE</text>
 
-        <text x="260" y="544" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">불필요한 개입을 걷어내고</text>
-        <text x="260" y="568" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">꼭 필요한 순간만 남긴다</text>
-        <text x="940" y="544" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">그 순간 맥락에 맞는 UI를</text>
-        <text x="940" y="568" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">즉석에서 생성한다</text>
+        <text class="vn-text vn-hitl-line1" x="260" y="544" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">불필요한 개입을 걷어내고</text>
+        <text class="vn-text vn-hitl-line2" x="260" y="568" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">꼭 필요한 순간만 남긴다</text>
+        <text class="vn-text vn-gui-line1" x="940" y="544" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">그 순간 맥락에 맞는 UI를</text>
+        <text class="vn-text vn-gui-line2" x="940" y="568" fill="rgba(255,255,255,0.62)" font-family="Pretendard Variable" font-size="17" font-weight="500" text-anchor="middle">즉석에서 생성한다</text>
 
-        <text x="600" y="430" fill="#ffffff" font-family="Inter Tight" font-size="64" font-weight="800" letter-spacing="-2.5" text-anchor="middle">AMBIENT</text>
-        <text x="600" y="494" fill="#ffffff" font-family="Inter Tight" font-size="64" font-weight="800" letter-spacing="-2.5" text-anchor="middle">AX</text>
-        <text x="600" y="534" fill="rgba(212,186,255,0.7)" font-family="JetBrains Mono" font-size="12" letter-spacing="3" text-anchor="middle">THE INTERSECTION</text>
+        <text class="vn-text vn-amb-1" x="600" y="430" fill="#ffffff" font-family="Inter Tight" font-size="64" font-weight="800" letter-spacing="-2.5" text-anchor="middle">AMBIENT</text>
+        <text class="vn-text vn-amb-2" x="600" y="494" fill="#ffffff" font-family="Inter Tight" font-size="64" font-weight="800" letter-spacing="-2.5" text-anchor="middle">AX</text>
+        <text class="vn-text vn-amb-sub" x="600" y="534" fill="rgba(212,186,255,0.7)" font-family="JetBrains Mono" font-size="12" letter-spacing="3" text-anchor="middle">THE INTERSECTION</text>
       </svg>
 
       <div class="tagline">
-        <span class="tg-q">"</span><em>불렸을 때</em> <span class="tg-grad">완벽하게</span><span class="tg-q">"</span>
+        <span class="tg-q">"</span><em>필요할 때에만</em> <span class="tg-grad">알맞은 형태로</span><span class="tg-q">"</span>
       </div>
     </div>
   </div>
@@ -11321,7 +11599,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
         <!-- 좌측: HITL 게이트 -->
         <div class="cs-left">
           <div class="md-section" style="margin-top:30px">
-            <div class="cs-continuation">(시스템 프롬프트 중략)</div>
             <div class="md-label">Step 2. 토픽 요약 제시 — Human 선택 게이트</div>
             <div class="md-body">선정된 3개 토픽을 각각 3-4문장으로 요약해 사용자에게 제시. 요약에는 토픽의 배경, 왜 지금 화제인지, UX적 의미가 한눈에 보여야 함.</div>
           </div>
@@ -11338,11 +11615,33 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 ①②③ 중 하나를 선택해 주시면 해당 토픽으로
 심층 인사이트 리포트를 작성합니다.</div>
           <div class="md-body" style="font-size:12px;color:#666">사용자가 번호나 토픽명으로 선택 → Step 3으로 진행<br>"다시 찾아줘" 또는 마음에 드는 것이 없을 경우 → Step 1을 다른 쿼리로 재실행</div>
+
+          <div class="md-section gh-supp" style="margin-top:80px">
+            <div class="md-label">Step 3. 선택 토픽 심층 분석 — 자동 진행</div>
+            <div class="md-body">선택된 토픽으로 Step 1의 도구 호출을 재실행. search_depth: deep, 기간 12개월 → 6개월로 좁혀 정밀 수집. Claude 합성 시 도메인 페르소나 1-2개와 실험 가능한 디자인 가설 2-3개를 출처 인용과 함께 도출.</div>
+          </div>
+          <div class="md-section gh-supp">
+            <div class="md-label">Step 4. 산출물 패키징 — Human 검토 게이트</div>
+            <div class="md-body">심층 리포트 초안과 trend_insights.json을 함께 사용자에게 제시. "확정" → 다음 모듈(아이데이션)로 인계. "수정 {섹션명}" → 해당 섹션만 부분 재생성, 나머지 섹션은 동결한 채 유지.</div>
+          </div>
         </div>
 
-        <!-- 우측: 공통 행동 원칙 (하단 정렬, 위로 살짝 끌어올림) -->
-        <div class="cs-right" style="justify-content:flex-end;padding-bottom:150px">
-          <div class="cs-continuation">(시스템 프롬프트 중략)</div>
+        <!-- 우측: 리포트 작성 규칙 → 공통 행동 원칙 -->
+        <div class="cs-right">
+          <div class="cs-tag gh-supp">리포트 작성 규칙</div>
+          <div class="principle-item gh-supp">
+            <div class="pi-label">결론 선행 (PREP)</div>
+            <div class="pi-desc">각 인사이트는 결론을 먼저 제시한 뒤 근거·예시·실천 제안 순으로 전개. 한 문단 4문장 이내, 추상 명사보다 검색 가능한 구체적 키워드 사용</div>
+          </div>
+          <div class="principle-item gh-supp">
+            <div class="pi-label">시각화 의무</div>
+            <div class="pi-desc">시계열·랭킹·비교 데이터가 있으면 텍스트 단독 서술 금지. mini-table 또는 ASCII 차트로 함께 제시하고 캡션에 단위·기간·출처 명기</div>
+          </div>
+          <div class="principle-item gh-supp">
+            <div class="pi-label">제외 항목</div>
+            <div class="pi-desc">광고성 콘텐츠, 7일 미만 단기 변동, 출처 미확인 SNS 게시물은 인사이트로 채택하지 않음. 데이터 부족 시 "정보 부족" 명시</div>
+          </div>
+
           <div class="cs-tag">공통 행동 원칙</div>
           <div class="principle-item">
             <div class="pi-label">근거 없는 주장 금지</div>
@@ -11954,7 +12253,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
         <div class="t-headline"><span class="em">검증한 로직</span>을<br/>넘기는 시대</div>
         <div class="viz code">
           <div class="viz-bar"><span class="ld"></span><span class="vb-name">onboarding.flow.ts</span><span class="vb-tag">PoC VERIFIED</span></div>
-          <div class="code-area"><div class="ln"><span class="num">1</span><span class="code"><span class="kw">import</span> <span class="pun">{</span> <span class="fn">agent</span><span class="pun">,</span> <span class="fn">runPoC</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">"@design/loop"</span></span></div><div class="ln"><span class="num">2</span><span class="code"><span class="kw">type</span> <span class="fn">Path</span> <span class="pun">=</span> <span class="str">"explore"</span> <span class="pun">|</span> <span class="str">"convert"</span> <span class="pun">|</span> <span class="str">"default"</span></span></div><div class="ln"><span class="num">3</span><span class="code"> </span></div><div class="ln"><span class="num">4</span><span class="code"><span class="com">// PoC verified · n=120 · A 우세 (+28%)</span></span></div><div class="ln"><span class="num">5</span><span class="code"><span class="kw">export const</span> <span class="fn">onboard</span> <span class="pun">= (</span><span class="var">user</span><span class="pun">:</span> <span class="fn">User</span><span class="pun">) =&gt; {</span></span></div><div class="ln"><span class="num">6</span><span class="code">  <span class="kw">const</span> <span class="var">path</span><span class="pun">:</span> <span class="fn">Path</span> <span class="pun">=</span> <span class="fn">pickPath</span><span class="pun">(</span><span class="var">user</span><span class="pun">.</span>intent<span class="pun">)</span></span></div><div class="ln"><span class="num">7</span><span class="code">  <span class="kw">if</span> <span class="pun">(</span><span class="var">path</span> <span class="pun">===</span> <span class="str">"explore"</span><span class="pun">)</span></span></div><div class="ln"><span class="num">8</span><span class="code">    <span class="kw">return</span> <span class="fn">showLiveDemo</span><span class="pun">({</span> depth<span class="pun">:</span> <span class="lit">2</span><span class="pun">,</span> autoplay<span class="pun">:</span> <span class="lit">true</span> <span class="pun">})</span></span></div><div class="ln"><span class="num">9</span><span class="code">  <span class="kw">if</span> <span class="pun">(</span><span class="var">path</span> <span class="pun">===</span> <span class="str">"convert"</span><span class="pun">)</span></span></div><div class="ln"><span class="num">10</span><span class="code">    <span class="kw">return</span> <span class="fn">guidedTour</span><span class="pun">({</span> steps<span class="pun">:</span> <span class="lit">3</span><span class="pun">,</span> skip<span class="pun">:</span> <span class="lit">true</span> <span class="pun">})</span></span></div><div class="ln"><span class="num">11</span><span class="code">  <span class="kw">return</span> <span class="fn">defaultFlow</span><span class="pun">({</span> minimal<span class="pun">:</span> <span class="lit">true</span> <span class="pun">})</span></span></div><div class="ln"><span class="num">12</span><span class="code"><span class="pun">}</span></span></div><div class="ln"><span class="num">13</span><span class="code"><span class="com">// → 진입 +28% · 이탈 -41% · 전환 +12%</span></span></div></div>
+          <div class="code-area"><div class="code-stream"><div class="ln"><span class="num">1</span><span class="code"><span class="kw">import</span> <span class="pun">{</span> <span class="fn">agent</span><span class="pun">,</span> <span class="fn">runPoC</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">"@design/loop"</span></span></div><div class="ln"><span class="num">2</span><span class="code"><span class="kw">type</span> <span class="fn">Path</span> <span class="pun">=</span> <span class="str">"explore"</span> <span class="pun">|</span> <span class="str">"convert"</span> <span class="pun">|</span> <span class="str">"default"</span></span></div><div class="ln"><span class="num">3</span><span class="code"> </span></div><div class="ln"><span class="num">4</span><span class="code"><span class="com">// PoC verified · n=120 · A 우세 (+28%)</span></span></div><div class="ln"><span class="num">5</span><span class="code"><span class="kw">export const</span> <span class="fn">onboard</span> <span class="pun">= (</span><span class="var">user</span><span class="pun">:</span> <span class="fn">User</span><span class="pun">) =&gt; {</span></span></div><div class="ln"><span class="num">6</span><span class="code">  <span class="kw">const</span> <span class="var">path</span><span class="pun">:</span> <span class="fn">Path</span> <span class="pun">=</span> <span class="fn">pickPath</span><span class="pun">(</span><span class="var">user</span><span class="pun">.</span>intent<span class="pun">)</span></span></div><div class="ln"><span class="num">7</span><span class="code">  <span class="kw">if</span> <span class="pun">(</span><span class="var">path</span> <span class="pun">===</span> <span class="str">"explore"</span><span class="pun">)</span></span></div><div class="ln"><span class="num">8</span><span class="code">    <span class="kw">return</span> <span class="fn">showLiveDemo</span><span class="pun">({</span> depth<span class="pun">:</span> <span class="lit">2</span><span class="pun">,</span> autoplay<span class="pun">:</span> <span class="lit">true</span> <span class="pun">})</span></span></div><div class="ln"><span class="num">9</span><span class="code">  <span class="kw">if</span> <span class="pun">(</span><span class="var">path</span> <span class="pun">===</span> <span class="str">"convert"</span><span class="pun">)</span></span></div><div class="ln"><span class="num">10</span><span class="code">    <span class="kw">return</span> <span class="fn">guidedTour</span><span class="pun">({</span> steps<span class="pun">:</span> <span class="lit">3</span><span class="pun">,</span> skip<span class="pun">:</span> <span class="lit">true</span> <span class="pun">})</span></span></div><div class="ln"><span class="num">11</span><span class="code">  <span class="kw">return</span> <span class="fn">defaultFlow</span><span class="pun">({</span> minimal<span class="pun">:</span> <span class="lit">true</span> <span class="pun">})</span></span></div><div class="ln"><span class="num">12</span><span class="code"><span class="pun">}</span></span></div><div class="ln"><span class="num">13</span><span class="code"><span class="com">// → 진입 +28% · 이탈 -41% · 전환 +12%</span></span></div><div class="ln term"><span class="num"></span><span class="code"><span class="prompt">$</span> npm test onboarding.flow.ts</span></div><div class="ln term"><span class="num"></span><span class="code"><span class="pass">PASS</span>  onboarding.test.ts <span class="termdim">(1.42s)</span></span></div><div class="ln term"><span class="num"></span><span class="code">  <span class="pass">✓</span> pickPath('explore')   <span class="termdim">n=412 · ctr +28.1%</span></span></div><div class="ln term"><span class="num"></span><span class="code">  <span class="pass">✓</span> pickPath('convert')   <span class="termdim">n=388 · ctr +11.8%</span></span></div><div class="ln term"><span class="num"></span><span class="code">  <span class="pass">✓</span> pickPath('default')   <span class="termdim">n=200 · baseline</span></span></div><div class="ln term"><span class="num"></span><span class="code">Tests:    <span class="pass">3 passed</span>, 3 total  ·  coverage <span class="pass">97.4%</span></span></div><div class="ln term"><span class="num"></span><span class="code"><span class="prompt">$</span> npm run deploy onboard</span></div><div class="ln term"><span class="num"></span><span class="code"><span class="pass">✓</span> live  ·  /onboarding</span></div><div class="ln term"><span class="num"></span><span class="code"><span class="prompt">$</span> <span class="cursor-blink"></span></span></div></div></div>
         </div>
         <div class="t-foot">
           <div class="t-axis">
@@ -12587,7 +12886,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
       <span class="dot"></span>
       <span>5.3</span>
     </div>
-    <h1 class="s-title">기술 자산과 네이티브 서비스의 <span class="grad">스킬화 / Skill-as-a-Service</span></h1>
+    <h1 class="s-title">기술 자산과 네이티브 서비스의 스킬화<br/><span class="grad">Skill-as-a-Service</span></h1>
     <p class="s-cap">제조사만의 독보적인 네이티브 서비스를 <span class="em">표준화된 스킬</span>로 만들어 배포하고, 사용자 의도에 맞는 스킬을 매칭해주는 <span class="em">스킬 스토어 구축</span></p>
   </div>
 
@@ -12709,7 +13008,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
   <div class="s-head">
     <div class="s-eyebrow"><span class="dot"></span><span>5.4</span></div>
-    <h1 class="s-title">의도만 말하면 되는 환경: <span class="grad">Zero Deployment</span></h1>
+    <h1 class="s-title">의도만 말하면 되는 환경<br/><span class="grad">Zero Deployment</span></h1>
     <p class="s-cap">코딩을 없앤다고 복잡함이 사라지지 않는다. 진짜 목표는 <span class="em">로직 자체를 몰라도 되는 환경</span>.</p>
   </div>
 
@@ -12903,10 +13202,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   let html = '';
   for (let i = 0; i < total; i++) {
     let cls = 'cell';
-    if (failIdx.has(i)) cls += ' fail';
-    else if (warnIdx.has(i)) cls += ' warn';
-    else if (dimIdx.has(i)) cls += ' dim';
-    html += '<span class="' + cls + '"></span>';
+    let isFlagged = false;
+    if (failIdx.has(i))      { cls += ' fail'; isFlagged = true; }
+    else if (warnIdx.has(i)) { cls += ' warn'; isFlagged = true; }
+    else if (dimIdx.has(i))  { cls += ' dim';  isFlagged = true; }
+    // 중립 셀 중 ~15%에만 scan 클래스 → 듬성듬성 스캔 효과
+    const r2 = Math.abs(Math.sin((i + 1) * 78.233) * 43758.5453) % 1;
+    if (!isFlagged && r2 < 0.15) cls += ' scan';
+    // 셀별 랜덤 delay (0-1100ms)
+    const r1 = Math.abs(Math.sin((i + 1) * 12.9898) * 43758.5453) % 1;
+    const delayMs = Math.round(r1 * 1100);
+    html += '<span class="' + cls + '" style="--d:' + delayMs + 'ms"></span>';
   }
   m.innerHTML = html;
 })();
@@ -12942,6 +13248,14 @@ function updateUI() {
   const idx = Reveal.getIndices();
   const total = Reveal.getTotalSlides();
   document.getElementById('counter').innerHTML = `${idx.h + 1}<span class="sep">/</span><span class="total">${total}</span>`;
+
+  // ── 슬라이드 진입 시 .is-active 토글 (애니메이션 트리거용) ──
+  document.querySelectorAll('.slides section.is-active').forEach(s => s.classList.remove('is-active'));
+  if (slide) {
+    // 강제 reflow 후 클래스 추가 → CSS 애니메이션 fresh restart
+    void slide.offsetWidth;
+    slide.classList.add('is-active');
+  }
 }
 
 Reveal.on('slidechanged', updateUI);
